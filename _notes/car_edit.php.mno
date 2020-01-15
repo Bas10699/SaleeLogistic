@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_car" value="name:car_id;datatype:int,name:car_register;datatype:string,name:car_province;datatype:string" />
+</info>

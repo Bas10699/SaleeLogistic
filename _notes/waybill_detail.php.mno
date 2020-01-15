@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_waybill" value="name:wb_id;datatype:int,name:wb_nbook;datatype:string,name:wb_date;datatype:string,name:wb_money;datatype:real,name:wb_payment;datatype:string,name:wb_img;datatype:string,name:wb_nber;datatype:string,name:customer_id;datatype:string,name:car_id;datatype:int,name:wb_id_set;datatype:string,name:cus_id;datatype:int,name:customer_id;datatype:string,name:cus_compan;datatype:string,name:cus_house;datatype:string,name:cus_vill;datatype:int,name:cus_sub;datatype:string,name:cus_area;datatype:string,name:cus_pro;datatype:string,name:cus_pos;datatype:string,name:cus_tle;datatype:string,name:cus_tin;datatype:string" />
+</info>
