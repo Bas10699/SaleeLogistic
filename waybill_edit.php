@@ -23,7 +23,7 @@ function Editdata($row_waybill,$customer){
                 <td><input name="wb_nber" id="wb_nber" value='<?php echo $row_waybill['wb_nber']; ?>'/></td>
               </tr>
               <tr valign="baseline">
-                <td nowrap="nowrap" align="right">เลมที่:</td>
+                <td nowrap="nowrap" align="right">เล่มที่:</td>
                 <td><input name="wb_nbook" id="wb_nbook" value='<?php echo $row_waybill['wb_nbook']; ?>'/></td>
               </tr>
               <tr valign="baseline">
