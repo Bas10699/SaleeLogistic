@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_showmember" value="name:login_id;datatype:int,name:login_use;datatype:string,name:login_pass;datatype:string,name:login_name;datatype:string,name:login_level;datatype:int" />
+</info>

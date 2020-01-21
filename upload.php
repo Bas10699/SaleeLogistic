@@ -1,8 +1,9 @@
 <?php
-function Upload($file,$path="./picture/"){
-	if(@copy($file['tmp_name'],$path.$file['name'])){
+function Upload($file,$namefile){
+
+	if(@copy($file['tmp_name'],$path.$namefile)){
 		@chmod($path.$file,0777);
-		return $file['name'];
+		return $namefile;
 	}else{
 		return false;
 	}

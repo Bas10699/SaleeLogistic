@@ -1,3 +1,4 @@
+<?php require_once('upload.php'); ?>
 <?php
 
 function Editdata($row_waybill,$customer){
@@ -11,9 +12,14 @@ function Editdata($row_waybill,$customer){
 
 <body>
 <div align="center" >
+
+
         <table class="" width="525" border="1">
           <tr>
             <td><table width="519" align="center">
+            <div align="center">
+            <img src="picture/<?php echo $row_waybill['wb_img']; ?>" width="100" height="150"/>
+            </div>
               <tr valign="baseline">
                 <td nowrap="nowrap" align="right">รหัสใบส่งของ:</td>
                 <td><input name="wb_id_set" id="wb_id_set" value='<?php echo $row_waybill['wb_id_set']; ?>' disabled/></td>
@@ -30,7 +36,7 @@ function Editdata($row_waybill,$customer){
                 <td nowrap="nowrap" align="right">ชื่อบริษัท:</td>
                 <td>
                 <select name="cus_compan" id="cus_compan">
-                        <option selected disabled hidden><?php echo $row_waybill['cus_compan']; ?></option>
+                      <option value=<?php echo $row_waybill["cus_id"]; ?> selected><?php echo $row_waybill['cus_compan']; ?></option>
                      <?php while($row_customer = mysql_fetch_array($customer)) { ?>
                        <option value=<?php echo $row_customer["cus_id"]; ?>><?php echo $row_customer["cus_compan"]; ?></option>
                      <? } ?>
@@ -49,29 +55,80 @@ function Editdata($row_waybill,$customer){
                 <td nowrap="nowrap" align="right">สถานะการชำระเงิน:</td>
                 <td>
                 <select name="wb_payment" id="wb_payment">
-                      <option selected disabled hidden><?php echo $row_waybill['wb_payment']; ?></option>
+                      <option value=<?php echo $row_waybill['wb_payment']; ?> selected><?php echo $row_waybill['wb_payment']; ?></option>
                       <option value="ยังไม่ได้ชำระ">ยังไม่ได้ชำระ</option>
                       <option value="ชำระแล้ว">ชำระแล้ว</option>
                     </select>
                     
               </tr>
-              <!-- <tr valign="baseline">
+              <tr valign="baseline">
                 <td nowrap="nowrap" align="right">รูปภาพ:</td>
-                <td><input type="file" name="wb_img" value="" size="32" /></td>
-              </tr> -->
+                <td><input type="file" name="wb_img" id="wb_img" value='<?php echo $row_waybill['wb_img']; ?>' size="32" /></td>
+              </tr> 
               <tr valign="baseline">
                 <td colspan="2" align="right" nowrap="nowrap"><div align="center">
                 
                 </div>
                 </td>
               </tr>
+              <tr valign="baseline">
+                <td colspan="2" align="right" nowrap="nowrap"><div align="center">
+                  
+                </div>
+                </td>
+              </tr>
             </table>
               <div align="center"></div></td>
           </tr>
-        </table>
+          
+        </table><button id="btn_edit">ยืนยัน</button>
         <br/>
         
+
       </div>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+      <script>
+      $(document).ready(function(){
+        $('#btn_edit').on('click',function(){
+    
+          $.ajaxSetup({
+            headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+          });
+      
+          $.ajax({
+            method: "POST",
+            url: "waybilledit.php",
+            data: {
+              wb_id_set: $('#wb_id_set').val(),
+              wb_nber: $('#wb_nber').val(),
+              wb_nbook: $('#wb_nbook').val(),
+              cus_compan: $('#cus_compan').val(),
+              wb_date: $('#wb_date').val(),
+              wb_money: $('#wb_money').val(),
+              wb_payment: $('#wb_payment').val(),
+              wb_img: $('#wb_img').val()
+            }
+          }).done(function(msg){
+              console.log(msg)
+              location.reload()
+          });
+
+
+          /*console.log($('#wb_id_set').val())
+          console.log($('#wb_nber').val())
+          console.log($('#wb_nbook').val())
+          console.log($('#cus_compan').val())
+          console.log($('#wb_date').val())
+          console.log($('#wb_money').val())
+          console.log($('#wb_payment').val())*/
+        })
+      })
+
+      
+      </script>
 </body>
 </html>
 <?php } ?>

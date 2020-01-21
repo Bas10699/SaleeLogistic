@@ -1,5 +1,5 @@
 <?php require_once('Connections/myconnect.php'); ?>
-<?php
+<?php session_start();
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
@@ -104,13 +104,13 @@ if (isset($_POST['login_user'])) {
     <tr>
       <td width="171" height="31" align="right" bgcolor="#CCCCCC"><h4>ชื่อผู้ใช้งาน :</h4></td>
       <td width="350" bgcolor="#CCCCCC"><label>
-        <input name="login_user" type="text" id="login_user" size="30" />
+        <input name="login_user" type="text" id="login_user" size="30" required="required"/>
       </label></td>
     </tr>
     <tr>
       <td height="32" align="right" bgcolor="#CCCCCC"><h4>รหัสผ่าน :</h4></td>
       <td bgcolor="#CCCCCC"><label>
-        <input name="login_pass" type="password" id="login_pass" size="30" />
+        <input name="login_pass" type="password" id="login_pass" size="30" required="required" />
       </label></td>
     </tr>
     <tr>

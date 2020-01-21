@@ -1,5 +1,9 @@
 <?php require_once('Connections/myconnect.php'); ?>
 <?php require_once('upload.php'); ?>
+
+<?php require_once('nevbar.php');
+Nevbar(); ?>
+
 <?php
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
@@ -38,13 +42,12 @@ if (isset($_SERVER['QUERY_STRING'])) {
 }
 
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
-  $insertSQL = sprintf("INSERT INTO tb_waybill (wb_id, wb_nbook, wb_date, wb_money, wb_payment, wb_img, wb_nber, customer_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
+  $insertSQL = sprintf("INSERT INTO tb_waybill (wb_id, wb_nbook, wb_date, wb_money, wb_payment,  wb_nber, customer_id) VALUES ( %s, %s, %s, %s, %s, %s, %s)",
                        GetSQLValueString($_POST['wb_id'], "int"),
                        GetSQLValueString($_POST['wb_nbook'], "text"),
                        GetSQLValueString($_POST['wb_date'], "text"),
                        GetSQLValueString($_POST['wb_money'], "double"),
                        GetSQLValueString($_POST['wb_payment'], "text"),
-                      GetSQLValueString(Upload($_FILES['wb_img']), "text"),
                        GetSQLValueString($_POST['wb_nber'], "text"),
 					   GetSQLValueString($_POST['cus_compan'], "text"));
 
@@ -53,8 +56,15 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
 
   $id = mysql_insert_id();
   $id_SET = sprintf('B-%04d', $id);
-  $insertSQL1 = sprintf("UPDATE tb_waybill SET wb_id_set=%s WHERE wb_id=%s",
+  
+  $path="./picture/";
+  $last = strtolower(end(explode('.',$_FILES['wb_img']['name'])));
+	$name = $id_SET.'.'.$last;
+  Upload($_FILES['wb_img'],$path.$name);
+
+  $insertSQL1 = sprintf("UPDATE tb_waybill SET wb_id_set=%s, wb_img=%s WHERE wb_id=%s",
                     GetSQLValueString($id_SET,"text"),
+                    GetSQLValueString($name,"text"),
                     GetSQLValueString($id,"text"));
   mysql_select_db($database_myconnect, $myconnect);
   $Result2 = mysql_query($insertSQL1, $myconnect) or die(mysql_error());
@@ -105,21 +115,7 @@ a:active {
 
 <body>
 <table width="100%" height="477" align="center">
-  <tr>
-    <td height="32" colspan="2" bgcolor="#000033"><img src="img/logodaichuar2.png" width="207" height="199" /></td>
-  </tr>
-  <tr>
-    <td colspan="2" bgcolor="#000033"><table width="100%">
-      <tr>
-        <td width="9%" class="หัวข้อ"><a href="indexhome.php">หน้าแรก</a></td>
-        <td width="12%" class="หัวข้อ"><a href="staff_show.php">ข้อมูลพนักงาน</a></td>
-        <td width="9%" class="หัวข้อ"><a href="car_show.php">ข้อมูลรถ</a></td>
-        <td width="9%" class="หัวข้อ"><a href="customer_show.php">ข้อมูลลูกค้า</a></td>
-        <td width="20%" class="หัวข้อ"><a href="waybill_show.php">เอกสารใบส่งของ</a></td>
-        <td width="41%">&nbsp;</td>
-      </tr>
-    </table></td>
-  </tr>
+  
   <tr>
     <td colspan="2">&nbsp;</td>
   </tr>
@@ -153,7 +149,7 @@ a:active {
                   <td><input name="wb_nber" type="text" id="wb_nber" value="" size="20" /></td>
                 </tr>
                 <tr valign="baseline">
-                  <td nowrap="nowrap" align="right">เลมที่:</td>
+                  <td nowrap="nowrap" align="right">เล่มที่:</td>
                   <td><input type="text" name="wb_nbook" value="" size="20" /></td>
                 </tr>
                 <tr valign="baseline">
@@ -174,6 +170,7 @@ a:active {
                   <td nowrap="nowrap" align="right">วันที่:</td>
                   <td>
                   <!-- <?php echo date('d/m/Y');?> -->
+                  
                   <input type="date" name="wb_date" value="<?php echo date('d/m/Y');?>" size="20" /></td>
                 </tr>
                 <tr valign="baseline">

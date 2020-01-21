@@ -1,4 +1,8 @@
 <?php require_once('Connections/myconnect.php'); ?>
+
+<?php require_once('nevbar.php');
+Nevbar(); ?>
+
 <?php
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
@@ -44,6 +48,10 @@ $totalRows_car = mysql_num_rows($car);
 A:link {COLOR: #FFFFFF; TEXT-DECORATION: none}
 A:visited {COLOR: #FFFF00; TEXT-DECORATION: none}
 A:hover {COLOR: #FFFFFF; TEXT-DECORATION: underline}
+.ปุ่มลบ {
+	border-radius: 10px;
+	background-color: #990000;
+}
 </STYLE>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>ข้อมูลรถ</title>
@@ -108,21 +116,7 @@ function MM_popupMsg(msg) { //v1.0
 
 <body>
 <table width="100%" height="521" align="center">
-  <tr>
-    <td height="41" colspan="8" bgcolor="#000033"><img src="img/logodaichuar2.png" width="207" height="199" /></td>
-  </tr>
-  <tr class="หัวข้อ">
-    <td height="45" colspan="8" bgcolor="#000033"><table width="100%">
-      <tr>
-        <td width="9%" class="หัวข้อ"><a href="indexhome.php">หน้าแรก</a></td>
-        <td width="12%" class="หัวข้อ"><a href="staff_show.php">ข้อมูลพนักงาน</a></td>
-        <td width="9%" class="หัวข้อ"><a href="car_show.php">ข้อมูลรถ</a></td>
-        <td width="9%" class="หัวข้อ"><a href="customer_show.php">ข้อมูลลูกค้า</a></td>
-        <td width="20%" class="หัวข้อ"><a href="waybill_show.php">เอกสารใบส่งของ</a></td>
-        <td width="41%">&nbsp;</td>
-      </tr>
-    </table></td>
-  </tr>
+  
   <tr>
     <td colspan="8">&nbsp;</td>
   </tr>
@@ -156,8 +150,8 @@ function MM_popupMsg(msg) { //v1.0
           <tr>
             <td height="33" bgcolor="#FFFFFF"><div align="center"><?php echo $row_car['car_id_set']; ?></div></td>
             <td height="33" bgcolor="#FFFFFF"><div align="left"><?php echo $row_car['car_register']; ?> / <?php echo $row_car['car_province']; ?></div></td>
-            <td width="105" bgcolor="#FFFFFF"><div align="center"><span class="หัวข้อตาราง"><a href="car_edit.php<?php echo $row_car['']; ?>?id=<?php echo $row_car['car_id']; ?>" class="กรอบแก้ไข">แก้ไข</a></span></div></td>
-            <td width="89" bgcolor="#FFFFFF"><div align="center"><span class="หัวข้อตาราง"><a href="car_del.php?id=<?php echo $row_car['car_id']; ?>" onclick="MM_popupMsg('ยืนยันที่จะลบข้อมูลหรือไม่ ?')">ลบ</a></span></div></td>
+            <td width="105" bgcolor="#006600"><div align="center"><span class="หัวข้อตาราง"><a href="car_edit.php<?php echo $row_car['']; ?>?id=<?php echo $row_car['car_id']; ?>" class="กรอบแก้ไข">แก้ไข</a></span></div></td>
+            <td width="89" bgcolor="#990000"><div align="center"><span class="หัวข้อตาราง"><a href="car_del.php?id=<?php echo $row_car['car_id']; ?>" class="ปุ่มลบ" onclick="MM_popupMsg('ยืนยันที่จะลบข้อมูลหรือไม่ ?')">ลบ</a></span></div></td>
           </tr>
           <?php } while ($row_car = mysql_fetch_assoc($car)); ?>
         </table>

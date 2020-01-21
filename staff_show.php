@@ -1,4 +1,7 @@
 <?php require_once('Connections/myconnect.php'); ?>
+<?php require_once('nevbar.php');
+Nevbar(); ?>
+
 <?php
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
@@ -74,21 +77,7 @@ A:hover {COLOR: #FFFF00; TEXT-DECORATION: underline}
 	color: #FF0;
 	font-family: "angsana New";
 }
-a:link {
-	color: #FF0;
-	text-decoration: none;
-}
-a:visited {
-	text-decoration: none;
-	color: #FF0;
-}
-a:hover {
-	text-decoration: none;
-	color: #FFF;
-}
-a:active {
-	text-decoration: none;
-}
+
 </style>
 <script type="text/javascript">
 function MM_popupMsg(msg) { //v1.0
@@ -99,21 +88,8 @@ function MM_popupMsg(msg) { //v1.0
 
 <body>
 <table width="100%" height="628" align="center">
-  <tr>
-    <td height="32" bgcolor="#000033"><img src="img/logodaichuar2.png" alt="" width="207" height="199" /></td>
-  </tr>
-  <tr>
-    <td height="29" bgcolor="#000033"><table width="100%">
-      <tr>
-        <td width="9%" class="หัวข้อ"><a href="indexhome.php">หน้าแรก</a></td>
-        <td width="12%" class="หัวข้อ"><a href="staff_show.php">ข้อมูลพนักงาน</a></td>
-        <td width="9%" class="หัวข้อ"><a href="car_show.php">ข้อมูลรถ</a></td>
-        <td width="9%" class="หัวข้อ"><a href="customer_show.php">ข้อมูลลูกค้า</a></td>
-        <td width="20%" class="หัวข้อ"><a href="waybill_show.php">เอกสารใบส่งของ</a></td>
-        <td width="41%">&nbsp;</td>
-      </tr>
-    </table></td>
-  </tr>
+  
+
   <tr>
     <td height="29">&nbsp;</td>
   </tr>
@@ -126,10 +102,28 @@ function MM_popupMsg(msg) { //v1.0
     </div></td>
   </tr>
   <tr>
-    <td height="43"><div align="right">
-      <table width="159" border="1">
+    <td height="43"><div align="center">
+      <table width="83%" height="44">
         <tr>
-          <td width="108" bgcolor="#660033"><div align="center"><a href="staff_insert.php">เพิ่มข้อมูลพนักงาน</a></div></td>
+          <td width="50%"><form id="form2" name="form2" method="post" action="">
+            <label for="textfield"></label>
+            <input type="text" name="textfield" id="textfield" />
+            <input type="submit" name="button" id="button" value="ค้นหา" />
+            <label for="select"></label>
+            <select name="select" id="select">
+              <option value="0" selected="selected">ทั้งหมด</option>
+              <option value="1">ชื่อ-นามสกุล</option>
+              <option value="2">เลขบัตรประชาชน</option>
+              <option value="3">เบอร์โทรศัพท์</option>
+              </select>
+            </form></td>
+          <td width="50%"><div align="right">
+            <table width="159" border="1">
+              <tr>
+                <td width="108" bgcolor="#660033"><div align="center"><a href="staff_insert.php">เพิ่มข้อมูลพนักงาน</a></div></td>
+                </tr>
+            </table>
+          </div></td>
           </tr>
       </table>
     </div></td>

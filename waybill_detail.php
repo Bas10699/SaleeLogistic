@@ -124,9 +124,9 @@ a:active {
         <table  width="525" border="1">
     
             <td><table width="519" align="center">
-
+            <div align="center">
              <img src="picture/<?php echo $row_waybill['wb_img']; ?>" width="100" height="150"/>
-             
+            </div> 
               <tr valign="baseline">
                 <td nowrap="nowrap" align="right">รหัสใบส่งของ:</td>
                 <td><?php echo $row_waybill['wb_id_set']; ?></td>
@@ -177,7 +177,6 @@ a:active {
         <br/>
         <div id='show' style="display:none;"  >
         <?php Editdata($row_waybill,$customer); ?>
-        <button onclick="editdata()">ยืนยัน</button>
         <button onclick="editdata()">ยกเลิก</button>
         </div>
         

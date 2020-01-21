@@ -1,4 +1,8 @@
 <?php require_once('Connections/myconnect.php'); ?>
+
+<?php require_once('nevbar.php');
+Nevbar(); ?>
+
 <?php
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
@@ -61,10 +65,10 @@ $totalRows_waybill = mysql_num_rows($waybill);
 <head>
 <STYLE type=text/css>
 A:link {
-	COLOR: #FFFF00;
+	COLOR: #FFF;
 	TEXT-DECORATION: none
 }
-A:visited {COLOR: #FFFF00; TEXT-DECORATION: none}
+A:visited {COLOR: #FFF; TEXT-DECORATION: none}
 A:hover {
 	COLOR: #FFFFFF;
 	TEXT-DECORATION: none
@@ -72,39 +76,52 @@ A:hover {
 </STYLE>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>เอกสารใบส่งของ</title>
-<style type="text/css">
-.หัวข้อ {
-	font-family: "angsana New";
-	font-size: 30px;
-	color: #FF0;
+<style>
+#customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
 }
-a:active {
-	text-decoration: none;
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
 }
-.หัวข้อย่อย {
-	font-size: 20px;
-	color: #FFF;
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #333;
+  color: white;
+}
+.buttonadd{
+  background-color: #33ccff; /* Green */
+  border: none;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 12px;
+}
+.buttonadd:hover {
+  background-color: #0099ff;
+  color: white;
 }
 </style>
 </head>
 
 <body>
-<table width="100%" height="477" align="center">
-  <tr>
-    <td height="32" colspan="2" bgcolor="#000033"><img src="img/logodaichuar2.png" width="207" height="199" /></td>
-  </tr>
-  <tr>
-    <td colspan="2" bgcolor="#000033"><table width="100%">
-      <tr class="หัวข้อ">
-        <td width="9%" class="หัวข้อ"><a href="indexhome.php">หน้าแรก</a></td>
-        <td width="12%" class="หัวข้อ"><a href="staff_show.php">ข้อมูลพนักงาน</a></td>
-        <td width="9%" class="หัวข้อ"><a href="car_show.php">ข้อมูลรถ</a></td>
-        <td width="9%" class="หัวข้อ"><a href="customer_show.php">ข้อมูลลูกค้า</a></td>
-        <td width="20%" class="หัวข้อ"><a href="waybill_show.php">เอกสารใบส่งของ</a></td>
-        <td width="41%">&nbsp;</td>
-      </tr>
-    </table></td>
-  </tr>
+<table  width="100%" height="477" align="center">
+  
   <tr>
     <td colspan="2">&nbsp;</td>
   </tr>
@@ -121,7 +138,7 @@ a:active {
           <label for="dd_input"></label>
         </p>
         <div align="center">
-          <table width="1265">
+          <table  width="1265">
             <tr>
               <td width="226">
  
@@ -134,17 +151,17 @@ a:active {
                   <option value="All">ทั้งหมด</option>
                   <option value="cus_compan">ชื่อบริษัท</option>
                   <option value="cus_sub">ตำบล</option>
-                  <option value="wb_payment">สาถานะ</option>
+                  <option value="wb_payment">สถานะ</option>
                 </select></td>
               
 
 
               <td width="291"><div align="right">
-                <table width="137" border="1">
-                  <tr>
-                    <td width="116" bgcolor="#660033"><div align="center"><a href="waybill_insert.php">เพิ่มเอกสาร</a></div></td>
-                    </tr>
-                  </table>
+                
+                    
+                              <button class="buttonadd"><a href="waybill_insert.php">เพิ่มเอกสาร</a></button>
+                              </div>
+                   
                 </div></td>
               </tr>
           </table>
@@ -155,18 +172,18 @@ a:active {
   <tr>
     <td height="27" colspan="2"><form id="form1" name="form1" method="post" action="">
       <div align="center">
-        <table width="1244">
+        <table  width="1244">
           <tr>
             <td width="906"><div align="center">
-              <table width="1236" height="67">
-                <tr class="หัวข้อย่อย">
-                  <td width="169" bgcolor="#000033"><div align="center">รหัสใบส่งของ</div></td>
-                  <td width="156" bgcolor="#000033"><div align="center">วันที่</div></td>
-                  <td width="169" bgcolor="#000033"><div align="center">เลขที่ใบส่งของ</div></td>
-                  <td width="191" bgcolor="#000033"><div align="center">ชื่อบริษัท</div></td>
-                  <td width="172" bgcolor="#000033"><div align="center">จำนวนเงินทั้งสิ้น</div></td>
-                  <td width="193" bgcolor="#000033"><div align="center">สถานะการชำระเงิน</div></td>
-                  <td colspan="2" bgcolor="#000033"><div align="center">จัดการ</div></td>
+              <table id='customers' width="1236" height="67">
+                <tr >
+                  <th ><div align="center">รหัสใบส่งของ</div></th>
+                  <th ><div align="center">วันที่</div></th>
+                  <th ><div align="center">เลขที่ใบส่งของ</div></th>
+                  <th ><div align="center">ชื่อบริษัท</div></th>
+                  <th ><div align="center">จำนวนเงินทั้งสิ้น</div></th>
+                  <th ><div align="center">สถานะการชำระเงิน</div></th>
+                  <th ><div align="center">จัดการ</div></th>
                 </tr>
                 <tr>
                   <?php while($row_waybill = mysql_fetch_array($waybill)) { ?>
@@ -176,9 +193,12 @@ a:active {
                   <td><div align="center"><?php echo $row_waybill['cus_compan']; ?></div></td>
                   <td><div align="center"><?php echo $row_waybill['wb_money']; ?></div></td>
                   <td><div align="center"><?php echo $row_waybill['wb_payment']; ?></td>
-                  <td width="95" bgcolor="#006600"><div align="center"><a href="waybill_detail.php?id=<?php echo $row_waybill['wb_id']; ?>">รายละเอียด</a></div></td>
-                  <td width="75" bgcolor="#990000"><div align="center"><a href="waybill_del.php?id=<?php echo $row_waybill['wb_id']; ?>?staff_id=<?php echo $row_waybill['waybill_id']; ?>"onclick="MM_popupMsg('ยืนยันที่จะลบข้อมูลหรือไม่ ?')">ลบ</a></div></td>
-                </tr>
+           
+                      <td ><div align="center"><button style="background-color: green"><a href="waybill_detail.php?id=<?php echo $row_waybill['wb_id']; ?>" >รายละเอียด</a></button>
+                      <button href="waybill_del.php?id=<?php echo $row_waybill['wb_id']; ?>?staff_id=<?php echo $row_waybill['waybill_id']; ?>"onclick="MM_popupMsg('ยืนยันที่จะลบข้อมูลหรือไม่ ?')">ลบ</button>
+                      </td>
+                   
+                  </tr>
                 <? } ?>
               </table>
             </div></td>
