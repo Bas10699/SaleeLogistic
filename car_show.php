@@ -1,7 +1,7 @@
-<?php require_once('Connections/myconnect.php'); ?>
-
 <?php require_once('nevbar.php');
 Nevbar(); ?>
+
+<?php require_once('Connections/myconnect.php'); ?>
 
 <?php
 if (!function_exists("GetSQLValueString")) {
@@ -107,11 +107,7 @@ a:active {
 	text-decoration: none;
 }
 </style>
-<script type="text/javascript">
-function MM_popupMsg(msg) { //v1.0
-  alert(msg);
-}
-</script>
+
 </head>
 
 <body>
@@ -144,14 +140,16 @@ function MM_popupMsg(msg) { //v1.0
           <tr bgcolor="" class="กรอบตาราง">
             <td width="336" height="37"><div align="center" class="หัวข้อตาราง">รหัสรถ            </div></td>
             <td width="336" height="37"><div align="center"><span class="หัวข้อตาราง">ทะเบียนรถ</span>            </div></td>
+            <td width="336" height="37"><div align="center"><span class="หัวข้อตาราง">วันหมดอายุภาษี</span>            </div></td>
             <td colspan="2"><div align="center" class="หัวข้อตาราง">จัดการ            </div></td>
           </tr>
           <?php do { ?>
           <tr>
             <td height="33" bgcolor="#FFFFFF"><div align="center"><?php echo $row_car['car_id_set']; ?></div></td>
             <td height="33" bgcolor="#FFFFFF"><div align="left"><?php echo $row_car['car_register']; ?> / <?php echo $row_car['car_province']; ?></div></td>
+            <td height="33" bgcolor="#FFFFFF"><div align="center"><?php echo $row_car['car_date_end']; ?>  </div></td>
             <td width="105" bgcolor="#006600"><div align="center"><span class="หัวข้อตาราง"><a href="car_edit.php<?php echo $row_car['']; ?>?id=<?php echo $row_car['car_id']; ?>" class="กรอบแก้ไข">แก้ไข</a></span></div></td>
-            <td width="89" bgcolor="#990000"><div align="center"><span class="หัวข้อตาราง"><a href="car_del.php?id=<?php echo $row_car['car_id']; ?>" class="ปุ่มลบ" onclick="MM_popupMsg('ยืนยันที่จะลบข้อมูลหรือไม่ ?')">ลบ</a></span></div></td>
+            <td width="89" bgcolor="#990000"><div align="center"><span class="หัวข้อตาราง"><a href="car_del.php?id=<?php echo $row_car['car_id']; ?>" class="ปุ่มลบ" onclick="return confirm('ยืนยันที่จะลบข้อมูลหรือไม่ ?')">ลบ</a></span></div></td>
           </tr>
           <?php } while ($row_car = mysql_fetch_assoc($car)); ?>
         </table>

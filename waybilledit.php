@@ -22,10 +22,14 @@
   $wb_date = $_POST["wb_date"];
   $wb_money = $_POST["wb_money"];
   $wb_payment = $_POST["wb_payment"];
-  $wb_img = $_POST['wb_img'];
+  $wb_img = $_FILES['wb_img'];
 
-Upload($_POST['wb_img']);
 
+  $id_SET = $wb_id_set;
+  $path="./picture/";
+  $last = strtolower(end(explode('.',$_FILES['wb_img']['name'])));
+	$name = $id_SET.'.'.$last;
+  Upload($_FILES['wb_img'],$path.$name);
 
   $sql = "UPDATE tb_waybill SET 
             wb_nber = '$wb_nber', 
@@ -33,12 +37,13 @@ Upload($_POST['wb_img']);
             customer_id = '$cus_compan',
             wb_date = '$wb_date',
             wb_money = '$wb_money',
-            wb_img = '$wb_img',
+            wb_img = '$name',
             wb_payment = '$wb_payment' 
           WHERE wb_id_set = '$wb_id_set'";
 
   if ($conn->query($sql) === TRUE) {
       echo "Record updated successfully";
+      
   } else {
       echo "Error updating record: " . $conn->error;
   }

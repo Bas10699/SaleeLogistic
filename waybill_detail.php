@@ -1,8 +1,10 @@
+<?php require_once('nevbar.php');
+Nevbar(); ?>
+
 <?php require_once('Connections/myconnect.php'); ?>
 <?php require_once('waybill_edit.php'); ?>
 
-<?php require_once('nevbar.php');
-Nevbar(); ?>
+
 
 <?php
 if (!function_exists("GetSQLValueString")) {

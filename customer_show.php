@@ -1,7 +1,7 @@
-<?php require_once('Connections/myconnect.php'); ?>
-
 <?php require_once('nevbar.php');
 Nevbar(); ?>
+
+<?php require_once('Connections/myconnect.php'); ?>
 
 <?php
 if (!function_exists("GetSQLValueString")) {

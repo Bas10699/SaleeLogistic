@@ -1,7 +1,7 @@
-<?php require_once('Connections/myconnect.php'); ?>
-
 <?php require_once('nevbar.php');
 Nevbar(); ?>
+
+<?php require_once('Connections/myconnect.php'); ?>
 
 <?php
 if (!function_exists("GetSQLValueString")) {
@@ -35,19 +35,19 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-if($_GET["txtKeyword"] != ""){
-	// $objConnect = mysql_connect("localhost","root","12345678") or die("Error Connect to Database");
-	$objDB = mysql_select_db($database_myconnect, $myconnect);
-	// Search By Name or Email
-	$strSQL = "SELECT * FROM tb_waybill
-  LEFT JOIN tb_customer 
-  ON tb_waybill.customer_id = tb_customer.cus_id
-  LEFT JOIN tb_car
-  ON tb_waybill.car_id = tb_car.car_id
-  WHERE (tb_customer.cus_sub LIKE '%".$_GET["txtKeyword"]."%' or tb_customer.cus_area LIKE '%".$_GET["txtKeyword"]."%' )";
-  $objQuery = mysql_query($strSQL) or die ("Error Query [".$strSQL."]");
-  $row_waybill = mysql_fetch_assoc($waybill);
-}
+// if($_GET["txtKeyword"] != ""){
+// 	// $objConnect = mysql_connect("localhost","root","12345678") or die("Error Connect to Database");
+// 	$objDB = mysql_select_db($database_myconnect, $myconnect);
+// 	// Search By Name or Email
+// 	$strSQL = "SELECT * FROM tb_waybill
+//   LEFT JOIN tb_customer 
+//   ON tb_waybill.customer_id = tb_customer.cus_id
+//   LEFT JOIN tb_car
+//   ON tb_waybill.car_id = tb_car.car_id
+//   WHERE (tb_customer.cus_sub LIKE '%".$_GET["txtKeyword"]."%' or tb_customer.cus_area LIKE '%".$_GET["txtKeyword"]."%' )";
+//   $waybill = mysql_query($strSQL, $myconnect) or die(mysql_error());
+//   $row_waybill = mysql_fetch_assoc($waybill);
+// }
   
 
 mysql_select_db($database_myconnect, $myconnect);
@@ -55,7 +55,8 @@ $query_waybill = "SELECT * FROM tb_waybill
 LEFT JOIN tb_customer 
 ON tb_waybill.customer_id = tb_customer.cus_id 
 LEFT JOIN tb_car
-ON tb_waybill.car_id = tb_car.car_id";
+ON tb_waybill.car_id = tb_car.car_id
+WHERE (tb_customer.cus_sub LIKE '%".$_GET["txtKeyword"]."%' or tb_customer.cus_area LIKE '%".$_GET["txtKeyword"]."%' or wb_payment LIKE '%".$_GET["txtKeyword"]."%' )";
 $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
 $row_waybill = mysql_fetch_assoc($waybill);
 $totalRows_waybill = mysql_num_rows($waybill);
@@ -132,7 +133,8 @@ A:hover {
     <td colspan="2"><h2 align="center">เอกสารใบส่งของ</h2></td>
   </tr>
   <tr>
-    <td height="22" colspan="2"><form id="form2" name="form2" method="post" action="waybill_show.php">
+    <td height="22" colspan="2">
+    <!-- <form id="form2" name="form2" method="post" action="waybill_show.php"> -->
       <div align="left">
         <p>
           <label for="dd_input"></label>
@@ -144,8 +146,11 @@ A:hover {
  
 
               <!-- <input type="text" name="word" id="word" /> -->
-              <input name="txtKeyword" type="text" id="txtKeyword" value="<?php echo $_GET["txtKeyword"];?>">
-                <input type="submit" name="btnSearch" id="btnSearch" value="ค้นหา" action="<?php echo $_SERVER['SCRIPT_NAME'];?>"/>
+              
+            <form name="frmSearch" method="get" action="<?php echo $_SERVER['SCRIPT_NAME'];?>">
+               <input name="txtKeyword" type="text" id="txtKeyword" value="<?php echo $_GET["txtKeyword"];?>">
+               <input type="submit" value="Search"></th>
+            
                 <label for="select2"></label>
                 <select name="dd_input" id="select2">
                   <option value="All">ทั้งหมด</option>
@@ -153,7 +158,7 @@ A:hover {
                   <option value="cus_sub">ตำบล</option>
                   <option value="wb_payment">สถานะ</option>
                 </select></td>
-              
+             </form>
 
 
               <td width="291"><div align="right">
@@ -167,16 +172,19 @@ A:hover {
           </table>
         </div>
       </div>
-    </form></td>
+    <!-- </form> -->
+    </td>
   </tr>
   <tr>
-    <td height="27" colspan="2"><form id="form1" name="form1" method="post" action="">
+    <td height="27" colspan="2">
+    <!-- <form id="form1" name="form1" method="post" action=""> -->
       <div align="center">
         <table  width="1244">
           <tr>
             <td width="906"><div align="center">
               <table id='customers' width="1236" height="67">
                 <tr >
+                  <th ><div> </div></th>
                   <th ><div align="center">รหัสใบส่งของ</div></th>
                   <th ><div align="center">วันที่</div></th>
                   <th ><div align="center">เลขที่ใบส่งของ</div></th>
@@ -187,6 +195,7 @@ A:hover {
                 </tr>
                 <tr>
                   <?php while($row_waybill = mysql_fetch_array($waybill)) { ?>
+                  <td><input type='checkbox' name='checkboxvar[]' value='<?php echo $row_waybill["wb_id_set"]; ?>'></td>
                   <td height="33"><div align="center"><?php echo $row_waybill["wb_id_set"]; ?></div></td>
                   <td><div align="center"><?php echo $row_waybill['wb_date']; ?></td>
                   <td><div align="center"><?php echo $row_waybill['wb_nbook']; ?></div></td>
@@ -206,7 +215,8 @@ A:hover {
         </table>
     </div>
       <p>&nbsp;</p>
-    </form></td>
+    <!-- </form> -->
+    </td>
   </tr>
   <tr>
     <td colspan="2"><p>&nbsp;</p>

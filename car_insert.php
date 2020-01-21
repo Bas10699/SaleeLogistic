@@ -37,10 +37,11 @@ if (isset($_SERVER['QUERY_STRING'])) {
 }
 
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form2")) {
-  $insertSQL = sprintf("INSERT INTO tb_car (car_id, car_register, car_province) VALUES (%s, %s, %s)",
+  $insertSQL = sprintf("INSERT INTO tb_car (car_id, car_register, car_province, car_date_end) VALUES (%s, %s, %s, %s)",
                        GetSQLValueString($_POST['car_id'], "text"),
                        GetSQLValueString($_POST['car_register'], "text"),
-                       GetSQLValueString($_POST['car_province'], "text"));
+                       GetSQLValueString($_POST['car_province'], "text"),
+                       GetSQLValueString($_POST['car_date_end'], "text"));
 
   mysql_select_db($database_myconnect, $myconnect);
   $Result1 = mysql_query($insertSQL, $myconnect) or die(mysql_error());
@@ -235,6 +236,11 @@ a:active {
                   </select></td>
                 </tr>
                 <tr>
+                  <td height="28" bgcolor="#000033"><div align="left">วันหมดอายุ</div></td>
+                  <td bgcolor="#000033"><input type="date" name="car_date_end" id="car_date_end" /></td>
+                  </tr>
+                <tr>
+                <tr>
                   <td height="33" colspan="2" bgcolor="#000033"><div align="center">
                     <input type="submit" name="car_bt" id="car_bt" value="บันทึกข้อมูล" />
                     </div></td>
@@ -255,6 +261,7 @@ a:active {
     <p>&nbsp;</p></td>
   </tr>
 </table>
+
 </body>
 </html>
 <?php
