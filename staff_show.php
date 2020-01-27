@@ -165,7 +165,7 @@ if($_GET["textfield"] != ""){
                     <tr>
                       <td><div align="center"><span ><?php echo $row_staff['staff_id_set']; ?></span></div></td>
                       <td height="30"><div align="center" ><?php echo $row_staff['staff_card']; ?></div></td>
-                      <td><div align="left" ><?php echo $row_staff['staff_title_name']; ?></div></td>
+                      <td><div align="center" ><?php echo $row_staff['staff_title_name']; ?></div></td>
                       <td><div align="left" ><?php echo $row_staff['staff_name']; ?></div></td>
                       <td><div align="left" ><?php echo $row_staff['staff_lastname']; ?></div></td>
                       <td><div align="center" ><?php echo $row_staff['staff_position']; ?></div></td>

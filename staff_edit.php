@@ -1,4 +1,6 @@
-<?php require_once('Connections/myconnect.php'); ?>
+<?php require_once('Connections/myconnect.php');
+ require_once('nevbar.php');
+ Nevbar(); ?>
 <?php
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
@@ -153,21 +155,7 @@ a:active {
 
 <body>
 <table width="100%" height="769" align="center">
-  <tr>
-    <td height="182" colspan="3" bgcolor="#000033"><img src="img/logodaichuar2.png" alt="" width="207" height="199" /></td>
-  </tr>
-  <tr bgcolor="#000033" class="หัวข้อ">
-    <td height="41" colspan="3"><table width="100%">
-      <tr>
-        <td width="9%" class="หัวข้อ"><a href="indexhome.php">หน้าแรก</a></td>
-        <td width="12%" class="หัวข้อ"><a href="staff_show.php">ข้อมูลพนักงาน</a></td>
-        <td width="9%" class="หัวข้อ"><a href="car_show.php">ข้อมูลรถ</a></td>
-        <td width="9%" class="หัวข้อ"><a href="customer_show.php">ข้อมูลลูกค้า</a></td>
-        <td width="20%" class="หัวข้อ"><a href="waybill_show.php">เอกสารใบส่งของ</a></td>
-        <td width="41%">&nbsp;</td>
-      </tr>
-    </table></td>
-  </tr>
+  
   <tr>
     <td height="33" colspan="3">&nbsp;</td>
   </tr>

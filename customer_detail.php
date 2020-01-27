@@ -1,4 +1,6 @@
-<?php require_once('Connections/myconnect.php'); ?>
+<?php require_once('Connections/myconnect.php'); 
+ require_once('nevbar.php');
+ Nevbar();?>
 <?php
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
@@ -81,86 +83,16 @@ $totalRows_customer = mysql_num_rows($customer);
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<STYLE type=text/css>
-A:link {COLOR: #FFFFFF; TEXT-DECORATION: none}
-A:visited {COLOR: #FFFF00; TEXT-DECORATION: none}
-A:hover {COLOR: #FFFFFF; TEXT-DECORATION: underline}
-</STYLE>
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 <title>รายละเอียดข้อมูลลูกค้า</title>
-<style type="text/css">
-#form1 div table tr td table tr td {
-	color: #FFF;
-}
-#form1 div table tr td table tr td {
-}
-#form1 div table tr td table tr td p {
-	color: #F00;
-}
-.หัวข้อ {
-	font-family: "angsana New";
-	font-size: 30px;
-	color: #FF0;
-}
-a:link {
-	text-decoration: none;
-}
-a:hover {
-	text-decoration: none;
-}
-a:visited {
-	text-decoration: none;
-}
-.ไม่สามารถแก้ไข {
-	font-size: 14px;
-	color: #F00;
-}
-.มีไว้แก้ไข {
-	font-size: 14px;
-	color: #F00;
-}
-.ตัวหนังสือสีดำ {
-	font-size: 23px;
-	color: #000;
-	font-family: "Angsana New";
-}
-.รูปแบบช่อง {
-	background-color: #F00;
-}
-.ฟอน {
-	font-family: "angsana New";
-	font-size: 24px;
-	color: #000;
-}
-a:active {
-	text-decoration: none;
-}
-.ตัวหนังสือสีขาว {
-	font-family: "angsana New";
-	font-size: 24px;
-	color: #FFF;
-}
-</style>
+
 </head>
 
 <body>
 <table width="100%" height="477" align="center">
-  <tr>
-    <td height="32" colspan="3" bgcolor="#000033"><img src="img/logodaichuar2.png" width="207" height="199" /></td>
-  </tr>
-  <tr>
-    <td colspan="3" bgcolor="#000033"><table width="100%">
-      <tr>
-        <td width="9%" class="หัวข้อ"><a href="indexhome.php">หน้าแรก</a></td>
-        <td width="12%" class="หัวข้อ"><a href="staff_show.php">ข้อมูลพนักงาน</a></td>
-        <td width="9%" class="หัวข้อ"><a href="car_show.php">ข้อมูลรถ</a></td>
-        <td width="9%" class="หัวข้อ"><a href="customer_show.php">ข้อมูลลูกค้า</a></td>
-        <td width="20%" class="หัวข้อ"><a href="waybill_show.php">เอกสารใบส่งของ</a></td>
-        <td width="41%">&nbsp;</td>
-      </tr>
-    </table></td>
-  </tr>
+ 
   <tr>
     <td colspan="3">&nbsp;</td>
   </tr>
@@ -175,45 +107,45 @@ a:active {
   <tr>
     <td height="27" colspan="3"><form id="form1" name="form1" method="POST" action="<?php echo $editFormAction; ?>">
       <div align="center">
-        <table width="642">
+        <table width="642" border="1">
           <tr>
-            <td bgcolor="#000033"><table width="623">
+            <td ><table width="623">
               <tr>
-                <td width="202" bgcolor="#000033" class="ตัวหนังสือสีขาว"><div align="left">รหัสลูกค้า :</div></td>
-                <td bgcolor="#000033"><input name="cus_id" type="text" class="ตัวหนังสือสีดำ" id="cus_id" style="background-color:#CCC" value="<?php echo $row_customer['cus_id']; ?>" size="10" readonly="readonly" />
+                <td width="202"  class="ตัวหนังสือสีขาว"><div align="left">รหัสลูกค้า :</div></td>
+                <td ><input name="cus_id" type="text" class="ตัวหนังสือสีดำ" id="cus_id" style="background-color:#CCC" value="<?php echo $row_customer['cus_id']; ?>" size="10" readonly="readonly" />
                   <span class="ไม่สามารถแก้ไข">                  *ไม่สามารถแก้ไขได้</span></td>
               </tr>
               <tr>
-                <td bgcolor="#000033" class="ตัวหนังสือสีขาว"><div align="left">เลขประจำตัวผู้เสียภาษี :</div></td>
-                <td bgcolor="#000033"><input name="cus_tin" type="text" class="ตัวหนังสือสีดำ" id="cus_tin" value="<?php echo $row_customer['cus_tin']; ?>" /></td>
+                <td  class="ตัวหนังสือสีขาว"><div align="left">เลขประจำตัวผู้เสียภาษี :</div></td>
+                <td ><input name="cus_tin" type="text" class="ตัวหนังสือสีดำ" id="cus_tin" value="<?php echo $row_customer['cus_tin']; ?>" /></td>
               </tr>
               <tr>
-                <td bgcolor="#000033" class="ตัวหนังสือสีขาว"><div align="left">ชื่อบริษัท :</div></td>
-                <td bgcolor="#000033"><input name="cus_compan" type="text" class="ตัวหนังสือสีดำ" id="cus_compan" value="<?php echo $row_customer['cus_compan']; ?>" /></td>
+                <td  class="ตัวหนังสือสีขาว"><div align="left">ชื่อบริษัท :</div></td>
+                <td ><input name="cus_compan" type="text" class="ตัวหนังสือสีดำ" id="cus_compan" value="<?php echo $row_customer['cus_compan']; ?>" /></td>
               </tr>
               <tr>
-                <td bgcolor="#000033" class="ตัวหนังสือสีขาว"><div align="left">เบอร์โทรศัพท์ :</div></td>
-                <td bgcolor="#000033"><input name="cus_tle" type="text" class="ตัวหนังสือสีดำ" id="cus_tle" value="<?php echo $row_customer['cus_tle']; ?>" maxlength="10" /></td>
+                <td  class="ตัวหนังสือสีขาว"><div align="left">เบอร์โทรศัพท์ :</div></td>
+                <td ><input name="cus_tle" type="text" class="ตัวหนังสือสีดำ" id="cus_tle" value="<?php echo $row_customer['cus_tle']; ?>" maxlength="10" /></td>
               </tr>
               <tr>
-                <td bgcolor="#000033" class="ตัวหนังสือสีขาว"><div align="left">ที่อยู่ :</div></td>
-                <td bgcolor="#000033">&nbsp;</td>
+                <td  class="ตัวหนังสือสีขาว"><div align="left">ที่อยู่ :</div></td>
+                <td >&nbsp;</td>
                 </tr>
               <tr>
-                <td bgcolor="#000033" class="ตัวหนังสือสีขาว"><div align="right">บ้านเลขที่ :</div></td>
-                <td width="409" bgcolor="#000033"><input name="cus_hose" type="text" class="ตัวหนังสือสีดำ" id="cus_hose" value="<?php echo $row_customer['cus_house']; ?>" /></td>
+                <td  class="ตัวหนังสือสีขาว"><div align="right">บ้านเลขที่ :</div></td>
+                <td width="409" ><input name="cus_hose" type="text" class="ตัวหนังสือสีดำ" id="cus_hose" value="<?php echo $row_customer['cus_house']; ?>" /></td>
                 </tr>
               <tr>
-                <td bgcolor="#000033" class="ตัวหนังสือสีขาว"><div align="right">หมู่ที่ :</div></td>
-                <td bgcolor="#000033"><input name="cus_vill" type="text" class="ตัวหนังสือสีดำ" id="cus_vill" value="<?php echo $row_customer['cus_vill']; ?>" /></td>
+                <td  class="ตัวหนังสือสีขาว"><div align="right">หมู่ที่ :</div></td>
+                <td ><input name="cus_vill" type="text" class="ตัวหนังสือสีดำ" id="cus_vill" value="<?php echo $row_customer['cus_vill']; ?>" /></td>
                 </tr>
               <tr>
-                <td bgcolor="#000033" class="ตัวหนังสือสีขาว"><div align="right">ตำบล :</div></td>
-                <td bgcolor="#000033"><input name="cus_sub" type="text" class="ตัวหนังสือสีดำ" id="cus_sub" value="<?php echo $row_customer['cus_sub']; ?>" /></td>
+                <td  class="ตัวหนังสือสีขาว"><div align="right">ตำบล :</div></td>
+                <td ><input name="cus_sub" type="text" class="ตัวหนังสือสีดำ" id="cus_sub" value="<?php echo $row_customer['cus_sub']; ?>" /></td>
                 </tr>
               <tr>
-                <td bgcolor="#000033" class="ตัวหนังสือสีขาว"><div align="right">อำเภอ : </div></td>
-                <td bgcolor="#000033"><p>
+                <td  class="ตัวหนังสือสีขาว"><div align="right">อำเภอ : </div></td>
+                <td ><p>
                   <label for="cus_area"></label>
                   <input name="cus_area" type="text" class="ตัวหนังสือสีดำ" id="cus_area" value="<?php echo $row_customer['cus_area']; ?>" readonly="readonly" />
                   </p>
@@ -234,8 +166,8 @@ a:active {
                     <span class="มีไว้แก้ไข">*มีไว้สำหรับแก้ไข</span></p></td>
                 </tr>
               <tr>
-                <td bgcolor="#000033" class="ตัวหนังสือสีขาว"><div align="right">จังหวัด :</div></td>
-                <td bgcolor="#000033"><p>
+                <td  class="ตัวหนังสือสีขาว"><div align="right">จังหวัด :</div></td>
+                <td ><p>
                   <input name="cus_pro" type="text" class="ตัวหนังสือสีดำ" id="cus_pro" value="<?php echo $row_customer['cus_pro']; ?>" readonly="readonly" />
                   </p>
                   <p>
@@ -323,16 +255,17 @@ a:active {
                     <span class="มีไว้แก้ไข">*มีไว้สำหรับแก้ไข</span></p></td>
                 </tr>
               <tr>
-                <td bgcolor="#000033" class="ตัวหนังสือสีขาว"><div align="right">รหัสไปรษณีย์ :</div></td>
-                <td bgcolor="#000033"><input name="cus_pos" type="text" class="ตัวหนังสือสีดำ" id="cus_pos" value="<?php echo $row_customer['cus_pos']; ?>" /></td>
+                <td  class="ตัวหนังสือสีขาว"><div align="right">รหัสไปรษณีย์ :</div></td>
+                <td ><input name="cus_pos" type="text" class="ตัวหนังสือสีดำ" id="cus_pos" value="<?php echo $row_customer['cus_pos']; ?>" /></td>
                 </tr>
               <tr>
-                <td bgcolor="#000033"><table width="100%">
+                <td ><table width="100%">
                   <tr>
-                    <td bgcolor="#666666" class="ฟอน"><div align="center"><a href="customer_show.php" class="ฟอน">ย้อนกลับ</a></div></td>
+                    <td><div align="center">
+                    <button><a href="customer_show.php" class="ฟอน">ย้อนกลับ</a></button></div></td>
                   </tr>
                 </table></td>
-                <td bgcolor="#000033"><div align="left">
+                <td ><div align="left">
                   <input name="cus_bt" type="submit" class="ตัวหนังสือสีดำ" id="cus_bt" value="บันทึกข้อมูลลูกค้า" />
                 </div></td>
                 </tr>

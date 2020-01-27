@@ -1,4 +1,6 @@
 <?php require_once('Connections/myconnect.php'); ?>
+<?php require_once('nevbar.php');
+Nevbar(); ?>
 <?php
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
@@ -31,36 +33,36 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-if (!function_exists("GetSQLValueString")) {
-function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
-{
-  if (PHP_VERSION < 6) {
-    $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
-  }
+// if (!function_exists("GetSQLValueString")) {
+// function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
+// {
+//   if (PHP_VERSION < 6) {
+//     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
+//   }
 
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+//   $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
 
-  switch ($theType) {
-    case "text":
-      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
-      break;    
-    case "long":
-    case "int":
-      $theValue = ($theValue != "") ? intval($theValue) : "NULL";
-      break;
-    case "double":
-      $theValue = ($theValue != "") ? doubleval($theValue) : "NULL";
-      break;
-    case "date":
-      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
-      break;
-    case "defined":
-      $theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;
-      break;
-  }
-  return $theValue;
-}
-}
+//   switch ($theType) {
+//     case "text":
+//       $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+//       break;    
+//     case "long":
+//     case "int":
+//       $theValue = ($theValue != "") ? intval($theValue) : "NULL";
+//       break;
+//     case "double":
+//       $theValue = ($theValue != "") ? doubleval($theValue) : "NULL";
+//       break;
+//     case "date":
+//       $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+//       break;
+//     case "defined":
+//       $theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;
+//       break;
+//   }
+//   return $theValue;
+// }
+// }
 
 $editFormAction = $_SERVER['PHP_SELF'];
 if (isset($_SERVER['QUERY_STRING'])) {
@@ -105,6 +107,9 @@ $totalRows_staff = mysql_num_rows($staff);
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<link rel="stylesheet" href="index.css">
+</head>
+<!-- <head>
 <STYLE type=text/css>
 A:link {COLOR: #FFFFFF; TEXT-DECORATION: none}
 A:visited {COLOR: #FFFF00; TEXT-DECORATION: none}
@@ -138,48 +143,29 @@ a:active {
 	color: #FF0;
 }
 </style>
-</head>
+</head> -->
 
 <body>
 <table width="100%" height="579" align="center">
-  <tr>
-    <td height="32" colspan="9" bgcolor="#000033"><img src="img/logodaichuar2.png" alt="" width="207" height="199" /></td>
-  </tr>
-  <tr>
-    <td colspan="9" bgcolor="#000033"><table width="100%">
-      <tr>
-        <td width="9%" class="หัวข้อ"><a href="indexhome.php">หน้าแรก</a></td>
-        <td width="12%" class="หัวข้อ"><a href="staff_show.php">ข้อมูลพนักงาน</a></td>
-        <td width="9%" class="หัวข้อ"><a href="car_show.php">ข้อมูลรถ</a></td>
-        <td width="9%" class="หัวข้อ"><a href="customer_show.php">ข้อมูลลูกค้า</a></td>
-        <td width="20%" class="หัวข้อ"><a href="waybill_show.php">เอกสารใบส่งของ</a></td>
-        <td width="41%">&nbsp;</td>
-      </tr>
-    </table></td>
-  </tr>
+ 
   <tr>
     <td colspan="9">&nbsp;</td>
-  </tr>
-  <tr>
-    <td colspan="9">&nbsp;</td>
-  </tr>
-  <tr>
     <td colspan="9">&nbsp;</td>
   </tr>
   <tr>
     <td height="79" colspan="9"><form id="form1" name="form1" method="POST" action="<?php echo $editFormAction; ?>">
       <h2 align="center">เพิ่มข้อมูลพนักงาน</h2>
       <div align="center">
-        <table width="539" height="201">
+        <table width="539" height="201" style=' border-collapse: collapse; border: 1px solid black;'>
           <tr>
-            <td bgcolor="#000033"><table width="533" height="228" align="center">
+            <td ><table width="533" height="228" align="center">
               <tr>
-                <td bgcolor="#000033"><div align="left">รหัสพนักงาน :</div></td>
-                <td height="35" bgcolor="#000033"><input name="staff_id" type="text" disabled="disabled" id="staff_id" size="20" style="background-color:#CCC" /></td>
+                <td ><div align="left">รหัสพนักงาน :</div></td>
+                <td height="35" ><input name="staff_id" type="text" disabled="disabled" id="staff_id" size="20" style="background-color:#CCC" /></td>
                 </tr>
               <tr>
-                <td width="165" bgcolor="#000033"><div align="left">คำนำหน้าชื่อ :</div></td>
-                <td height="36" bgcolor="#000033"><select name="staff_title_name" id="staff_title_name">
+                <td width="165" ><div align="left">คำนำหน้าชื่อ :</div></td>
+                <td height="36" ><select name="staff_title_name" id="staff_title_name">
                   <option value="นาย">นาย</option>
                   <option value="นาง">นาง</option>
                   <option value="นางสาว">นางสาว</option>
@@ -188,32 +174,32 @@ a:active {
                 </tr>
               <tr>
               <tr>
-                <td width="165" bgcolor="#000033"><div align="left">ชื่อ :</div></td>
-                <td width="356" height="36" bgcolor="#000033"><input name="staff_name" type="text" id="staff_name" /></td>
+                <td width="165" ><div align="left">ชื่อ :</div></td>
+                <td width="356" height="36" ><input name="staff_name" type="text" id="staff_name" /></td>
                 </tr>
               <tr>
               <tr>
-                <td width="165" bgcolor="#000033"><div align="left">นามสกุล :</div></td>
-                <td width="356" height="36" bgcolor="#000033">
+                <td width="165" ><div align="left">นามสกุล :</div></td>
+                <td width="356" height="36" >
                   <input name="staff_lastname" type="text" id="staff_lastname" size="21" /></td>
                 </tr>
               <tr>
-                <td bgcolor="#000033"><div align="left">เลขบัตรประชาชน :</div></td>
-                <td height="35" bgcolor="#000033"><input name="staff_card" type="text" id="staff_card" pattern="[0-9]{1,}" title="กรอกตัวเลขเท่านั้น" size="47" maxlength="13" /></td>
+                <td ><div align="left">เลขบัตรประชาชน :</div></td>
+                <td height="35" ><input name="staff_card" type="text" id="staff_card" pattern="[0-9]{1,}" title="กรอกตัวเลขเท่านั้น" size="47" maxlength="13" /></td>
                 </tr>
               <tr>
-                <td bgcolor="#000033"><div align="left">ตำแหน่ง :</div></td>
-                <td height="36" bgcolor="#000033"><select name="staff_position" id="staff_position">
+                <td ><div align="left">ตำแหน่ง :</div></td>
+                <td height="36" ><select name="staff_position" id="staff_position">
                   <option value="Manager">Manager</option>
                   <option value="Driver">Driver</option>
                 </select></td>
                 </tr>
               <tr>
-                <td bgcolor="#000033"><div align="left">เบอร์โทรศัพท์ : </div></td>
-                <td height="33" bgcolor="#000033"><input name="staff_tel" type="text" id="staff_tel" pattern="[0-9]{1,}" title="กรอกตัวเลขเท่านั้น" size="47" maxlength="10" /></td>
+                <td ><div align="left">เบอร์โทรศัพท์ : </div></td>
+                <td height="33" ><input name="staff_tel" type="text" id="staff_tel" pattern="[0-9]{1,}" title="กรอกตัวเลขเท่านั้น" size="47" maxlength="10" /></td>
                 </tr>
               <tr>
-                <td height="37" colspan="2" bgcolor="#000033"><div align="center">
+                <td height="37" colspan="2" ><div align="center">
                   <input name="staff_bt" type="submit" id="staff_bt" value="บันทึกข้อมูลพนักงาน" />
                 </div></td>
                 </tr>
@@ -222,7 +208,6 @@ a:active {
         </table>
         
         
-        <input type="hidden" name="MM_insert" value="form1" />
         <input type="hidden" name="MM_insert" value="form1" />
       </div>
     </form></td>

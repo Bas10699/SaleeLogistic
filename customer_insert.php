@@ -84,32 +84,10 @@ A:link {COLOR: #FFFFFF; TEXT-DECORATION: none}
 A:visited {COLOR: #FFFF00; TEXT-DECORATION: none}
 A:hover {COLOR: #FFFFFF; TEXT-DECORATION: underline}
 </STYLE>
-<STYLE type=text/css>
-A:link {
-	TEXT-DECORATION: none
-}
-A:visited {
-	TEXT-DECORATION: none
-}
-A:hover {
-	TEXT-DECORATION: none
-}
-</STYLE>
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>เพิ่มข้อมูลลูกค้า</title>
-<style type="text/css">
-#form1 div table tr td table tr td {
-	color: #FFF;
-}
-.หัวข้อ {
-	font-family: "angsana New";
-	font-size: 30px;
-	color: #FF0;
-}
-a:active {
-	text-decoration: none;
-}
-</style>
+
 <script type="text/javascript">
 function MM_popupMsg(msg) { //v1.0
   alert(msg);
@@ -130,36 +108,36 @@ function MM_popupMsg(msg) { //v1.0
     <td colspan="3"><form id="form1" name="form1" method="POST" action="<?php echo $editFormAction; ?>">
       <h2 align="center">เพิ่มข้อมูลลูกค้า</h2>
       <div align="center">
-        <table width="774">
+        <table width="774" border="1">
           <tr>
-            <td width="712" bgcolor="#000033"><table width="721" border="0" align="center">
+            <td width="712" ><table width="721" border="0" align="center">
               <tr>
-                <!-- <td width="98" height="33" bgcolor="#000033"><div align="left">รหัสลูกค้า :</div></td>
-                <td width="232" bgcolor="#000033"><label>
+                <!-- <td width="98" height="33" ><div align="left">รหัสลูกค้า :</div></td>
+                <td width="232" ><label>
                   <input name="customer_id" type="text"  id="customer_id" style="background-color:#CCC" />
                   </label></td> -->
-                <td width="205" bgcolor="#000033"><div align="left">เลขประจำตัวผู้เสียภาษี :</div></td>
-                <td width="168" bgcolor="#000033"><label>
+                <td width="205" ><div align="left">เลขประจำตัวผู้เสียภาษี :</div></td>
+                <td width="168" ><label>
                   <input name="cus_tin" type="text" id="cus_tin" maxlength="13" />
                   </label></td>
                 </tr>
               <tr>
-                <td bgcolor="#000033"><div align="left">ชื่อบริษัท :</div></td>
-                <td bgcolor="#000033"><input type="text" name="cus_compan" id="cus_compan" /></td>
-                <td height="32" bgcolor="#000033"><div align="left">เบอร์โทรศัพท์ :</div></td>
-                <td bgcolor="#000033"><label>
+                <td ><div align="left">ชื่อบริษัท :</div></td>
+                <td ><input type="text" name="cus_compan" id="cus_compan" /></td>
+                <td height="32" ><div align="left">เบอร์โทรศัพท์ :</div></td>
+                <td ><label>
                   <input name="cus_tle" type="text" id="cus_tle" maxlength="10" />
                   </label></td>
                 </tr>
               <tr>
-                <td height="37" bgcolor="#000033"><div align="left">บ้านเลขที่ :</div></td>
-                <td bgcolor="#000033"><input type="text" name="cus_hose" id="cus_hose" /></td>
-                <td bgcolor="#000033"><div align="left">หมู่ :</div></td>
-                <td bgcolor="#000033"><input type="text" name="cus_vill" id="cus_vill" /></td>
+                <td height="37" ><div align="left">บ้านเลขที่ :</div></td>
+                <td ><input type="text" name="cus_hose" id="cus_hose" /></td>
+                <td ><div align="left">หมู่ :</div></td>
+                <td ><input type="text" name="cus_vill" id="cus_vill" /></td>
                 </tr>
               <tr>
-                <td height="34" bgcolor="#000033"><div align="left">อำเภอ :</div></td>
-                <td bgcolor="#000033"><label>
+                <td height="34" ><div align="left">อำเภอ :</div></td>
+                <td ><label>
                   <select name="cus_area" id="cus_area">
                   <option value="" selected="selected">------- กรุณาเลือกอำเภอ -------</option>
                   <option value="อำเภอเมือง"> อำเภอเมือง </option>
@@ -174,12 +152,12 @@ function MM_popupMsg(msg) { //v1.0
                   <option value="อื่นๆ">อื่นๆ</option>
                 </select>
                   </label></td>
-                <td bgcolor="#000033"><div align="left">ตำบล :</div></td>
-                <td bgcolor="#000033"><input type="text" name="cus_sub" id="cus_sub" /></td>
+                <td ><div align="left">ตำบล :</div></td>
+                <td ><input type="text" name="cus_sub" id="cus_sub" /></td>
                 </tr>
               <tr>
-                <td height="36" bgcolor="#000033"><div align="left">จังหวัด :</div></td>
-                <td bgcolor="#000033"><select name="cus_pro" id="cus_pro">
+                <td height="36" ><div align="left">จังหวัด :</div></td>
+                <td ><select name="cus_pro" id="cus_pro">
                   <option value="" selected="selected">------- กรุณาเลือกจังหวัด -------</option>
                   <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
                   <option value="กระบี่">กระบี่ </option>
@@ -260,13 +238,13 @@ function MM_popupMsg(msg) { //v1.0
                   <option value="อ่างทอง">อ่างทอง </option>
                   <option value="อื่นๆ">อื่นๆ</option>
                 </select></td>
-                <td height="34" bgcolor="#000033"><div align="left">รหัสไปรษณีย์ :</div></td>
-                <td height="34" bgcolor="#000033"><div align="left">
+                <td height="34" ><div align="left">รหัสไปรษณีย์ :</div></td>
+                <td height="34" ><div align="left">
                   <input name="cus_pos" type="text" id="cus_pos" maxlength="5" />
                   </div></td>
                 </tr>
               <tr>
-                <td height="34" colspan="4" bgcolor="#000033"><div align="center">
+                <td height="34" colspan="4" ><div align="center">
                   <input name="cus_bt" type="submit" id="cus_bt" onclick="MM_popupMsg('เพิ่มข้อมูลลูกค้าเรียบร้อยแล้ว')" value="บันทึกข้อมูลลูกค้า" />
                   </div></td>
                 </tr>

@@ -1,4 +1,7 @@
-<?php require_once('Connections/myconnect.php'); ?>
+<?php require_once('Connections/myconnect.php'); 
+ require_once('nevbar.php');
+ Nevbar();?>
+
 <?php
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
@@ -80,60 +83,15 @@ $row_car = mysql_fetch_assoc($car);
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<STYLE type=text/css>
-A:link {COLOR: #FFFFFF; TEXT-DECORATION: none}
-A:visited {COLOR: #FFFF00; TEXT-DECORATION: none}
-A:hover {COLOR: #FFFFFF; TEXT-DECORATION: underline}
-</STYLE>
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>แก้ไขข้อมูลรถ</title>
-<style type="text/css">
-#form1 div table tr td table tr td {
-	color: #FFF;
-}
-#form1 div table tr td table tr td label {
-	color: #F00;
-}
-.หัวข้อ {font-family: "angsana New";
-	font-size: 30px;
-	color: #FF0;
-}
-a:link {
-	color: #FF0;
-	text-decoration: none;
-}
-a:visited {
-	text-decoration: none;
-	color: #FF0;
-}
-a:hover {
-	text-decoration: none;
-	color: #FFF;
-}
-a:active {
-	text-decoration: none;
-	color: #FF0;
-}
-</style>
+
 </head>
 
 <body>
 <table width="100%" height="536" align="center">
-  <tr>
-    <td colspan="9" bgcolor="#000033"><img src="img/logodaichuar2.png" width="207" height="199" /></td>
-  </tr>
-  <tr>
-    <td height="54" colspan="9" bgcolor="#000033"><table width="100%">
-      <tr>
-        <td width="9%" class="หัวข้อ"><a href="indexhome.php">หน้าแรก</a></td>
-        <td width="12%" class="หัวข้อ"><a href="staff_show.php">ข้อมูลพนักงาน</a></td>
-        <td width="9%" class="หัวข้อ"><a href="car_show.php">ข้อมูลรถ</a></td>
-        <td width="9%" class="หัวข้อ"><a href="customer_show.php">ข้อมูลลูกค้า</a></td>
-        <td width="20%" class="หัวข้อ"><a href="waybill_show.php">เอกสารใบส่งของ</a></td>
-        <td width="41%">&nbsp;</td>
-      </tr>
-    </table></td>
-  </tr>
+ 
   <tr>
     <td colspan="9">&nbsp;</td>
   </tr>
@@ -150,23 +108,23 @@ a:active {
       <div align="center">
         <table width="449">
           <tr>
-            <td bgcolor="#000033"><table width="446">
+            <td ><table width="446">
               <tr>
-                <td height="29" bgcolor="#000033"><div align="right">รหัสรถ :</div></td>
-                <td bgcolor="#000033"><label>
+                <td height="29" ><div align="right">รหัสรถ :</div></td>
+                <td ><label>
                   <input name="car_id" type="text" id="car_id" value="<?php echo $row_car['car_id']; ?>" size="15" readonly="readonly" style="background-color:#CCC" />
                   *ไม่สามารถแก้ไขได้</label></td>
               </tr>
               <tr>
-                <td height="29" bgcolor="#000033"><div align="right">ทะเบียนรถ :</div></td>
-                <td bgcolor="#000033"><input name="car_register" type="text" id="car_register" value="<?php echo $row_car['car_register']; ?>" /></td>
+                <td height="29" ><div align="right">ทะเบียนรถ :</div></td>
+                <td ><input name="car_register" type="text" id="car_register" value="<?php echo $row_car['car_register']; ?>" /></td>
               </tr>
               <tr>
-                <td height="32" rowspan="2" bgcolor="#000033">&nbsp;</td>
-                <td bgcolor="#000033"><input name="car_province" type="text" id="car_province" value="<?php echo $row_car['car_province']; ?>" /></td>
+                <td height="32" rowspan="2" >&nbsp;</td>
+                <td ><input name="car_province" type="text" id="car_province" value="<?php echo $row_car['car_province']; ?>" /></td>
               </tr>
               <tr>
-                <td bgcolor="#000033"><select name="car_province" id="car_province">
+                <td ><select name="car_province" id="car_province">
                   <option value="" selected="selected">--------- เลือกจังหวัด ---------</option>
                   <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
                   <option value="กระบี่">กระบี่ </option>
@@ -249,12 +207,12 @@ a:active {
                 </select></td>
               </tr>
               <tr>
-                <td height="32" bgcolor="#000033"><div align="right">วันหมดอายุภาษีรถ:</div></td>
-                <td height="32" bgcolor="#000033"><label for="car_date_end"></label>
+                <td height="32" ><div align="right">วันหมดอายุภาษีรถ:</div></td>
+                <td height="32" ><label for="car_date_end"></label>
                   <input name="car_date_end" type="text" id="car_date_end" value="<?php echo $row_car['car_date_end']; ?>" /></td>
               </tr>
               <tr>
-                <td height="32" colspan="2" bgcolor="#000033"><div align="center">
+                <td height="32" colspan="2" ><div align="center">
                   <input name="car_bt" type="submit" id="car_bt" value="บันทึกข้อมูล" />
                 </div></td>
                 </tr>
