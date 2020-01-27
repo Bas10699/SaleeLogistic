@@ -1,4 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <info>
-	<infoitem key="UD_car" value="name:car_id;datatype:int,name:car_register;datatype:string,name:car_province;datatype:string" />
+	<infoitem key="UD_car" value="name:car_id;datatype:int,name:car_id_set;datatype:string,name:car_register;datatype:string,name:car_province;datatype:string,name:car_date_end;datatype:string" />
 </info>

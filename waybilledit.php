@@ -15,6 +15,9 @@
       die("Connection failed: " . $conn->connect_error);
   }
 
+  print_r($_POST);
+    print_r($_FILES);   
+
   $wb_id_set = $_POST["wb_id_set"];
   $wb_nber = $_POST["wb_nber"];
   $wb_nbook = $_POST["wb_nbook"];

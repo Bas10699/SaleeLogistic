@@ -64,60 +64,8 @@ $totalRows_waybill = mysql_num_rows($waybill);
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<STYLE type=text/css>
-A:link {
-	COLOR: #FFF;
-	TEXT-DECORATION: none
-}
-A:visited {COLOR: #FFF; TEXT-DECORATION: none}
-A:hover {
-	COLOR: #FFFFFF;
-	TEXT-DECORATION: none
-}
-</STYLE>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>เอกสารใบส่งของ</title>
-<style>
-#customers {
-  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
+<link rel="stylesheet" href="index.css">
 
-#customers td, #customers th {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-
-#customers tr:nth-child(even){background-color: #f2f2f2;}
-
-#customers tr:hover {background-color: #ddd;}
-
-#customers th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #333;
-  color: white;
-}
-.buttonadd{
-  background-color: #33ccff; /* Green */
-  border: none;
-  color: white;
-  padding: 15px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  border-radius: 12px;
-}
-.buttonadd:hover {
-  background-color: #0099ff;
-  color: white;
-}
-</style>
 </head>
 
 <body>
@@ -136,9 +84,7 @@ A:hover {
     <td height="22" colspan="2">
     <!-- <form id="form2" name="form2" method="post" action="waybill_show.php"> -->
       <div align="left">
-        <p>
-          <label for="dd_input"></label>
-        </p>
+
         <div align="center">
           <table  width="1265">
             <tr>
@@ -185,26 +131,27 @@ A:hover {
               <table id='customers' width="1236" height="67">
                 <tr >
                   <th ><div> </div></th>
-                  <th ><div align="center">รหัสใบส่งของ</div></th>
-                  <th ><div align="center">วันที่</div></th>
-                  <th ><div align="center">เลขที่ใบส่งของ</div></th>
-                  <th ><div align="center">ชื่อบริษัท</div></th>
-                  <th ><div align="center">จำนวนเงินทั้งสิ้น</div></th>
-                  <th ><div align="center">สถานะการชำระเงิน</div></th>
-                  <th ><div align="center">จัดการ</div></th>
+                  <th ><div >รหัสใบส่งของ</div></th>
+                  <th ><div >วันที่</div></th>
+                  <th ><div >เลขที่ใบส่งของ</div></th>
+                  <th ><div >ชื่อบริษัท</div></th>
+                  <th ><div >จำนวนเงินทั้งสิ้น</div></th>
+                  <th ><div >สถานะการชำระเงิน</div></th>
+                  <th ><div >จัดการ</div></th>
                 </tr>
                 <tr>
                   <?php while($row_waybill = mysql_fetch_array($waybill)) { ?>
                   <td><input type='checkbox' name='checkboxvar[]' value='<?php echo $row_waybill["wb_id_set"]; ?>'></td>
-                  <td height="33"><div align="center"><?php echo $row_waybill["wb_id_set"]; ?></div></td>
-                  <td><div align="center"><?php echo $row_waybill['wb_date']; ?></td>
-                  <td><div align="center"><?php echo $row_waybill['wb_nbook']; ?></div></td>
-                  <td><div align="center"><?php echo $row_waybill['cus_compan']; ?></div></td>
-                  <td><div align="center"><?php echo $row_waybill['wb_money']; ?></div></td>
-                  <td><div align="center"><?php echo $row_waybill['wb_payment']; ?></td>
+                  <td height="33"><div ><?php echo $row_waybill["wb_id_set"]; ?></div></td>
+                  <td><div ><?php echo $row_waybill['wb_date']; ?></td>
+                  <td><div ><?php echo $row_waybill['wb_nbook']; ?></div></td>
+                  <td><div ><?php echo $row_waybill['cus_compan']; ?></div></td>
+                  <td><div ><?php echo $row_waybill['wb_money']; ?></div></td>
+                  <td><div ><?php echo $row_waybill['wb_payment']; ?></td>
            
-                      <td ><div align="center"><button style="background-color: green"><a href="waybill_detail.php?id=<?php echo $row_waybill['wb_id']; ?>" >รายละเอียด</a></button>
-                      <button href="waybill_del.php?id=<?php echo $row_waybill['wb_id']; ?>?staff_id=<?php echo $row_waybill['waybill_id']; ?>"onclick="MM_popupMsg('ยืนยันที่จะลบข้อมูลหรือไม่ ?')">ลบ</button>
+                      <td ><div >
+                      <a class="buttondetail" href="waybill_detail.php?id=<?php echo $row_waybill['wb_id']; ?>" >รายละเอียด</a>
+                      <a class="btndel" href="waybill_del.php?id=<?php echo $row_waybill['wb_id']; ?>?staff_id=<?php echo $row_waybill['waybill_id']; ?>"onclick="return confirm('ยืนยันที่จะลบข้อมูลหรือไม่ ?')">ลบ</a>
                       </td>
                    
                   </tr>

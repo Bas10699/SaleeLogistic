@@ -1,3 +1,5 @@
+<?php require_once('nevbar.php');
+Nevbar(); ?>
 <?php require_once('Connections/myconnect.php'); ?>
 <?php
 if (!function_exists("GetSQLValueString")) {
@@ -117,21 +119,7 @@ function MM_popupMsg(msg) { //v1.0
 
 <body>
 <table width="100%" height="579" align="center">
-  <tr>
-    <td height="32" colspan="3" bgcolor="#000033"><img src="img/logodaichuar2.png" width="207" height="199" /></td>
-  </tr>
-  <tr class="หัวข้อ">
-    <td colspan="3" bgcolor="#000033"><table width="100%">
-      <tr>
-        <td width="9%" class="หัวข้อ"><a href="indexhome.php">หน้าแรก</a></td>
-        <td width="12%" class="หัวข้อ"><a href="staff_show.php">ข้อมูลพนักงาน</a></td>
-        <td width="9%" class="หัวข้อ"><a href="car_show.php">ข้อมูลรถ</a></td>
-        <td width="9%" class="หัวข้อ"><a href="customer_show.php">ข้อมูลลูกค้า</a></td>
-        <td width="20%" class="หัวข้อ"><a href="waybill_show.php">เอกสารใบส่งของ</a></td>
-        <td width="41%">&nbsp;</td>
-      </tr>
-    </table></td>
-  </tr>
+  
   <tr>
     <td colspan="3">&nbsp;</td>
   </tr>

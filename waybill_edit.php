@@ -93,6 +93,7 @@ function Editdata($row_waybill,$customer){
         $('#btn_edit').on('click',function(){
     
           $.ajaxSetup({
+            
             headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
@@ -109,13 +110,15 @@ function Editdata($row_waybill,$customer){
               wb_date: $('#wb_date').val(),
               wb_money: $('#wb_money').val(),
               wb_payment: $('#wb_payment').val(),
-              wb_img: $('#wb_img').val()
+              wb_img: $('#wb_img')[0].files[0]
             }
           }).done(function(msg){
               console.log(msg)
-              location.reload()
+              // location.reload()
           });
-
+        
+        
+          console.log($('#wb_img')[0].files[0])
 
           /*console.log($('#wb_id_set').val())
           console.log($('#wb_nber').val())

@@ -68,13 +68,14 @@ if (isset($_SERVER['QUERY_STRING'])) {
 }
 
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
-  $insertSQL = sprintf("INSERT INTO tb_staff (staff_id, staff_name, staff_lastname, staff_card, staff_position, staff_tel) VALUES (%s, %s, %s, %s, %s, %s)",
+  $insertSQL = sprintf("INSERT INTO tb_staff (staff_id, staff_name, staff_lastname, staff_card, staff_position, staff_tel, staff_title_name) VALUES (%s, %s, %s, %s, %s, %s, %s)",
                        GetSQLValueString($_POST['staff_id'], "text"),
                        GetSQLValueString($_POST['staff_name'], "text"),
                        GetSQLValueString($_POST['staff_lastname'], "text"),
                        GetSQLValueString($_POST['staff_card'], "text"),
                        GetSQLValueString($_POST['staff_position'], "text"),
-                       GetSQLValueString($_POST['staff_tel'], "text"));
+                       GetSQLValueString($_POST['staff_tel'], "text"),
+                       GetSQLValueString($_POST['staff_title_name'], "text"));
 
   mysql_select_db($database_myconnect, $myconnect);
   $Result1 = mysql_query($insertSQL, $myconnect) or die(mysql_error());
@@ -177,8 +178,23 @@ a:active {
                 <td height="35" bgcolor="#000033"><input name="staff_id" type="text" disabled="disabled" id="staff_id" size="20" style="background-color:#CCC" /></td>
                 </tr>
               <tr>
-                <td width="165" bgcolor="#000033"><div align="left">ชื่อ - นามสกุล :</div></td>
-                <td width="356" height="36" bgcolor="#000033"><input name="staff_name" type="text" id="staff_name" />
+                <td width="165" bgcolor="#000033"><div align="left">คำนำหน้าชื่อ :</div></td>
+                <td height="36" bgcolor="#000033"><select name="staff_title_name" id="staff_title_name">
+                  <option value="นาย">นาย</option>
+                  <option value="นาง">นาง</option>
+                  <option value="นางสาว">นางสาว</option>
+                  
+                </select></td>
+                </tr>
+              <tr>
+              <tr>
+                <td width="165" bgcolor="#000033"><div align="left">ชื่อ :</div></td>
+                <td width="356" height="36" bgcolor="#000033"><input name="staff_name" type="text" id="staff_name" /></td>
+                </tr>
+              <tr>
+              <tr>
+                <td width="165" bgcolor="#000033"><div align="left">นามสกุล :</div></td>
+                <td width="356" height="36" bgcolor="#000033">
                   <input name="staff_lastname" type="text" id="staff_lastname" size="21" /></td>
                 </tr>
               <tr>

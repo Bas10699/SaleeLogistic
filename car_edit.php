@@ -37,9 +37,10 @@ if (isset($_SERVER['QUERY_STRING'])) {
 }
 
 if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form1")) {
-  $updateSQL = sprintf("UPDATE tb_car SET car_register=%s, car_province=%s WHERE car_id=%s",
+  $updateSQL = sprintf("UPDATE tb_car SET car_register=%s, car_province=%s, car_date_end=%s WHERE car_id=%s",
                        GetSQLValueString($_POST['car_register'], "text"),
                        GetSQLValueString($_POST['car_province'], "text"),
+                       GetSQLValueString($_POST['car_date_end'], "text"),
                        GetSQLValueString($_POST['car_id'], "int"));
 
   mysql_select_db($database_myconnect, $myconnect);
@@ -147,17 +148,17 @@ a:active {
   <tr>
     <td height="55" colspan="9"><form id="form1" name="form1" method="POST" action="<?php echo $editFormAction; ?>">
       <div align="center">
-        <table width="385">
+        <table width="449">
           <tr>
-            <td bgcolor="#000033"><table width="379">
+            <td bgcolor="#000033"><table width="446">
               <tr>
-                <td height="29" bgcolor="#000033"><div align="left">รหัสรถ </div></td>
+                <td height="29" bgcolor="#000033"><div align="right">รหัสรถ :</div></td>
                 <td bgcolor="#000033"><label>
                   <input name="car_id" type="text" id="car_id" value="<?php echo $row_car['car_id']; ?>" size="15" readonly="readonly" style="background-color:#CCC" />
                   *ไม่สามารถแก้ไขได้</label></td>
               </tr>
               <tr>
-                <td height="29" bgcolor="#000033"><div align="left">ทะเบียนรถ </div></td>
+                <td height="29" bgcolor="#000033"><div align="right">ทะเบียนรถ :</div></td>
                 <td bgcolor="#000033"><input name="car_register" type="text" id="car_register" value="<?php echo $row_car['car_register']; ?>" /></td>
               </tr>
               <tr>
@@ -246,6 +247,11 @@ a:active {
                   <option value="อ่างทอง">อ่างทอง </option>
                   <option value="อื่นๆ">อื่นๆ</option>
                 </select></td>
+              </tr>
+              <tr>
+                <td height="32" bgcolor="#000033"><div align="right">วันหมดอายุภาษีรถ:</div></td>
+                <td height="32" bgcolor="#000033"><label for="car_date_end"></label>
+                  <input name="car_date_end" type="text" id="car_date_end" value="<?php echo $row_car['car_date_end']; ?>" /></td>
               </tr>
               <tr>
                 <td height="32" colspan="2" bgcolor="#000033"><div align="center">
