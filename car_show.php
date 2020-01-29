@@ -116,10 +116,15 @@ $totalRows_car = mysql_num_rows($car);
                   </td>
                   <td >
                   <?php
-                      if (round(DateDiff(date('y-m-d'),$row_car['car_date_end'])) <= '30' ){
+                      if (round(DateDiff(date('y-m-d'),$row_car['car_date_end'])) < '0' ){
                   ?>
-                    <div align="center" style='background-color:rgba(255,0,0,0.3)'><?php echo $row_car['car_date_end']."( ".round(DateDiff(date('y-m-d'),$row_car['car_date_end']))." วัน)"; ?> </div>
+                    <div align="center" style='color:red'>หมดอายุภาษีแล้ว</div>
                   <?php }
+
+                        else if (round(DateDiff(date('y-m-d'),$row_car['car_date_end'])) <= '30' ){
+                    ?>
+                  <div align="center" style='background-color:rgba(255,0,0,0.3)'><?php echo $row_car['car_date_end']."( ".round(DateDiff(date('y-m-d'),$row_car['car_date_end']))." วัน)"; ?> </div>
+                 <?php }
                   else if(round(DateDiff(date('y-m-d'),$row_car['car_date_end'])) <= '90' ){
                     ?>
                     <div align="center" style='background-color:rgba(255,255,0,0.3)'><?php echo $row_car['car_date_end']."( ".round(DateDiff(date('y-m-d'),$row_car['car_date_end']))." วัน)"; ?> </div>

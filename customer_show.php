@@ -40,7 +40,7 @@ if (isset($_GET['cus_id'])) {
   $colname_customer = $_GET['cus_id'];
 }
 mysql_select_db($database_myconnect, $myconnect);
-$query_customer = sprintf("SELECT * FROM tb_customer WHERE cus_id = %s", GetSQLValueString($colname_customer, "int"));
+$query_customer = sprintf("SELECT * FROM tb_customer WHERE cus_id = %s ", GetSQLValueString($colname_customer, "int"));
 $customer = mysql_query($query_customer, $myconnect) or die(mysql_error());
 $row_customer = mysql_fetch_assoc($customer);
 $totalRows_customer = mysql_num_rows($customer);

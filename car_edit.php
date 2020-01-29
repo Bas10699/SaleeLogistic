@@ -106,14 +106,17 @@ $row_car = mysql_fetch_assoc($car);
   <tr>
     <td height="55" colspan="9"><form id="form1" name="form1" method="POST" action="<?php echo $editFormAction; ?>">
       <div align="center">
-        <table width="449">
+        <table width="449" style=' border-collapse: collapse; border: 1px solid black;'>
           <tr>
-            <td ><table width="446">
+            <td ><table width="446" >
               <tr>
                 <td height="29" ><div align="right">รหัสรถ :</div></td>
                 <td ><label>
-                  <input name="car_id" type="text" id="car_id" value="<?php echo $row_car['car_id']; ?>" size="15" readonly="readonly" style="background-color:#CCC" />
-                  *ไม่สามารถแก้ไขได้</label></td>
+                  <input style="display:none;" name="car_id" type="text" id="car_id" value="<?php echo $row_car['car_id']; ?>" size="15" readonly="readonly" style="background-color:#CCC" />
+                  <!-- *ไม่สามารถแก้ไขได้ -->
+                </label>
+                  <?php echo $row_car['car_id_set']; ?>
+                </td>
               </tr>
               <tr>
                 <td height="29" ><div align="right">ทะเบียนรถ :</div></td>
@@ -121,11 +124,11 @@ $row_car = mysql_fetch_assoc($car);
               </tr>
               <tr>
                 <td height="32" rowspan="2" >&nbsp;</td>
-                <td ><input name="car_province" type="text" id="car_province" value="<?php echo $row_car['car_province']; ?>" /></td>
+                <td ><input style="display:none;" name="car_province" type="text" id="car_province" value="<?php echo $row_car['car_province']; ?>" /></td>
               </tr>
               <tr>
                 <td ><select name="car_province" id="car_province">
-                  <option value="" selected="selected">--------- เลือกจังหวัด ---------</option>
+                  <option value="<?php echo $row_car['car_province']; ?>" selected="selected"><?php echo $row_car['car_province']; ?></option>
                   <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
                   <option value="กระบี่">กระบี่ </option>
                   <option value="กาญจนบุรี">กาญจนบุรี </option>
@@ -209,7 +212,7 @@ $row_car = mysql_fetch_assoc($car);
               <tr>
                 <td height="32" ><div align="right">วันหมดอายุภาษีรถ:</div></td>
                 <td height="32" ><label for="car_date_end"></label>
-                  <input name="car_date_end" type="text" id="car_date_end" value="<?php echo $row_car['car_date_end']; ?>" /></td>
+                  <input name="car_date_end" type="date" id="car_date_end" value="<?php echo $row_car['car_date_end']; ?>" /></td>
               </tr>
               <tr>
                 <td height="32" colspan="2" ><div align="center">

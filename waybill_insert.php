@@ -76,6 +76,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
     $insertGoTo .= $_SERVER['QUERY_STRING'];
   }
   header(sprintf("Location: %s", $insertGoTo));
+  // echo "<script>window.location.herf='/waybill_show.php'</script>";
 }
 
 
@@ -146,12 +147,12 @@ a:active {
                     <input name="customer_id" type="text" id="customer_id" size="15" /></td>
                 </tr> -->
                 <tr valign="baseline">
-                  <td nowrap="nowrap" align="right">เลขที่ใบส่งของ:</td>
+                  <td nowrap="nowrap" align="right">เลขที่ใบส่งสินค้า:</td>
                   <td><input name="wb_nber" type="text" id="wb_nber" value="" size="20" /></td>
                 </tr>
                 <tr valign="baseline">
                   <td nowrap="nowrap" align="right">เล่มที่:</td>
-                  <td><input type="text" name="wb_nbook" value="" size="20" /></td>
+                  <td><input name="wb_nbook" type="text"  id="wb_nbook" value="" size="20" /></td>
                 </tr>
                 <tr valign="baseline">
                   <td nowrap="nowrap" align="right">ชื่อบริษัท:</td>
@@ -181,11 +182,13 @@ a:active {
                 <tr valign="baseline">
                   <td nowrap="nowrap" align="right">สถานะการชำระเงิน:</td>
                   <td>
-                  <label for="wb_payment"></label>
-                    <select name="wb_payment" id="wb_payment">
-                      <option selected disabled hidden>--กรุณาเลือก--</option>
-                      <option value="ยังไม่ได้ชำระ">ยังไม่ได้ชำระ</option>
-                      <option value="ชำระแล้ว">ชำระแล้ว</option>
+                  <!-- <label for="wb_payment"></label> -->
+                    <!-- <select name="wb_payment" id="wb_payment"> -->
+                    <input type="radio" name="wb_payment" value="ยังไม่ได้ชำระ">ยังไม่ได้ชำระ
+                    <input type="radio" name="wb_payment" value="ชำระแล้ว">ชำระแล้ว
+                      <!-- <option selected disabled hidden>--กรุณาเลือก--</option> -->
+                      <!-- <option value="ยังไม่ได้ชำระ">ยังไม่ได้ชำระ</option> -->
+                      <!-- <option value="ชำระแล้ว">ชำระแล้ว</option> -->
                     </select></td>
                   </tr>
                 <tr valign="baseline">

@@ -151,7 +151,7 @@ $totalRows_customer = mysql_num_rows($customer);
                   </p>
                   <p>
                     <select name="cus_area" class="ตัวหนังสือสีดำ" id="cus_area">
-                      <option value="" selected="selected">--------- เลือกอำเภอ ---------</option>
+                      <option value="<?php echo $row_customer['cus_area']; ?>" selected="selected">--------- เลือกอำเภอ ---------</option>
                       <option value="อำเภอเมือง"> อำเภอเมือง </option>
                       <option value="อำเภอบางระกำ">อำเภอบางระกำ</option>
                       <option value="อำเภอบางกระทุ่ม">อำเภอบางกระทุ่ม </option>
@@ -172,7 +172,7 @@ $totalRows_customer = mysql_num_rows($customer);
                   </p>
                   <p>
                     <select name="cus_pro" class="ตัวหนังสือสีดำ" id="cus_pro">
-                      <option value="" selected="selected">--------- เลือกจังหวัด ---------</option>
+                      <option value="<?php echo $row_customer['cus_pro']; ?>" selected="selected">--------- เลือกจังหวัด ---------</option>
                       <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
                       <option value="กระบี่">กระบี่ </option>
                       <option value="กาญจนบุรี">กาญจนบุรี </option>

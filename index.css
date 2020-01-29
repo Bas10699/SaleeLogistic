@@ -95,3 +95,23 @@ A:hover {
     background-color: #ad0000;
     color: white;
   }
+
+  .btnsh {
+    background-color: #deee00be;
+    /* Green */
+    border: none;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    /* margin: 2px 2px; */
+    cursor: pointer;
+    border-radius: 12px;
+  }
+
+  .btnsh:hover {
+    background-color: #9a9c00;
+    color: white;
+  }

@@ -56,10 +56,10 @@ LEFT JOIN tb_customer
 ON tb_waybill.customer_id = tb_customer.cus_id 
 LEFT JOIN tb_car
 ON tb_waybill.car_id = tb_car.car_id
-WHERE (tb_customer.cus_sub LIKE '%".$_GET["txtKeyword"]."%' or tb_customer.cus_area LIKE '%".$_GET["txtKeyword"]."%' or wb_payment LIKE '%".$_GET["txtKeyword"]."%' )";
+WHERE (tb_customer.cus_sub LIKE '%".$_GET["txtKeyword"]."%' or tb_customer.cus_area LIKE '%".$_GET["txtKeyword"]."%' or wb_payment LIKE '%".$_GET["txtKeyword"]."%' )
+ORDER BY wb_id";
 $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
-$row_waybill = mysql_fetch_assoc($waybill);
-$totalRows_waybill = mysql_num_rows($waybill);
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -78,7 +78,7 @@ $totalRows_waybill = mysql_num_rows($waybill);
     <td colspan="2">&nbsp;</td>
   </tr>
   <tr>
-    <td colspan="2"><h2 align="center">เอกสารใบส่งของ</h2></td>
+    <td colspan="2"><h2 align="center">ใบรับ-ส่งสินค้า</td>
   </tr>
   <tr>
     <td height="22" colspan="2">
@@ -106,10 +106,10 @@ $totalRows_waybill = mysql_num_rows($waybill);
                 </select></td>
              </form>
 
-
+      <form  action="waybill_invoice.php" method="post">
               <td width="291"><div align="right">
                 
-                    
+                              <button class="buttonadd" type="submit">ตรวจสอบใบส่งสินค้า</button>
                               <button class="buttonadd"><a href="waybill_insert.php">เพิ่มเอกสาร</a></button>
                               </div>
                    
@@ -131,17 +131,17 @@ $totalRows_waybill = mysql_num_rows($waybill);
               <table id='customers' width="1236" height="67">
                 <tr >
                   <th ><div> </div></th>
-                  <th ><div >รหัสใบส่งของ</div></th>
-                  <th ><div >วันที่</div></th>
-                  <th ><div >เลขที่ใบส่งของ</div></th>
-                  <th ><div >ชื่อบริษัท</div></th>
-                  <th ><div >จำนวนเงินทั้งสิ้น</div></th>
-                  <th ><div >สถานะการชำระเงิน</div></th>
-                  <th ><div >จัดการ</div></th>
+                  <th ><div align="center">รหัสใบรับ-ส่งสินค้า</div></th>
+                  <th ><div align="center">วันที่</div></th>
+                  <th ><div align="center">เลขที่ใบรับ-ส่งสินค้า</div></th>
+                  <th ><div align="center">ชื่อบริษัท</div></th>
+                  <th ><div align="center">จำนวนเงินทั้งสิ้น</div></th>
+                  <th ><div align="center">สถานะการชำระเงิน</div></th>
+                  <th ><div align="center">จัดการ</div></th>
                 </tr>
                 <tr>
                   <?php while($row_waybill = mysql_fetch_array($waybill)) { ?>
-                  <td><input type='checkbox' name='checkboxvar[]' value='<?php echo $row_waybill["wb_id_set"]; ?>'></td>
+                  <td><input type='checkbox' name='checkIdList[]' value='<?php echo $row_waybill["wb_id"]; ?>'></td>
                   <td height="33"><div ><?php echo $row_waybill["wb_id_set"]; ?></div></td>
                   <td><div ><?php echo $row_waybill['wb_date']; ?></td>
                   <td><div ><?php echo $row_waybill['wb_nbook']; ?></div></td>
@@ -149,7 +149,7 @@ $totalRows_waybill = mysql_num_rows($waybill);
                   <td><div ><?php echo $row_waybill['wb_money']; ?></div></td>
                   <td><div ><?php echo $row_waybill['wb_payment']; ?></td>
            
-                      <td ><div >
+                      <td ><div align="center">
                       <a class="buttondetail" href="waybill_detail.php?id=<?php echo $row_waybill['wb_id']; ?>" >รายละเอียด</a>
                       <a class="btndel" href="waybill_del.php?id=<?php echo $row_waybill['wb_id']; ?>?staff_id=<?php echo $row_waybill['waybill_id']; ?>"onclick="return confirm('ยืนยันที่จะลบข้อมูลหรือไม่ ?')">ลบ</a>
                       </td>
@@ -161,6 +161,7 @@ $totalRows_waybill = mysql_num_rows($waybill);
             </tr>
         </table>
     </div>
+    </form>
       <p>&nbsp;</p>
     <!-- </form> -->
     </td>

@@ -100,11 +100,7 @@ $row_staff = mysql_fetch_assoc($staff);
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<STYLE type=text/css>
-A:link {COLOR: #FFFFFF; TEXT-DECORATION: none}
-A:visited {COLOR: #FFFF00; TEXT-DECORATION: none}
-A:hover {COLOR: #FFFFFF; TEXT-DECORATION: underline}
-</STYLE>
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>แก้ไขข้อมูลพนักงาน</title>
 <script type="text/javascript">
@@ -113,44 +109,8 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
   if (restore) selObj.selectedIndex=0;
 }
 </script>
-<style type="text/css">
-#form1 table tr td label {
-	color: #F00;
-}
-#form1 table tr td label {
-	font-size: 10px;
-}
-#form1 table tr td label {
-	font-size: 14px;
-}
-#form1 div table tr td div table tr td {
-	color: #FFF;
-}
-#form1 div table tr td table tr td {
-	color: #FFF;
-}
-.หัวข้อ {
-	font-size: 30px;
-	color: #FF0;
-	font-family: "angsana New";
-}
-a:link {
-	color: #FF0;
-	text-decoration: none;
-}
-a:visited {
-	text-decoration: none;
-	color: #FF0;
-}
-a:hover {
-	text-decoration: none;
-	color: #FFF;
-}
-a:active {
-	text-decoration: none;
-	color: #FF0;
-}
-</style>
+<link rel="stylesheet" href="index.css">
+
 </head>
 
 <body>
@@ -170,54 +130,62 @@ a:active {
   <tr>
     <td height="250" colspan="3"><form action="<?php echo $editFormAction; ?>" id="form1" name="form1" method="POST">
       <div align="center">
-        <table width="564" height="187">
+        <table width="670" height="187" style=' border-collapse: collapse; border: 1px solid black;'>
           <tr>
-            <td bgcolor="#000033"><div align="center">
-              <table width="515" align="center">
+            <td ><div align="center">
+              <table width="570" align="center">
                 <tr>
-                  <td height="24" bgcolor="#000033"><div align="left">
+                  <td height="24" ><div align="left">
                     <h4>รหัสพนักงาน </h4>
                     </div></td>
-                  <td bgcolor="#000033"><label>
-                    <input name="staff_id" type="text" id="staff_id" value="<?php echo $row_staff['staff_id']; ?>" size="10" readonly="readonly" style="background-color:#CCC" />
-                    *ไม่สามารถแก้ไขรหัสพนักงานได้</label></td>
+                  <td ><label>
+                    <input style="display:none;" name="staff_id" type="text" id="staff_id" value="<?php echo $row_staff['staff_id']; ?>" size="10" readonly="readonly" style="background-color:#CCC" />
+                    </label>
+                    <?php echo $row_staff['staff_id_set']; ?>
+                  </td>
                   </tr>
                 <tr>
-                  <td width="129" height="24" bgcolor="#000033"><div align="left">
+                  <td width="129" height="24" ><div align="left">
                     <h4>ชื่อ - นามสกุล </h4>
                     </div></td>
-                  <td width="352" bgcolor="#000033"><label>
+                  <td width="352" ><label>
+                  <select name="staff_title_name" id="staff_title_name">
+                       <option selected disabled hidden><?php echo $row_staff['staff_title_name']; ?></option>
+                       <option value="นาย">นาย</option>
+                       <option value="นาง">นาง</option>
+                       <option value="นางสาว">นางสาว</option>
+                  </select>
                     <input name="staff_name" type="text" id="staff_name" value="<?php echo $row_staff['staff_name']; ?>" />
                     <input name="staff_lastname" type="text" id="staff_lastname" value="<?php echo $row_staff['staff_lastname']; ?>" size="20" />
                     </label></td>
                   </tr>
                 <tr>
-                  <td height="25" bgcolor="#000033"><div align="left">
+                  <td height="25" ><div align="left">
                     <h4>เลขบัตรประชาชน </h4>
                     </div></td>
-                  <td bgcolor="#000033"><label>
+                  <td ><label>
                     <input name="staff_card" type="text" id="staff_card" value="<?php echo $row_staff['staff_card']; ?>" size="30" maxlength="13" />
                     </label></td>
                   </tr>
                 <tr>
-                  <td height="26" bgcolor="#000033"><div align="left">
+                  <td height="26" ><div align="left">
                     <h4>ตำแหน่ง </h4>
                     </div></td>
-                  <td bgcolor="#000033"><select name="staff_position" id="staff_position">
+                  <td ><select name="staff_position" id="staff_position">
                     <option value="Manager">Manager</option>
                     <option value="Driver">Driver</option>
                     </select></td>
                   </tr>
                 <tr>
-                  <td height="26" bgcolor="#000033"><div align="left">
+                  <td height="26" ><div align="left">
                     <h4>เบอร์โทรศัพท์ </h4>
                     </div></td>
-                  <td bgcolor="#000033"><label>
+                  <td ><label>
                     <input name="staff_tel" type="text" id="staff_tel" value="<?php echo $row_staff['staff_tel']; ?>" size="30" maxlength="10" />
                     </label></td>
                   </tr>
                 <tr>
-                  <td height="35" colspan="2" bgcolor="#000033"><div align="center">
+                  <td height="35" colspan="2" ><div align="center">
                     <input name="staff_bt" type="submit" id="staff_bt" value="บันทึกข้อมูลพนักงาน" />
                     </div></td>
                   </tr>
