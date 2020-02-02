@@ -50,6 +50,7 @@ $staffId = mysql_query($query_staff, $myconnect) or die(mysql_error());
                   <th ><div align="center">วันที่</div></th>
                   <th ><div align="center">เลขที่ใบรับ-ส่งสินค้า</div></th>
                   <th ><div align="center">ชื่อบริษัท</div></th>
+                  <th ><div align="center">อำเภอ</div></th>
                   <th ><div align="center">จำนวนเงินทั้งสิ้น</div></th>
                   <th ><div align="center">สถานะการชำระเงิน</div></th>
                   <!-- <th ><div align="center">จัดการ</div></th> -->
@@ -62,6 +63,7 @@ $staffId = mysql_query($query_staff, $myconnect) or die(mysql_error());
                   <td><div ><?php echo $row_waybill['wb_date']; ?></td>
                   <td><div ><?php echo $row_waybill['wb_nbook']; ?></div></td>
                   <td><div ><?php echo $row_waybill['cus_compan']; ?></div></td>
+                  <td><div ><?php echo $row_waybill['cus_area']; ?></div></td>
                   <td><div ><?php echo $row_waybill['wb_money']; ?></div></td>
                   <td><div ><?php echo $row_waybill['wb_payment']; ?></td>
            
@@ -88,15 +90,15 @@ $staffId = mysql_query($query_staff, $myconnect) or die(mysql_error());
               <div align="center">
               <select name="cus_area" id="cus_area">
                   <option selected disabled hidden>กรุณาเลือกอำเภอ</option>
-                  <option value="อำเภอเมือง"> อำเภอเมือง </option>
-                  <option value="อำเภอบางระกำ">อำเภอบางระกำ</option>
-                  <option value="อำเภอบางกระทุ่ม">อำเภอบางกระทุ่ม </option>
-                  <option value="อำเภอนครไทย">อำเภอนครไทย </option>
-                  <option value="อำเภอชาติตระการ">อำเภอชาติตระการ </option>
-                  <option value="อำเภอพรหมพิราม">อำเภอพรหมพิราม </option>
-                  <option value="อำเภอวังทอง">อำเภอวังทอง</option>
-                  <option value="อำเภอเนินมะปราง">อำเภอเนินมะปราง</option>
-                  <option value="อำเภอวัดโบสถ์">อำเภอวัดโบสถ์ </option>
+                  <option value="เมือง"> เมือง </option>
+                  <option value="บางระกำ">บางระกำ</option>
+                  <option value="บางกระทุ่ม">บางกระทุ่ม </option>
+                  <option value="นครไทย">นครไทย </option>
+                  <option value="ชาติตระการ">ชาติตระการ </option>
+                  <option value="พรหมพิราม">พรหมพิราม </option>
+                  <option value="วังทอง">วังทอง</option>
+                  <option value="เนินมะปราง">เนินมะปราง</option>
+                  <option value="วัดโบสถ์">วัดโบสถ์ </option>
               </div>
               </select>
               

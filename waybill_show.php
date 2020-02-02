@@ -109,7 +109,7 @@ $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
       <form  action="waybill_invoice.php" method="post">
               <td width="291"><div align="right">
                 
-                              <button class="buttonadd" type="submit">ตรวจสอบใบส่งสินค้า</button>
+                              <button class="buttonadd" a href="waybill_invoice.php">ตรวจสอบใบส่งสินค้า</button>
                               <button class="buttonadd"><a href="waybill_insert.php">เพิ่มเอกสาร</a></button>
                               </div>
                    

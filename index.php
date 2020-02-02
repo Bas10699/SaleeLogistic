@@ -94,7 +94,7 @@ if (isset($_POST['login_user'])) {
   <p>&nbsp;</p>
   <table width="506" height="446" align="center">
     <tr align="center">
-      <td height="30" colspan="2" bgcolor="#ddddd3"><table width="100">
+      <td height="30" colspan="2" bgcolor=""><table width="100">
         <tr>
           <td><img src="img/เข้าสู่ระบบ.gif" width="500" height="100" /></td>
         </tr>
@@ -114,7 +114,7 @@ if (isset($_POST['login_user'])) {
       </label></td>
     </tr>
     <tr>
-      <td height="66" colspan="2" bgcolor="#CCCCCC"><div align="center">
+      <td height="66" colspan="2" bgcolor=""><div align="center">
         <input name="bt_login" type="image" id="bt_login" src="img/ตกลง.png" align="middle" />
       </div></td>
     </tr>

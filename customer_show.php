@@ -55,9 +55,11 @@ $totalRows_customer = mysql_num_rows($customer);
 
 <head>
 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" href="index.css">
+  <title>ข้อมูลลูกค้า</title>
+
 <link rel="stylesheet" href="index.css">
-
-
 </head>
 
 <body>

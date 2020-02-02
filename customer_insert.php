@@ -140,15 +140,15 @@ function MM_popupMsg(msg) { //v1.0
                 <td ><label>
                   <select name="cus_area" id="cus_area">
                   <option value="" selected="selected">------- กรุณาเลือกอำเภอ -------</option>
-                  <option value="อำเภอเมือง"> อำเภอเมือง </option>
-                  <option value="อำเภอบางระกำ">อำเภอบางระกำ</option>
-                  <option value="อำเภอบางกระทุ่ม">อำเภอบางกระทุ่ม </option>
-                  <option value="อำเภอนครไทย">อำเภอนครไทย </option>
-                  <option value="อำเภอชาติตระการ">อำเภอชาติตระการ </option>
-                  <option value="อำเภอพรหมพิราม">อำเภอพรหมพิราม </option>
-                  <option value="อำเภอวังทอง">อำเภอวังทอง</option>
-                  <option value="อำเภอเนินมะปราง">อำเภอเนินมะปราง</option>
-                  <option value="อำเภอวัดโบสถ์">อำเภอวัดโบสถ์ </option>
+                  <option value="เมือง"> เมือง </option>
+                  <option value="บางระกำ">บางระกำ</option>
+                  <option value="บางกระทุ่ม">บางกระทุ่ม </option>
+                  <option value="นครไทย">นครไทย </option>
+                  <option value="ชาติตระการ">ชาติตระการ </option>
+                  <option value="พรหมพิราม">พรหมพิราม </option>
+                  <option value="วังทอง">วังทอง</option>
+                  <option value="เนินมะปราง">เนินมะปราง</option>
+                  <option value="วัดโบสถ์">วัดโบสถ์ </option>
                   <option value="อื่นๆ">อื่นๆ</option>
                 </select>
                   </label></td>

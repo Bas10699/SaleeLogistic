@@ -152,15 +152,15 @@ $totalRows_customer = mysql_num_rows($customer);
                   <p>
                     <select name="cus_area" class="ตัวหนังสือสีดำ" id="cus_area">
                       <option value="<?php echo $row_customer['cus_area']; ?>" selected="selected">--------- เลือกอำเภอ ---------</option>
-                      <option value="อำเภอเมือง"> อำเภอเมือง </option>
-                      <option value="อำเภอบางระกำ">อำเภอบางระกำ</option>
-                      <option value="อำเภอบางกระทุ่ม">อำเภอบางกระทุ่ม </option>
-                      <option value="อำเภอนครไทย">อำเภอนครไทย </option>
-                      <option value="อำเภอชาติตระการ">อำเภอชาติตระการ </option>
-                      <option value="อำเภอพรหมพิราม">อำเภอพรหมพิราม </option>
-                      <option value="อำเภอวังทอง">อำเภอวังทอง</option>
-                      <option value="อำเภอเนินมะปราง">อำเภอเนินมะปราง</option>
-                      <option value="อำเภอวัดโบสถ์">อำเภอวัดโบสถ์ </option>
+                      <option value="เมือง"> เมือง </option>
+                      <option value="บางระกำ">บางระกำ</option>
+                      <option value="บางกระทุ่ม">บางกระทุ่ม </option>
+                      <option value="นครไทย">นครไทย </option>
+                      <option value="ชาติตระการ">ชาติตระการ </option>
+                      <option value="พรหมพิราม">พรหมพิราม </option>
+                      <option value="วังทอง">วังทอง</option>
+                      <option value="เนินมะปราง">เนินมะปราง</option>
+                      <option value="วัดโบสถ์">วัดโบสถ์ </option>
                       <option value="อื่นๆ">อื่นๆ</option>
                     </select>
                     <span class="มีไว้แก้ไข">*มีไว้สำหรับแก้ไข</span></p></td>
