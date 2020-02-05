@@ -4,9 +4,9 @@ Nevbar(); ?>
 <?php require_once('Connections/myconnect.php'); ?>
 
 <?
-if($_POST["checkIdList"])
+if($_GET["checkIdList"])
 {
-$ids = join("','",$_POST["checkIdList"]);
+$ids = join("','",$_GET["checkIdList"]);
 mysql_select_db($database_myconnect, $myconnect);
 $query_waybill = "SELECT * FROM tb_waybill 
 LEFT JOIN tb_customer 
@@ -23,6 +23,8 @@ $carId = mysql_query($query_carId, $myconnect) or die(mysql_error());
 
 $query_staff = "SELECT * FROM tb_staff";
 $staffId = mysql_query($query_staff, $myconnect) or die(mysql_error());
+
+
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -32,6 +34,22 @@ $staffId = mysql_query($query_staff, $myconnect) or die(mysql_error());
 <link rel="stylesheet" href="index.css">
 
 </head>
+
+<script>
+function validateForm() {
+  var x = document.forms["myForm"]["car_id"].value;
+  var y = document.forms["myForm"]["staff_id"].value;
+  if (x === "กรุณาเลือกทะเบียนรถ") {
+    alert("กรุณาเลือกทะเบียนรถ");
+    return false;
+  }
+  if(y === "กรุณาเลือกพนักงานขับรถ"){
+    alert("กรุณาเลือกพนักงานขับรถ");
+    return false;
+  }
+}
+</script>
+
 <body>
 <table  width="100%" height="100" align="center">
 
@@ -43,6 +61,26 @@ $staffId = mysql_query($query_staff, $myconnect) or die(mysql_error());
     
   </tr>
   </table>
+  <div align="center">
+            
+            <form name="myForm" action="waybill_insert_pdf.php" onsubmit="return validateForm()" method="POST" enctype="multipart/form-data">
+
+              <select name="car_id" id="car_id">
+              <option selected disabled hidden>กรุณาเลือกทะเบียนรถ</option>
+              <?php while($row_carId = mysql_fetch_array($carId)) { ?>
+                <option value="<?php echo $row_carId['car_id']; ?>"> <?php echo $row_carId['car_register']; ?> </option>
+              <? } ?>
+              </select>
+
+              <select name="staff_id" id="staff_id">
+              <option selected disabled hidden>กรุณาเลือกพนักงานขับรถ</option>
+              <?php while($row_staffId = mysql_fetch_array($staffId)) { ?>
+                <option value="<?php echo $row_staffId['staff_id']; ?>"><?php echo $row_staffId['staff_title_name']; ?><?php echo $row_staffId['staff_name']; ?> <?php echo $row_staffId['staff_lastname']; ?> </option>
+              <? } ?>
+              </select>
+
+              <button type="submit" class="btnsh">แสดง</button>
+              </div>
   <table id='customers' style="width: 80%" align="center">
                 <tr >
                   <th ><div align="center">ลำดับ</div></th>
@@ -59,6 +97,7 @@ $staffId = mysql_query($query_staff, $myconnect) or die(mysql_error());
                 <tr>
                   <?php while($row_waybill = mysql_fetch_array($waybill)) { $i++?>
                     <td height="33"><div ><?php echo $i; ?></div></td>
+                    <input type="hidden" name="listData[]" value="<?php echo $row_waybill["wb_id"]; ?>" />
                   <!-- <td height="33"><div ><?php echo $row_waybill["wb_id_set"]; ?></div></td> -->
                   <td><div ><?php echo $row_waybill['wb_date']; ?></td>
                   <td><div ><?php echo $row_waybill['wb_nbook']; ?></div></td>
@@ -83,40 +122,13 @@ $staffId = mysql_query($query_staff, $myconnect) or die(mysql_error());
                   <td><?php echo $sum ?></td>
                   <td></td>
                   <td></td>
+                  <td></td>
                   </tr>
-              </table>\
-
+                  
+              </table>
+</form>
                     <br/>
-              <div align="center">
-              <select name="cus_area" id="cus_area">
-                  <option selected disabled hidden>กรุณาเลือกอำเภอ</option>
-                  <option value="เมือง"> เมือง </option>
-                  <option value="บางระกำ">บางระกำ</option>
-                  <option value="บางกระทุ่ม">บางกระทุ่ม </option>
-                  <option value="นครไทย">นครไทย </option>
-                  <option value="ชาติตระการ">ชาติตระการ </option>
-                  <option value="พรหมพิราม">พรหมพิราม </option>
-                  <option value="วังทอง">วังทอง</option>
-                  <option value="เนินมะปราง">เนินมะปราง</option>
-                  <option value="วัดโบสถ์">วัดโบสถ์ </option>
-              </div>
-              </select>
               
-              <select name="car_id" id="car_id">
-              <option selected disabled hidden>กรุณาเลือกทะเบียนรถ</option>
-              <?php while($row_carId = mysql_fetch_array($carId)) { ?>
-                <option value="<?php echo $row_carId['car_id']; ?>"> <?php echo $row_carId['car_register']; ?> </option>
-              <? } ?>
-              </select>
-
-              <select name="tb_staff" id="car_id">
-              <option selected disabled hidden>กรุณาเลือกพนักงานขับรถ</option>
-              <?php while($row_staffId = mysql_fetch_array($staffId)) { ?>
-                <option value="<?php echo $row_carId['staff_id']; ?>"> <?php echo $row_staffId['staff_title_name']; ?><?php echo $row_staffId['staff_name']; ?> <?php echo $row_staffId['staff_lastname']; ?> </option>
-              <? } ?>
-              </select>
-
-              <button class="btnsh">แสดง</button>
               
   </body>
   </html>

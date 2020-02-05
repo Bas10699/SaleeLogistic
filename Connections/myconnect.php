@@ -6,6 +6,7 @@ $hostname_myconnect = "localhost";
 $database_myconnect = "saleelogistic";
 $username_myconnect = "root";
 $password_myconnect = "12345678";
+date_default_timezone_set('Asia/Bangkok');
 
 //  $hostname_myconnect = "142.4.201.250";
 //  $database_myconnect = "saleelogistic";

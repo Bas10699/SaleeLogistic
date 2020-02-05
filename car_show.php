@@ -123,16 +123,16 @@ $totalRows_car = mysql_num_rows($car);
 
                         else if (round(DateDiff(date('y-m-d'),$row_car['car_date_end'])) <= '30' ){
                     ?>
-                  <div align="center" style='background-color:rgba(255,0,0,0.3)'><?php echo $row_car['car_date_end']."( ".round(DateDiff(date('y-m-d'),$row_car['car_date_end']))." วัน)"; ?> </div>
+                  <div align="center" style='background-color:rgba(255,0,0,0.3)'><?php $date=date_create($row_car['car_date_end']); echo date_format($date,"d/m/Y")."( ".round(DateDiff(date('y-m-d'),$row_car['car_date_end']))." วัน)"; ?> </div>
                  <?php }
                   else if(round(DateDiff(date('y-m-d'),$row_car['car_date_end'])) <= '90' ){
                     ?>
-                    <div align="center" style='background-color:rgba(255,255,0,0.3)'><?php echo $row_car['car_date_end']."( ".round(DateDiff(date('y-m-d'),$row_car['car_date_end']))." วัน)"; ?> </div>
+                    <div align="center" style='background-color:rgba(255,255,0,0.3)'><?php $date=date_create($row_car['car_date_end']); echo date_format($date,"d/m/Y")."( ".round(DateDiff(date('y-m-d'),$row_car['car_date_end']))." วัน)"; ?> </div>
                     <?php
                   } 
                       else{
                   ?>
-                      <div align="center" ><?php echo $row_car['car_date_end']."( ".round(DateDiff(date('y-m-d'),$row_car['car_date_end']))." วัน)"; ?> </div>
+                      <div align="center" ><?php $date=date_create($row_car['car_date_end']); echo date_format($date,"d/m/Y")."( ".round(DateDiff(date('y-m-d'),$row_car['car_date_end']))." วัน)"; ?> </div>
                   <?php }?>
                   </td>
                   <td >

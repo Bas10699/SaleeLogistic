@@ -117,7 +117,7 @@ $totalRows_customer = mysql_num_rows($customer);
               </tr>
               <tr>
                 <td  class="ตัวหนังสือสีขาว"><div align="left">เลขประจำตัวผู้เสียภาษี :</div></td>
-                <td ><input name="cus_tin" type="text" class="ตัวหนังสือสีดำ" id="cus_tin" value="<?php echo $row_customer['cus_tin']; ?>" /></td>
+                <td ><input name="cus_tin" type="text" class="ตัวหนังสือสีดำ" id="cus_tin" value="<?php echo $row_customer['cus_tin']; ?>" maxlength="13" /></td>
               </tr>
               <tr>
                 <td  class="ตัวหนังสือสีขาว"><div align="left">ชื่อบริษัท :</div></td>

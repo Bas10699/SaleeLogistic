@@ -106,7 +106,7 @@ $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
                 </select></td>
              </form>
 
-      <form  action="waybill_invoice.php" method="post">
+      <form  action="waybill_invoice.php" method="get">
               <td width="291"><div align="right">
                 
                               <button class="buttonadd" a href="waybill_invoice.php">ตรวจสอบใบส่งสินค้า</button>
@@ -143,7 +143,7 @@ $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
                   <?php while($row_waybill = mysql_fetch_array($waybill)) { ?>
                   <td><input type='checkbox' name='checkIdList[]' value='<?php echo $row_waybill["wb_id"]; ?>'></td>
                   <td height="33"><div ><?php echo $row_waybill["wb_id_set"]; ?></div></td>
-                  <td><div ><?php echo $row_waybill['wb_date']; ?></td>
+                  <td><div ><?php $date=date_create($row_waybill['wb_date']); echo date_format($date,"d/m/Y"); ?></td>
                   <td><div ><?php echo $row_waybill['wb_nbook']; ?></div></td>
                   <td><div ><?php echo $row_waybill['cus_compan']; ?></div></td>
                   <td><div ><?php echo $row_waybill['wb_money']; ?></div></td>
