@@ -81,17 +81,15 @@ function validateForm() {
 
               <button type="submit" class="btnsh">แสดง</button>
               </div>
-  <table id='customers' style="width: 80%" align="center">
+                    <table id='customers' style="width: 80%" align="center">
                 <tr >
                   <th ><div align="center">ลำดับ</div></th>
                   <!-- <th ><div align="center">รหัสใบรับ-ส่งสินค้า</div></th> -->
                   <th ><div align="center">วันที่</div></th>
-                  <th ><div align="center">เลขที่ใบรับ-ส่งสินค้า</div></th>
                   <th ><div align="center">ชื่อบริษัท</div></th>
+                  <th ><div align="center">เลขที่ใบรับ-ส่งสินค้า</div></th>
                   <th ><div align="center">อำเภอ</div></th>
                   <th ><div align="center">จำนวนเงินทั้งสิ้น</div></th>
-                  <th ><div align="center">สถานะการชำระเงิน</div></th>
-                  <!-- <th ><div align="center">จัดการ</div></th> -->
                   <th ><div align="center">หมายเหตุ</div></th>
                 </tr>
                 <tr>
@@ -100,11 +98,10 @@ function validateForm() {
                     <input type="hidden" name="listData[]" value="<?php echo $row_waybill["wb_id"]; ?>" />
                   <!-- <td height="33"><div ><?php echo $row_waybill["wb_id_set"]; ?></div></td> -->
                   <td><div ><?php echo $row_waybill['wb_date']; ?></td>
-                  <td><div ><?php echo $row_waybill['wb_nbook']; ?></div></td>
                   <td><div ><?php echo $row_waybill['cus_compan']; ?></div></td>
+                  <td><div ><?php echo $row_waybill['wb_nbook']; ?></div></td>
                   <td><div ><?php echo $row_waybill['cus_area']; ?></div></td>
                   <td><div ><?php echo $row_waybill['wb_money']; ?></div></td>
-                  <td><div ><?php echo $row_waybill['wb_payment']; ?></td>
            
                       <!-- <td ><div align="center">
                       <a class="buttondetail" href="waybill_detail.php?id=<?php echo $row_waybill['wb_id']; ?>" >รายละเอียด</a>
@@ -114,14 +111,11 @@ function validateForm() {
                    
                   </tr>
                 <? $sum +=$row_waybill['wb_money']; } ?>
-                
                   <tr>
-                  <td colspan="4">
-                  <div align="center">จำนวนเงินทั้งหมด</div>
+                  <td colspan="5">
+                  <div align="center">รวมเงินทั้งหมด</div>
                   </td>
                   <td><?php echo $sum ?></td>
-                  <td></td>
-                  <td></td>
                   <td></td>
                   </tr>
                   

@@ -23,6 +23,7 @@ mysql_select_db($database_myconnect, $myconnect);
 body {
     font-family: "Garuda";
     font-size: 11pt;
+    
 }
 table {
   border-collapse: collapse;
@@ -44,22 +45,25 @@ hr.new4 {
   width: 80%;
 }
 </style>
+
 </head>
 <body>
-
+<div margin-right=10%; margin-left=10%;>
 <p style="text-align:center">ห้างหุ้นส่วนจำจัด โชคดีสาลี่ขนส่ง</p>
 <p style="text-align:center">113 หมู่1 ตำบลพลายชุมพล อำเภอเมือง จังหวัดพิษณุโลก 65000</p>
 <p style="text-align:center">เลขประจำตัวผู้เสียภาษี  0653557001657</p>
-<hr class="new4"> <br>
+<hr class="new6"> <br>
 <h3 style="text-align:center">รายการส่งสินค้า</h3>
+<h3 style="text-align:right">เลขที่ No.</h3>
 <table>
-  <tr>
-    <th>ลำดับ</th>
-    <th>วันที่</th>
-    <th>เลขที่ใบรับ-ส่งสินค้า</th>
-    <th>ชื่อบริษัท</th>
-    <th>จำนวนเงิน</th>
-    <th>หมายเหตุ</th>
+  <tr >
+    <th style="text-align:center">ลำดับ</th>
+    <th style="text-align:center">รหัสใบรับสินค้า</th></th>
+    <th style="text-align:center">วันที่</th>
+    <th style="text-align:center">ชื่อบริษัท</th>
+    <th style="text-align:center">เลขที่ใบรับสินค้า</th>
+    <th style="text-align:center">จำนวนเงิน</th>
+    <th style="text-align:center">หมายเหตุ</th>
   </tr>
   
   <?php while($row_data = mysql_fetch_array($data)) { 
@@ -80,14 +84,24 @@ hr.new4 {
     ?>
   <tr>
   
-    <td><?php echo $i; ?></td>
-    <td><?php $date=date_create($row_data_inv['wb_date']); echo date_format($date,"d/m/Y"); ?></td>
-    <td><?php echo $row_data_inv['wb_nbook']; ?></td>
+    <td style="text-align:center"><?php echo $i; ?></td>
+    <td style="text-align:center"><?php echo $row_data_inv['wb_id_set']; ?></td>
+    <td style="text-align:center"><?php $date=date_create($row_data_inv['wb_date']); echo date_format($date,"d/m/Y"); ?></td>
     <td><?php echo $row_data_inv['cus_compan']; ?></td>
-    <td><?php echo $row_data_inv['wb_money']; ?></td>
+    <td><?php echo $row_data_inv['wb_nbook']; ?></td>
+    <td style="text-align:center"><?php echo $row_data_inv['wb_money']; ?></td>
     <td></td>
   </tr>
-  <?php }} ?>
+  </tr>
+  <? $sum +=$row_data_inv['wb_money']; } ?>
+                  <tr>
+                  <td colspan="5">
+                  <div align="center"><b>รวมเงินทั้งหมด</b></div>
+                  </td>
+                  <td style="text-align:center"><b><font size="3"><?php echo $sum ?></font></b></td>
+                  <td></td>
+                  </tr>
+  <?php } ?>
 </table>
 
 <?php
@@ -105,7 +119,7 @@ hr.new4 {
   ?>
   <h5 style="margin-right:80px; text-align:right;"> <?php echo $row_staffId['staff_title_name']; ?><?php echo $row_staffId['staff_name']; ?> <?php echo $row_staffId['staff_lastname']; ?></h5>
 <?php } ?>
-
+</div>
 </body>
 </html>
 
@@ -118,4 +132,6 @@ ob_end_flush();
 // header("Location: MyPDF.pdf");
 ?>
 
+<div style="margin-left:20px;">
 ดาวโหลดรายงานในรูปแบบ PDF <a href="MyPDF.pdf">คลิกที่นี้</a> <a href="MyPDF.pdf" download>Download</a>
+</div>

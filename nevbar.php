@@ -74,7 +74,8 @@ body {
           <a href="staff_show.php">ข้อมูลพนักงาน</a>
          <a href="car_show.php">ข้อมูลรถ</a>
           <a href="customer_show.php">ข้อมูลลูกค้า</a>
-          <a href="waybill_show.php">ใบรับ-ส่งสินค้า</a>
+          <a href="waybill_show.php">ใบรับสินค้า</a>
+          <a href="receipt_show.php">ใบส่งสินค้า</a>
           <a href="waybill_show.php">รายงานสรุปยอด</a>
           
         <a href="index.php" style="float:right">ออกจากระบบ</a>

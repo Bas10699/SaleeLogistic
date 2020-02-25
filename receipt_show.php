@@ -64,7 +64,7 @@ $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>ใบรับสินค้า</title>
+<title>ใบส่งสินค้า</title>
 <link rel="stylesheet" href="index.css">
 
 </head>
@@ -79,7 +79,7 @@ $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
     <td colspan="2">&nbsp;</td>
   </tr>
   <tr>
-    <td colspan="2"><h2 align="center">ใบรับสินค้า</td>
+    <td colspan="2"><h2 align="center">ใบส่งสินค้า</td>
   </tr>
   <tr>
     <td height="22" colspan="2">
@@ -107,11 +107,31 @@ $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
                 </select></td>
              </form>
 
+              <div align="center">
+            
+            <form name="myForm" action="waybill_insert_pdf.php" onsubmit="return validateForm()" method="POST" enctype="multipart/form-data">
+
+              <select name="car_id" id="car_id">
+              <option selected disabled hidden>กรุณาเลือกทะเบียนรถ</option>
+              <?php while($row_carId = mysql_fetch_array($carId)) { ?>
+                <option value="<?php echo $row_carId['car_id']; ?>"> <?php echo $row_carId['car_register']; ?> </option>
+              <? } ?>
+              </select>
+
+              <select name="staff_id" id="staff_id">
+              <option selected disabled hidden>กรุณาเลือกพนักงานขับรถ</option>
+              <?php while($row_staffId = mysql_fetch_array($staffId)) { ?>
+                <option value="<?php echo $row_staffId['staff_id']; ?>"><?php echo $row_staffId['staff_title_name']; ?><?php echo $row_staffId['staff_name']; ?> <?php echo $row_staffId['staff_lastname']; ?> </option>
+              <? } ?>
+              </select>
+
+              <button type="submit" class="btnsh">แสดง</button>
+              </div>
+
       <form  action="waybill_invoice.php" method="get">
               <td width="291"><div align="right">
                 
                               <button class="buttonadd" a href="waybill_invoice.php">ตรวจสอบใบส่งสินค้า</button>
-                              <button class="buttonadd"><a href="waybill_insert.php">เพิ่มเอกสาร</a></button>
                               </div>
                    
                 </div></td>
@@ -132,7 +152,7 @@ $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
               <table id='customers' width="1236" height="67">
                 <tr >
                   <th ><div> </div></th>
-                  <th ><div align="center">รหัสใบรับสินค้า</div></th>
+                  <th ><div align="center">รหัสใบส่งสินค้า</div></th>
                   <th ><div align="center">วันที่</div></th>
                   <th ><div align="center">ชื่อบริษัท</div></th>
                   <th ><div align="center">เลขที่ใบรับสินค้า</div></th>

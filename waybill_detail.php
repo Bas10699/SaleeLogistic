@@ -95,7 +95,7 @@ A:hover {
 }
 </STYLE>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>รายละเอียดใบส่งของ</title>
+<title>รายละเอียดใบรับ-ส่งสินค้า</title>
 <style type="text/css">
 .หัวข้อ {
 	font-family: "angsana New";
@@ -116,7 +116,7 @@ a:active {
   </tr>
  
   <tr>
-    <td height="22" colspan="6"><h2 align="center">รายละเอียดใบส่งสินค้า</h2></td>
+    <td height="22" colspan="6"><h2 align="center">รายละเอียดใบรับ-ส่งสินค้า</h2></td>
   </tr>
   <tr>
     <td height="27" colspan="6">
