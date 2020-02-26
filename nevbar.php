@@ -76,7 +76,7 @@ body {
           <a href="customer_show.php">ข้อมูลลูกค้า</a>
           <a href="waybill_show.php">ใบรับสินค้า</a>
           <a href="receipt_show.php">ใบส่งสินค้า</a>
-          <a href="waybill_show.php">รายงานสรุปยอด</a>
+          <a href="report.php">รายงานสรุปยอด</a>
           
         <a href="index.php" style="float:right">ออกจากระบบ</a>
         <a style="float:right"><?php echo $_SESSION['MM_Username']; ?></a>

@@ -54,7 +54,7 @@ hr.new4 {
 <p style="text-align:center">เลขประจำตัวผู้เสียภาษี  0653557001657</p>
 <hr class="new6"> <br>
 <h3 style="text-align:center">รายการส่งสินค้า</h3>
-<h3 style="text-align:right">เลขที่ No.</h3>
+<h3 style="text-align:right">เลขที่ No. <? echo $id ?></h3>
 <table>
   <tr >
     <th style="text-align:center">ลำดับ</th>

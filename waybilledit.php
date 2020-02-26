@@ -1,6 +1,8 @@
 <?php require_once('upload.php'); ?>
 <?php
 
+
+
   $servername = "localhost";
   $username = "root";
   $password = "12345678";
@@ -15,8 +17,8 @@
       die("Connection failed: " . $conn->connect_error);
   }
 
-  print_r($_POST);
-    print_r($_FILES);   
+  //  print_r($_POST);
+    // print_r($_FILES);   
 
   $wb_id_set = $_POST["wb_id_set"];
   $wb_nber = $_POST["wb_nber"];
@@ -45,7 +47,8 @@
           WHERE wb_id_set = '$wb_id_set'";
 
   if ($conn->query($sql) === TRUE) {
-      echo "Record updated successfully";
+    $insertGoTo = 'waybill_detail.php?id='.$_POST["wb_id"];
+    header(sprintf("Location: %s", $insertGoTo));
       
   } else {
       echo "Error updating record: " . $conn->error;

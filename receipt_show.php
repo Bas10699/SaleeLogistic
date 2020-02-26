@@ -60,12 +60,33 @@ WHERE (tb_customer.cus_sub LIKE '%".$_GET["txtKeyword"]."%' or tb_customer.cus_a
 ORDER BY wb_id";
 $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
 
+$query_carId = "SELECT * FROM tb_car";
+$carId = mysql_query($query_carId, $myconnect) or die(mysql_error());
+
+$query_staff = "SELECT * FROM tb_staff";
+$staffId = mysql_query($query_staff, $myconnect) or die(mysql_error());
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>ใบส่งสินค้า</title>
 <link rel="stylesheet" href="index.css">
+
+<script>
+function validateForm() {
+  var x = document.forms["myForm"]["car_id"].value;
+  var y = document.forms["myForm"]["staff_id"].value;
+  if (x === "กรุณาเลือกทะเบียนรถ") {
+    alert("กรุณาเลือกทะเบียนรถ");
+    return false;
+  }
+  if(y === "กรุณาเลือกพนักงานขับรถ"){
+    alert("กรุณาเลือกพนักงานขับรถ");
+    return false;
+  }
+}
+</script>
 
 </head>
 
@@ -107,10 +128,19 @@ $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
                 </select></td>
              </form>
 
-              <div align="center">
+             
             
-            <form name="myForm" action="waybill_insert_pdf.php" onsubmit="return validateForm()" method="POST" enctype="multipart/form-data">
+           
 
+              
+
+              
+          
+              
+
+             <form name="myForm" action="waybill_insert_pdf.php" onsubmit="return validateForm()" method="POST" enctype="multipart/form-data">
+              <td width="291"><div align="right">
+              
               <select name="car_id" id="car_id">
               <option selected disabled hidden>กรุณาเลือกทะเบียนรถ</option>
               <?php while($row_carId = mysql_fetch_array($carId)) { ?>
@@ -124,14 +154,8 @@ $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
                 <option value="<?php echo $row_staffId['staff_id']; ?>"><?php echo $row_staffId['staff_title_name']; ?><?php echo $row_staffId['staff_name']; ?> <?php echo $row_staffId['staff_lastname']; ?> </option>
               <? } ?>
               </select>
-
-              <button type="submit" class="btnsh">แสดง</button>
-              </div>
-
-      <form  action="waybill_invoice.php" method="get">
-              <td width="291"><div align="right">
                 
-                              <button class="buttonadd" a href="waybill_invoice.php">ตรวจสอบใบส่งสินค้า</button>
+                              <button class="buttonadd" >ตรวจสอบใบส่งสินค้า</button>
                               </div>
                    
                 </div></td>
@@ -162,7 +186,7 @@ $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
                 </tr>
                 <tr>
                   <?php while($row_waybill = mysql_fetch_array($waybill)) { ?>
-                  <td><input type='checkbox' name='checkIdList[]' value='<?php echo $row_waybill["wb_id"]; ?>'></td>
+                  <td><input type='checkbox' name='listData[]' value='<?php echo $row_waybill["wb_id"]; ?>'></td>
                   <td height="33"><div align="center"><?php echo $row_waybill["wb_id_set"]; ?></div></td>
                   <td><div align="center"><?php $date=date_create($row_waybill['wb_date']); echo date_format($date,"d/m/Y"); ?></td>
                   <td><div ><?php echo $row_waybill['cus_compan']; ?></div></td>

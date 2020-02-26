@@ -13,7 +13,8 @@ function Editdata($row_waybill,$customer){
 <body>
 <div align="center" >
 
-
+        
+        <form name="myForm" action="waybilledit.php"  method="POST" enctype="multipart/form-data">
         <table class="" width="525" border="1">
           <tr>
             <td><table width="519" align="center">
@@ -22,7 +23,9 @@ function Editdata($row_waybill,$customer){
             </div>
               <tr valign="baseline">
                 <td nowrap="nowrap" align="right">รหัสใบส่งของ:</td>
-                <td><input name="wb_id_set" id="wb_id_set" value='<?php echo $row_waybill['wb_id_set']; ?>' disabled/></td>
+                <td><input name="wb_id_set" id="wb_id_set" value='<?php echo $row_waybill['wb_id_set']; ?>' disabled/>
+                <input type="hidden" name="wb_id_set" id="wb_id_set" value='<?php echo $row_waybill['wb_id_set']; ?>' />
+                <input type="hidden" name="wb_id" id="wb_id" value='<?php echo $_GET['id']; ?>' /></td>
               </tr>
               <tr valign="baseline">
                 <td nowrap="nowrap" align="right">เลขที่ใบส่งของ:</td>
@@ -81,12 +84,12 @@ function Editdata($row_waybill,$customer){
               <div align="center"></div></td>
           </tr>
           
-        </table><button id="btn_edit">ยืนยัน</button>
+        </table><button type="submit" >ยืนยัน</button>
         <br/>
-        
+        </form>
 
       </div>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
       <script>
       $(document).ready(function(){
@@ -131,7 +134,7 @@ function Editdata($row_waybill,$customer){
       })
 
       
-      </script>
+      </script> -->
 </body>
 </html>
 <?php } ?>
