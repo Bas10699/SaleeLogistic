@@ -96,18 +96,18 @@ $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
               
             <form name="frmSearch" method="get" action="<?php echo $_SERVER['SCRIPT_NAME'];?>">
                <input name="txtKeyword" type="text" id="txtKeyword" value="<?php echo $_GET["txtKeyword"];?>">
-               <input type="submit" value="Search"></th>
-            
+
+               <button type="submit"><i class="fa fa-search"></i></button>
                 <label for="select2"></label>
                 <select name="dd_input" id="select2">
                   <option value="All">ทั้งหมด</option>
                   <option value="cus_compan">ชื่อบริษัท</option>
                   <option value="cus_sub">ตำบล</option>
-                  <option value="wb_payment">สถานะ</option>
+                  <option value="wb_payment">ชำระแล้ว</option>
                 </select></td>
              </form>
 
-      <form  action="waybill_invoice.php" method="get">
+      <!-- <form  action="waybill_invoice.php" method="get"> -->
               <td width="291"><div align="right">
                 
                               <!-- <button class="buttonadd" a href="waybill_invoice.php">ตรวจสอบใบส่งสินค้า</button> -->
@@ -136,8 +136,8 @@ $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
                   <th ><div align="center">วันที่</div></th>
                   <th ><div align="center">ชื่อบริษัท</div></th>
                   <th ><div align="center">เลขที่ใบรับสินค้า</div></th>
-                  <th ><div align="center">จำนวนเงินทั้งสิ้น</div></th>
-                  <th ><div align="center">สถานะการชำระเงิน</div></th>
+                  <th ><div align="center">ยอดเงินค่าขนส่ง</div></th>
+                  <!-- <th ><div align="center">สถานะการชำระเงิน</div></th> -->
                   <th ><div align="center">จัดการ</div></th>
                 </tr>
                 <tr>
@@ -148,7 +148,7 @@ $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
                   <td><div ><?php echo $row_waybill['cus_compan']; ?></div></td>
                   <td><div ><?php echo $row_waybill['wb_nbook']; ?></div></td>
                   <td><div ><?php echo $row_waybill['wb_money']; ?></div></td>
-                  <td><div ><?php echo $row_waybill['wb_payment']; ?></td>
+                  <!-- <td><div ><?php echo $row_waybill['wb_payment']; ?></td> -->
            
                       <td ><div align="center">
                       <a class="buttondetail" href="waybill_detail.php?id=<?php echo $row_waybill['wb_id']; ?>" >รายละเอียด</a>
@@ -162,7 +162,7 @@ $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
             </tr>
         </table>
     </div>
-    </form>
+    <!-- </form> -->
       <p>&nbsp;</p>
     <!-- </form> -->
     </td>

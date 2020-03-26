@@ -57,11 +57,20 @@ function Editdata($row_waybill,$customer){
               <tr valign="baseline">
                 <td nowrap="nowrap" align="right">สถานะการชำระเงิน:</td>
                 <td>
-                <select name="wb_payment" id="wb_payment">
+                <!-- <select name="wb_payment" id="wb_payment">
                       <option value=<?php echo $row_waybill['wb_payment']; ?> selected><?php echo $row_waybill['wb_payment']; ?></option>
                       <option value="ยังไม่ได้ชำระ">ยังไม่ได้ชำระ</option>
                       <option value="ชำระแล้ว">ชำระแล้ว</option>
-                    </select>
+                    </select> -->
+                    <?php switch ($row_waybill['wb_payment']) {
+                        case "ยังไม่ได้ชำระ":?>
+                          <input type="radio" name="wb_payment" value="ยังไม่ได้ชำระ"  checked>ยังไม่ได้ชำระ
+                          <input type="radio" name="wb_payment" value="ชำระแล้ว">ชำระแล้ว
+                        <?php break;
+                        default: ?>
+                          <input type="radio" name="wb_payment" value="ยังไม่ได้ชำระ"  >ยังไม่ได้ชำระ
+                          <input type="radio" name="wb_payment" value="ชำระแล้ว" checked>ชำระแล้ว
+                      <?php } ?>
                     
               </tr>
               <tr valign="baseline">

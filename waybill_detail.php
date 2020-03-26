@@ -116,7 +116,7 @@ a:active {
   </tr>
  
   <tr>
-    <td height="22" colspan="6"><h2 align="center">รายละเอียดใบรับ-ส่งสินค้า</h2></td>
+    <td height="22" colspan="6"><h2 align="center">รายละเอียดใบรับสินค้า</h2></td>
   </tr>
   <tr>
     <td height="27" colspan="6">
@@ -134,7 +134,7 @@ a:active {
                 <td><?php echo $row_waybill['wb_id_set']; ?></td>
               </tr>
               <tr valign="baseline">
-                <td nowrap="nowrap" align="right">เลขที่ใบส่งของ:</td>
+                <td nowrap="nowrap" align="right">เลขที่ใบรับส่งสินค้า:</td>
                 <td><?php echo $row_waybill['wb_nber']; ?></td>
               </tr>
               <tr valign="baseline">
@@ -150,13 +150,13 @@ a:active {
                 <td><?php echo date('d/m/Y');?></td>
               </tr>
               <tr valign="baseline">
-                <td nowrap="nowrap" align="right">จำนวนเงินทั้งสิ้น:</td>
+                <td nowrap="nowrap" align="right">ยอดเงินค่าขนส่ง:</td>
                 <td><?php echo $row_waybill['wb_money']; ?></td>
               </tr>
-              <tr valign="baseline">
+              <!-- <tr valign="baseline">
                 <td nowrap="nowrap" align="right">สถานะการชำระเงิน:</td>
                 <td><?php echo $row_waybill['wb_payment']; ?></td>
-              </tr>
+              </tr> -->
               <!-- <tr valign="baseline">
                 <td nowrap="nowrap" align="right">รูปภาพ:</td>
                 <td><input type="file" name="wb_img" value="" size="32" /></td>

@@ -117,26 +117,17 @@ function validateForm() {
               
             <form name="frmSearch" method="get" action="<?php echo $_SERVER['SCRIPT_NAME'];?>">
                <input name="txtKeyword" type="text" id="txtKeyword" value="<?php echo $_GET["txtKeyword"];?>">
-               <input type="submit" value="Search"></th>
+               <button type="submit"><i class="fa fa-search"></i></button>
             
                 <label for="select2"></label>
                 <select name="dd_input" id="select2">
                   <option value="All">ทั้งหมด</option>
                   <option value="cus_compan">ชื่อบริษัท</option>
                   <option value="cus_sub">ตำบล</option>
-                  <option value="wb_payment">สถานะ</option>
+                  <option value="wb_payment">ยังไม่ได้ชำระ</option>
                 </select></td>
              </form>
 
-             
-            
-           
-
-              
-
-              
-          
-              
 
              <form name="myForm" action="waybill_insert_pdf.php" onsubmit="return validateForm()" method="POST" enctype="multipart/form-data">
               <td width="291"><div align="right">
@@ -176,12 +167,14 @@ function validateForm() {
               <table id='customers' width="1236" height="67">
                 <tr >
                   <th ><div> </div></th>
-                  <th ><div align="center">รหัสใบส่งสินค้า</div></th>
+                  <th ><div align="center">รหัสใบรับสินค้า</div></th>
                   <th ><div align="center">วันที่</div></th>
                   <th ><div align="center">ชื่อบริษัท</div></th>
                   <th ><div align="center">เลขที่ใบรับสินค้า</div></th>
-                  <th ><div align="center">จำนวนเงินทั้งสิ้น</div></th>
-                  <th ><div align="center">สถานะการชำระเงิน</div></th>
+                  <th ><div align="center">อำเภอ</div></th>
+                  <th ><div align="center">ตำบล</div></th>
+                  <th ><div align="center">ยอดเงินค่าขนส่ง</div></th>
+                  <!-- <th ><div align="center">สถานะการชำระเงิน</div></th> -->
                   <th ><div align="center">จัดการ</div></th>
                 </tr>
                 <tr>
@@ -191,11 +184,13 @@ function validateForm() {
                   <td><div align="center"><?php $date=date_create($row_waybill['wb_date']); echo date_format($date,"d/m/Y"); ?></td>
                   <td><div ><?php echo $row_waybill['cus_compan']; ?></div></td>
                   <td><div ><?php echo $row_waybill['wb_nbook']; ?></div></td>
-                  <td><div ><?php echo $row_waybill['wb_money']; ?></div></td>
-                  <td><div ><?php echo $row_waybill['wb_payment']; ?></td>
+                  <td><div align="center"><?php echo $row_waybill['cus_area']; ?></div></td>
+                  <td><div align="center"><?php echo $row_waybill['cus_sub']; ?></div></td>
+                  <td><div align="center"><?php echo $row_waybill['wb_money']; ?></div></td>
+                  <!-- <td><div ><?php echo $row_waybill['wb_payment']; ?></td> -->
            
                       <td ><div align="center">
-                      <a class="buttondetail" href="waybill_detail.php?id=<?php echo $row_waybill['wb_id']; ?>" >รายละเอียด</a>
+                      <!-- <a class="buttondetail" href="waybill_detail.php?id=<?php echo $row_waybill['wb_id']; ?>" >รายละเอียด</a> -->
                       <a class="btndel" href="waybill_del.php?id=<?php echo $row_waybill['wb_id']; ?>?staff_id=<?php echo $row_waybill['waybill_id']; ?>"onclick="return confirm('ยืนยันที่จะลบข้อมูลหรือไม่ ?')">ลบ</a>
                       </td>
                    

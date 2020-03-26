@@ -64,9 +64,13 @@ $totalRows_car = mysql_num_rows($car);
     <tr>
       <td colspan="8">&nbsp;</td>
     </tr>
+
     <tr>
-      <td colspan="8">&nbsp;</td>
+        <div align="left">
+        <h2><FONT SIZE=3 COLOR=#FF4500>หมายเหตุ : สีเหลืองเตือนให้ต่อภาษีรถยนต์ภายใน 90 วัน / สีแดงเตือนว่าภาษีหมดอายุแล้ว</FONT></h2>
+        </div>
     </tr>
+
     <tr>
       <td height="33" colspan="8">
         <div align="center">
@@ -91,7 +95,7 @@ $totalRows_car = mysql_num_rows($car);
       <td >
         <form id="form1" name="form1" method="post" action="">
           <div align="center">
-            <table id='customers'>
+            <table id='customers'> 
               <tr>
                 <th >
                   <div align="center">รหัสรถ</div>
@@ -100,7 +104,7 @@ $totalRows_car = mysql_num_rows($car);
                   <div align="center"><span>ทะเบียนรถ</span></div>
                 </th>
                 <th>
-                  <div align="center"><span>วันหมดอายุภาษี</span></div>
+                  <div align="center"><span>วันหมดอายุภาษีรถยนต์</span></div>
                 </th>
                 <th colspan="2">
                   <div align="center">จัดการ</div>
@@ -118,16 +122,13 @@ $totalRows_car = mysql_num_rows($car);
                   <?php
                       if (round(DateDiff(date('y-m-d'),$row_car['car_date_end'])) < '0' ){
                   ?>
-                    <div align="center" style='color:red'>หมดอายุภาษีแล้ว</div>
+                    <div align="center" style='color:red'><? echo  date_format(date_create($row_car['car_date_end']),"d/m/Y") ?> (ภาษีหมดอายุ)</div>
                   <?php }
 
-                        else if (round(DateDiff(date('y-m-d'),$row_car['car_date_end'])) <= '30' ){
+                        
+                        else if(round(DateDiff(date('y-m-d'),$row_car['car_date_end'])) <= '90' ){
                     ?>
-                  <div align="center" style='background-color:rgba(255,0,0,0.3)'><?php $date=date_create($row_car['car_date_end']); echo date_format($date,"d/m/Y")."( ".round(DateDiff(date('y-m-d'),$row_car['car_date_end']))." วัน)"; ?> </div>
-                 <?php }
-                  else if(round(DateDiff(date('y-m-d'),$row_car['car_date_end'])) <= '90' ){
-                    ?>
-                    <div align="center" style='background-color:rgba(255,255,0,0.3)'><?php $date=date_create($row_car['car_date_end']); echo date_format($date,"d/m/Y")."( ".round(DateDiff(date('y-m-d'),$row_car['car_date_end']))." วัน)"; ?> </div>
+                    <div align="center" style='background-color:#ffcc00'><?php $date=date_create($row_car['car_date_end']); echo date_format($date,"d/m/Y")."( ".round(DateDiff(date('y-m-d'),$row_car['car_date_end']))." วัน)"; ?> </div>
                     <?php
                   } 
                       else{

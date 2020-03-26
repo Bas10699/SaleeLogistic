@@ -43,14 +43,14 @@ if (isset($_SERVER['QUERY_STRING'])) {
 }
 
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
-  $insertSQL = sprintf("INSERT INTO tb_waybill (wb_id, wb_nbook, wb_date, wb_money, wb_payment,  wb_nber, customer_id) VALUES ( %s, %s, %s, %s, %s, %s, %s)",
+  $insertSQL = sprintf("INSERT INTO tb_waybill (wb_id, wb_nbook, wb_date, wb_money, wb_nber, customer_id) VALUES ( %s, %s, %s, %s, %s, %s)",
                        GetSQLValueString($_POST['wb_id'], "int"),
                        GetSQLValueString($_POST['wb_nbook'], "text"),
                        GetSQLValueString($_POST['wb_date'], "text"),
                        GetSQLValueString($_POST['wb_money'], "double"),
-                       GetSQLValueString($_POST['wb_payment'], "text"),
+                      //  GetSQLValueString($_POST['wb_payment'], "text"),
                        GetSQLValueString($_POST['wb_nber'], "text"),
-					   GetSQLValueString($_POST['cus_compan'], "text"));
+					             GetSQLValueString($_POST['cus_compan'], "text"));
 
   mysql_select_db($database_myconnect, $myconnect);
   $Result1 = mysql_query($insertSQL, $myconnect) or die(mysql_error());
@@ -126,7 +126,8 @@ a:active {
   </tr>
   <tr>
     <td height="22" colspan="2"><div align="center">
-      <h2>เพิ่มใบรับ-ส่งสินค้า</h2>
+      <h2>เพิ่มใบรับสินค้า</h2>
+      <h3>(ที่มาจากกรุงเทพฯ)</h3>
     </div></td>
   </tr>
   <tr>
@@ -147,7 +148,11 @@ a:active {
                     <input name="customer_id" type="text" id="customer_id" size="15" /></td>
                 </tr> -->
                 <tr valign="baseline">
-                  <td nowrap="nowrap" align="right">เลขที่ใบส่งสินค้า:</td>
+                <td nowrap="nowrap" align="right">รหัสใบส่งของ:</td>
+                <td><input name="wb_id_set" type="text" readonly="readonly" id="wb_id" value="" size="20" style="background-color:#CCC" /></td>
+                </tr>
+                <tr valign="baseline">
+                  <td nowrap="nowrap" align="right">เลขที่ใบรับส่งสินค้า:</td>
                   <td><input name="wb_nber" type="text" id="wb_nber" value="" size="20" /></td>
                 </tr>
                 <tr valign="baseline">
@@ -169,23 +174,23 @@ a:active {
                     </td>
                 </tr>
                 <tr valign="baseline">
-                  <td nowrap="nowrap" align="right">วันที่:</td>
+                  <td nowrap="nowrap" align="right">วันที่ตามใบเสร็จ:</td>
                   <td>
                   <!-- <?php echo date('d/m/Y');?> -->
                   
                   <input type="date" name="wb_date" value="<?php echo date('d/m/Y');?>" size="20" /></td>
                 </tr>
                 <tr valign="baseline">
-                  <td nowrap="nowrap" align="right">จำนวนเงินทั้งสิ้น:</td>
+                  <td nowrap="nowrap" align="right">ยอดเงินค่าขนส่ง:</td>
                   <td><input type="text" name="wb_money" value="" size="25" /></td>
                   </tr>
                 <tr valign="baseline">
-                  <td nowrap="nowrap" align="right">สถานะการชำระเงิน:</td>
+                  <!-- <td nowrap="nowrap" align="right">สถานะการชำระเงิน:</td>
                   <td>
                   <!-- <label for="wb_payment"></label> -->
                     <!-- <select name="wb_payment" id="wb_payment"> -->
-                    <input type="radio" name="wb_payment" value="ยังไม่ได้ชำระ">ยังไม่ได้ชำระ
-                    <input type="radio" name="wb_payment" value="ชำระแล้ว">ชำระแล้ว
+                    <!-- <input type="radio" name="wb_payment" value="ยังไม่ได้ชำระ">ยังไม่ได้ชำระ
+                    <input type="radio" name="wb_payment" value="ชำระแล้ว">ชำระแล้ว -->
                       <!-- <option selected disabled hidden>--กรุณาเลือก--</option> -->
                       <!-- <option value="ยังไม่ได้ชำระ">ยังไม่ได้ชำระ</option> -->
                       <!-- <option value="ชำระแล้ว">ชำระแล้ว</option> -->

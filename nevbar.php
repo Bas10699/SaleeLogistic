@@ -41,6 +41,56 @@ body {
   display: none;
 }
 
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+li a, .dropbtn {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+  background-color: #A9A9A9;
+}
+
+li.dropdown {
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1;}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
 @media screen and (max-width: 600px) {
   .topnav a:not(:first-child) {display: none;}
   .topnav a.icon {
@@ -69,34 +119,30 @@ body {
 </head>
 <body>
 
-<div class="topnav" id="myTopnav">
-<a href="indexhome.php"><img src="img/logodaichuar2.png" height="50"/></a>
-          <a href="staff_show.php">ข้อมูลพนักงาน</a>
-         <a href="car_show.php">ข้อมูลรถ</a>
-          <a href="customer_show.php">ข้อมูลลูกค้า</a>
-          <a href="waybill_show.php">ใบรับสินค้า</a>
-          <a href="receipt_show.php">ใบส่งสินค้า</a>
-          <a href="report.php">รายงานสรุปยอด</a>
-          
-        <a href="index.php" style="float:right">ออกจากระบบ</a>
-        <a style="float:right"><?php echo $_SESSION['MM_Username']; ?></a>
-        
-  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-    <i class="fa fa-bars"></i>
-  </a>
-</div>
-
-
-<script>
-function myFunction() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
-  } else {
-    x.className = "topnav";
-  }
-}
-</script>
+<ul>
+  <li><a href="indexhome.php"><img src="img/logodaichuar2.png" height="50"/></a></li>
+  <li><a href="staff_show.php">ข้อมูลพนักงาน</a></li>
+  <li><a href="car_show.php">ข้อมูลรถ</a></li>
+  <li><a href="customer_show.php">ข้อมูลลูกค้า</a></li>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">เอกสารใบรับ-ส่งสินค้า</a>
+    <div class="dropdown-content">
+      <a style=" color: black" href="waybill_show.php">ใบรับสินค้า</a>
+      <a style=" color: black" href="receipt_show.php">ใบส่งสินค้า</a>
+    </div>
+  </li>
+  <li><a href="payment.php">การจัดการการชำระเงิน</a></li>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">รายงานสรุปยอด</a>
+    <div class="dropdown-content">
+      <a style=" color: black" href="report.php">รายงานค้างส่ง</a>
+      <a style=" color: black" href=report.php>รายงานค้างชำระ</a>
+      <a style=" color: black" href=report.php>รายงานส่งสินค้าแล้ว</a>
+    </div>
+  </li>
+  <li style="float:right"><a href="index.php" >ออกจากระบบ</a></li>
+  <li style="float:right"><a ><?php echo $_SESSION['MM_Username']; ?></a></li>
+</ul>
 
 </body>
 </html>
