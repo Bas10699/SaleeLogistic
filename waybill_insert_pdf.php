@@ -16,6 +16,9 @@ if($_POST["listData"] && $_POST["staff_id"] && $_POST["car_id"]){
         $query_insert = "INSERT INTO tb_inv_wb (tiw_wb_id) 
                      VALUES ('$list[$test]')";
     $insertData = mysql_query($query_insert, $myconnect) or die(mysql_error());
+
+    $query_update = "UPDATE tb_waybill SET tb_inv_status=1 WHERE wb_id=$list[$test]";
+    $updateData = mysql_query($query_update, $myconnect) or die(mysql_error());
     }
     
     $query_insert = "INSERT INTO tb_invoice (inv_car_id, inv_staff_id, inv_detail) 

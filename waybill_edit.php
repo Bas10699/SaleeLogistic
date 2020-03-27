@@ -54,6 +54,23 @@ function Editdata($row_waybill,$customer){
                 <td nowrap="nowrap" align="right">จำนวนเงินทั้งสิ้น:</td>
                 <td><input name="wb_money" id="wb_money" value='<?php echo $row_waybill['wb_money']; ?>'/></td>
               </tr>
+<<<<<<< HEAD
+=======
+              <!-- <tr valign="baseline">
+                <td nowrap="nowrap" align="right">สถานะการชำระเงิน:</td>
+                <td>
+                    <?php switch ($row_waybill['wb_payment']) {
+                        case "ยังไม่ได้ชำระ":?>
+                          <input type="radio" name="wb_payment" value="ยังไม่ได้ชำระ"  checked>ยังไม่ได้ชำระ
+                          <input type="radio" name="wb_payment" value="ชำระแล้ว">ชำระแล้ว
+                        <?php break;
+                        default: ?>
+                          <input type="radio" name="wb_payment" value="ยังไม่ได้ชำระ"  >ยังไม่ได้ชำระ
+                          <input type="radio" name="wb_payment" value="ชำระแล้ว" checked>ชำระแล้ว
+                      <?php } ?>
+                    
+              </tr> -->
+>>>>>>> bad6ad242e508f3cca3b64cd88ce66cc24a067bb
               <tr valign="baseline">
                 <td nowrap="nowrap" align="right">รูปภาพ:</td>
                 <td><input type="file" name="wb_img" id="wb_img" value='<?php echo $row_waybill['wb_img']; ?>' size="32" /></td>
