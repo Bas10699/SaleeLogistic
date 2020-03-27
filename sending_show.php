@@ -89,7 +89,7 @@ $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
                   <th ><div align="center">อำเภอ</div></th>
                   <th ><div align="center">ตำบล</div></th>
                   <th ><div align="center">ยอดเงินค่าขนส่ง</div></th>
-                  <th ><div align="center">จัดการ</div></th>
+                  <!-- <th ><div align="center">จัดการ</div></th> -->
                 </tr>
                 <tr>
                   <?php while($row_waybill = mysql_fetch_array($waybill)) { 
@@ -108,9 +108,9 @@ $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
                   <td><div align="center"><?php echo $row_waybill['cus_sub']; ?></div></td>
                   <td><div align="center"><?php echo $row_waybill['wb_money']; ?></div></td>
            
-                      <td ><div align="center">
+                      <!-- <td ><div align="center">
                       <a class="buttondetail" >ส่งแล้ว</a>
-                      </td>
+                      </td> -->
                    
                   </tr>
                 <? } mysql_free_result($waybill); ?>
