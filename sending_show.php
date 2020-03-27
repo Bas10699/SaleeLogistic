@@ -81,7 +81,7 @@ $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
             <td width="906"><div align="center">
               <table id='customers' width="1236" height="67">
                 <tr >
-                  <th ><div> </div></th>
+                  <!-- <th ><div> </div></th> -->
                   <th ><div align="center">รหัสใบรับสินค้า</div></th>
                   <th ><div align="center">วันที่</div></th>
                   <th ><div align="center">ชื่อบริษัท</div></th>
@@ -93,7 +93,7 @@ $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
                 </tr>
                 <tr>
                   <?php while($row_waybill = mysql_fetch_array($waybill)) { ?>
-                  <td><input type='checkbox' name='listData[]' value='<?php echo $row_waybill["wb_id"]; ?>'></td>
+                  <!-- <td><input type='checkbox' name='listData[]' value='<?php echo $row_waybill["wb_id"]; ?>'></td> -->
                   <td height="33"><div align="center"><?php echo $row_waybill["wb_id_set"]; ?></div></td>
                   <td><div align="center"><?php $date=date_create($row_waybill['wb_date']); echo date_format($date,"d/m/Y"); ?></td>
                   <td><div ><?php echo $row_waybill['cus_compan']; ?></div></td>

@@ -150,7 +150,7 @@
             $data_inv2 = mysql_query($query_data_inv, $myconnect) or die(mysql_error());
 
             $query_data_tiw_wb_id = "SELECT * FROM tb_inv_wb 
-            WHERE `tiw_wb_id` = ($inv_detail)";
+            WHERE `tiw_wb_id` IN ($inv_detail)";
             $tiw_id = mysql_query($query_data_tiw_wb_id, $myconnect) or die(mysql_error());
 
         

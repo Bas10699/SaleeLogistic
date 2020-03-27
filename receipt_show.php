@@ -4,6 +4,7 @@ Nevbar(); ?>
 <?php require_once('Connections/myconnect.php'); ?>
 
 <?php
+
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
@@ -115,7 +116,7 @@ function validateForm() {
              </form>
 
 
-             <form name="myForm" action="waybill_insert_pdf.php" onsubmit="return validateForm()" method="POST" enctype="multipart/form-data">
+             <form name="myForm" action="waybill_insert_pdf.php" autocomplete="off" onsubmit="return validateForm()" method="POST" enctype="multipart/form-data">
               <td width="291"><div align="right">
               
               <select name="car_id" id="car_id">
