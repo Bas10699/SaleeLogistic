@@ -74,7 +74,9 @@
         WHERE `wb_id` IN ($inv_detail)";
         $data_inv = mysql_query($query_data_inv, $myconnect) or die(mysql_error());
 
-        
+        $query_data_tiw_wb_id = "SELECT * FROM tb_inv_wb 
+            WHERE `tiw_wb_id` IN ($inv_detail)";
+            $tiw_id = mysql_query($query_data_tiw_wb_id, $myconnect) or die(mysql_error());
         
         
             $pdf->SetFont('angsa','',18);
@@ -85,11 +87,12 @@
             $pdf->SetFont('angsa','',15);
             
             $pdf->Ln(15);
-            $pdf->Cell(30,10,iconv( 'UTF-8','TIS-620','ลำดับ'),1,0,"C");
-            $pdf->Cell(40,10,iconv( 'UTF-8','TIS-620','รหัสใบรับสินค้า'),1,0,"C");
+            $pdf->Cell(22,10,iconv( 'UTF-8','TIS-620','ลำดับ'),1,0,"C");
+            // $pdf->Cell(30,10,iconv( 'UTF-8','TIS-620','รหัสใบรับสินค้า'),1,0,"C");
+            $pdf->Cell(50,10,iconv( 'UTF-8','TIS-620','รหัสใบส่งสินค้า'),1,0,"C");
             $pdf->Cell(30,10,iconv( 'UTF-8','TIS-620','วันที่'),1,0,"C");
             $pdf->Cell(40,10,iconv( 'UTF-8','TIS-620','ชื่อบริษัท'),1,0,"C");
-            $pdf->Cell(30,10,iconv( 'UTF-8','TIS-620','จำนวนเงิน'),1,0,"C");
+            $pdf->Cell(28,10,iconv( 'UTF-8','TIS-620','จำนวนเงิน'),1,0,"C");
             $pdf->Cell(30,10,iconv( 'UTF-8','TIS-620','หมายเหตุ'),1,0,"C");
             $pdf->Ln();
             
@@ -99,11 +102,12 @@
 
             $date=date_create($row_data_inv['wb_date']);
 
-            $pdf->Cell(30,10,iconv( 'UTF-8','TIS-620','1'),'LR',0,'C');
-            $pdf->Cell(40,10,iconv( 'UTF-8','TIS-620',$row_data_inv['wb_id_set']),'LR',0,'C');
-            $pdf->Cell(30,10,iconv( 'UTF-8','TIS-620',date_format($date,"d/m/Y")),'LR',0,'C');
+            $pdf->Cell(22,10,iconv( 'UTF-8','TIS-620',$i),'LR',0,'C');
+            // $pdf->Cell(30,10,iconv( 'UTF-8','TIS-620',$row_data_inv['wb_id_set']),'LR',0,'C');
+            $pdf->Cell(50,10,iconv( 'UTF-8','TIS-620',mysql_fetch_array($tiw_id)[0]),'LR',0,'C');
+            $pdf->Cell(30,10,iconv( 'UTF-8','TIS-620',date("Y-m-d")),'LR',0,'C');
             $pdf->Cell(40,10,iconv( 'UTF-8','TIS-620',$row_data_inv['cus_compan']),'LR',0,'C');
-            $pdf->Cell(30,10,iconv( 'UTF-8','TIS-620',$row_data_inv['wb_money'].' '),'LR',0,'R');
+            $pdf->Cell(28,10,iconv( 'UTF-8','TIS-620',$row_data_inv['wb_money'].' '),'LR',0,'R');
             $pdf->Cell(30,10,iconv( 'UTF-8','TIS-620',''),'LR',0,'R');
             $pdf->Ln();
             
