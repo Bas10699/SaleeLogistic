@@ -56,7 +56,7 @@ LEFT JOIN tb_customer
 ON tb_waybill.customer_id = tb_customer.cus_id 
 LEFT JOIN tb_car
 ON tb_waybill.car_id = tb_car.car_id
-WHERE (tb_customer.cus_sub LIKE '%".$_GET["txtKeyword"]."%' or tb_customer.cus_area LIKE '%".$_GET["txtKeyword"]."%' or wb_payment LIKE '%".$_GET["txtKeyword"]."%' )
+WHERE (tb_customer.cus_sub LIKE '%".$_GET["txtKeyword"]."%' or tb_customer.cus_area LIKE '%".$_GET["txtKeyword"]."%' or cus_compan LIKE '%".$_GET["txtKeyword"]."%' or wb_payment LIKE '%".$_GET["txtKeyword"]."%' )
 ORDER BY wb_id";
 $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
 

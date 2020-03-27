@@ -148,7 +148,12 @@
             ON tb_waybill.car_id = tb_car.car_id
             WHERE `wb_id` IN ($inv_detail)";
             $data_inv2 = mysql_query($query_data_inv, $myconnect) or die(mysql_error());
-                
+
+            $query_data_tiw_wb_id = "SELECT * FROM tb_inv_wb 
+            WHERE `tiw_wb_id` = ($inv_detail)";
+            $tiw_id = mysql_query($query_data_tiw_wb_id, $myconnect) or die(mysql_error());
+
+        
            
     
         while($row_data_inv = mysql_fetch_array($data_inv2)) { 
@@ -157,7 +162,7 @@
             $pdf->SetFont('angsa','',16);
             $pdf->Ln(5);
             $pdf->Cell(155);
-            $pdf->Cell(0,0,iconv( 'UTF-8','TIS-620','เลขที่ใบส่งสินค้า   '.$_GET["id"]),0,1,"L");
+            $pdf->Cell(0,0,iconv( 'UTF-8','TIS-620','เลขที่ใบส่งสินค้า   '.mysql_fetch_array($tiw_id)[0]),0,1,"L");
             
             $pdf->Ln(10);
             $pdf->Cell(155);

@@ -131,6 +131,7 @@ li.dropdown {
       <a style=" color: black" href="receipt_show.php">ใบส่งสินค้า</a>
     </div>
   </li>
+  <li><a href="sending_show.php">รายการกำลังส่ง</a></li>
   <li><a href="payment.php">การจัดการการชำระเงิน</a></li>
   <li class="dropdown">
     <a href="javascript:void(0)" class="dropbtn">รายงานสรุปยอด</a>

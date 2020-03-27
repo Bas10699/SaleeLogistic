@@ -54,14 +54,9 @@ function Editdata($row_waybill,$customer){
                 <td nowrap="nowrap" align="right">จำนวนเงินทั้งสิ้น:</td>
                 <td><input name="wb_money" id="wb_money" value='<?php echo $row_waybill['wb_money']; ?>'/></td>
               </tr>
-              <tr valign="baseline">
+              <!-- <tr valign="baseline">
                 <td nowrap="nowrap" align="right">สถานะการชำระเงิน:</td>
                 <td>
-                <!-- <select name="wb_payment" id="wb_payment">
-                      <option value=<?php echo $row_waybill['wb_payment']; ?> selected><?php echo $row_waybill['wb_payment']; ?></option>
-                      <option value="ยังไม่ได้ชำระ">ยังไม่ได้ชำระ</option>
-                      <option value="ชำระแล้ว">ชำระแล้ว</option>
-                    </select> -->
                     <?php switch ($row_waybill['wb_payment']) {
                         case "ยังไม่ได้ชำระ":?>
                           <input type="radio" name="wb_payment" value="ยังไม่ได้ชำระ"  checked>ยังไม่ได้ชำระ
@@ -72,7 +67,7 @@ function Editdata($row_waybill,$customer){
                           <input type="radio" name="wb_payment" value="ชำระแล้ว" checked>ชำระแล้ว
                       <?php } ?>
                     
-              </tr>
+              </tr> -->
               <tr valign="baseline">
                 <td nowrap="nowrap" align="right">รูปภาพ:</td>
                 <td><input type="file" name="wb_img" id="wb_img" value='<?php echo $row_waybill['wb_img']; ?>' size="32" /></td>
