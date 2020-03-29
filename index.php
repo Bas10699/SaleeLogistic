@@ -1,5 +1,6 @@
 <?php require_once('Connections/myconnect.php'); ?>
 <?php session_start();
+ob_start();
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
@@ -29,6 +30,13 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
   }
   return $theValue;
 }
+}
+
+if(!$_COOKIE["UserName"]){
+
+}
+else{
+  header("Location: indexhome.php" );
 }
 
 mysql_select_db($database_myconnect, $myconnect);
@@ -73,12 +81,14 @@ if (isset($_POST['login_user'])) {
     if (isset($_SESSION['PrevUrl']) && false) {
       $MM_redirectLoginSuccess = $_SESSION['PrevUrl'];	
     }
+    setcookie("UserName",$loginUsername,time()+3600);
     header("Location: " . $MM_redirectLoginSuccess );
   }
   else {
     header("Location: ". $MM_redirectLoginFailed );
   }
 }
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">

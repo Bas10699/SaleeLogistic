@@ -141,7 +141,7 @@ li.dropdown {
       <a style=" color: black" href=report.php>รายงานส่งสินค้าแล้ว</a>
     </div>
   </li>
-  <li style="float:right"><a href="index.php" >ออกจากระบบ</a></li>
+  <li style="float:right"><a href="removecookie.php" >ออกจากระบบ</a></li>
   <li style="float:right"><a ><?php echo $_SESSION['MM_Username']; ?></a></li>
 </ul>
 
