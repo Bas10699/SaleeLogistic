@@ -98,33 +98,19 @@ if($_GET["textfield"] != ""){
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <link rel="stylesheet" href="index.css">
+<link rel="stylesheet" href="css/custom.css" />
   <title>ข้อมูลพนักงาน</title>
-
-<link rel="stylesheet" href="index.css">
 </head>
 
 <body>
-<table width="100%" height="628" align="center">
-  
 
-  <tr>
-    <td height="29">&nbsp;</td>
-  </tr>
-  <tr>
-    <td height="29">&nbsp;</td>
-  </tr>
-  <tr>
-    <td height="45"><div align="center">
+<div class="container">
+  <br/>
       <h2>ข้อมูลพนักงาน</h2>
-    </div></td>
-  </tr>
-  <tr>
-    <td height="43"><div align="center">
-      <table width="83%" height="44">
-        <tr>
-          <td width="50%"><form id="form2" name="form2" method="get" action="<?php echo $_SERVER['SCRIPT_NAME'];?>">
-            
+     <br/>
+        <form id="form2" name="form2" method="get" action="<?php echo $_SERVER['SCRIPT_NAME'];?>">
+        <div class="row">
+         <div class="col-sm-8">
             <input type="text" name="textfield" id="textfield" />
             <button type="submit"><i class="fa fa-search"></i></button>
             <label for="select"></label>
@@ -135,26 +121,16 @@ if($_GET["textfield"] != ""){
               <option value="staff_card">เลขบัตรประชาชน</option>
               <option value="staff_tel">เบอร์โทรศัพท์</option>
               </select>
-            </form></td>
-          <td ><div align="right">
-            <table>
-              <tr>
-                <td ><div align="center" class="buttonadd"><a href="staff_insert.php">เพิ่มข้อมูลพนักงาน</a></div></td>
-                </tr>
-            </table>
-          </div></td>
-          </tr>
-      </table>
-    </div></td>
-  </tr>
-  <tr>
-    <td height="169"><div align="center">
-      <form id="form1" name="form1" method="post" action="">
-      <div align="center">
-          <table width="1036">
-            <tr>
-              <td><div align="left">
-                <table id='customers'>
+            </form>
+          </div>
+          <div class="col-sm-4 ">
+           <div class="float-right"><a class="btn btn-info" href="staff_insert.php">เพิ่มข้อมูลพนักงาน</a></div>
+           </div>
+      </div>
+      <br/>
+      <div class="table-responsive">
+                <table id='customers' class="table table-hover">
+                <thead class="thead-dark">
                       <tr>
                         <th><div align="center" >รหัสพนักงาน</div></th>
                         <th ><div align="center" >เลขบัตรประชาชน</div></th>
@@ -165,6 +141,8 @@ if($_GET["textfield"] != ""){
                         <th ><div align="center" >เบอร์โทรศัพท์</div></th>
                         <th><div align="center" >จัดการ</div></th>
                     </tr>
+                    </thead>
+                    <tbody>
                   <?php do { ?>
                     <tr>
                       <td><div align="center"><span ><?php echo $row_staff['staff_id_set']; ?></span></div></td>
@@ -174,22 +152,18 @@ if($_GET["textfield"] != ""){
                       <td><div align="left" ><?php echo $row_staff['staff_lastname']; ?></div></td>
                       <td><div align="center" ><?php echo $row_staff['staff_position']; ?></div></td>
                       <td><div align="center" ><?php echo $row_staff['staff_tel']; ?></div></td>
-                      <td ><div align="center" class="buttondetail" ><a href="staff_edit.php<?php echo $row_staff['']; ?>?id=<?php echo $row_staff['staff_id']; ?>">แก้ไข</a></div>
-                      <div align="center" class="btndel" ><a href="staff_del.php?id=<?php echo $row_staff['staff_id']; ?>?staff_id=<?php echo $row_staff['staff_id']; ?>" onclick="return confirm('ยืนยันที่จะลบข้อมูลหรือไม่ ?')">ลบ</a></div></td>
+                      <td ><div align="center" >
+                          <a  class="btn btn-warning btn-sm" role="button" href="staff_edit.php<?php echo $row_staff['']; ?>?id=<?php echo $row_staff['staff_id']; ?>">แก้ไข</a>
+                          <a class="btn btn-danger btn-sm" role="button" href="staff_del.php?id=<?php echo $row_staff['staff_id']; ?>?staff_id=<?php echo $row_staff['staff_id']; ?>" onclick="return confirm('ยืนยันที่จะลบข้อมูลหรือไม่ ?')">ลบ</a>
+                          </div>
+                        </td>
                       </tr>
                     <?php } while ($row_staff = mysql_fetch_assoc($staff)); ?>
-                  
+                    </tbody>
              
         </table>
-      </div>
-        <p>&nbsp;</p>
-      </form>
-    </div></td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-  </tr>
-</table>
+     </div>
+</div>
 </body>
 </html>
 <?php
