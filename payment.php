@@ -1,102 +1,65 @@
 <?php require_once('nevbar.php');
-Nevbar(); ?>
+Nevbar();
+require_once('Connections/myconnect.php');
+
+$id = $_GET["id"];
+if($_GET["id"]){
+  mysql_select_db($database_myconnect, $myconnect);
+$query_payment = "SELECT * FROM `tb_inv_wb` 
+                  INNER JOIN tb_waybill 
+                  ON tb_waybill.wb_id=tb_inv_wb.tiw_wb_id 
+                  WHERE tiw_id=$id";
+$PaymentDetail = mysql_query($query_payment, $myconnect) or die(mysql_error());
+$PaymentDetailID = mysql_fetch_assoc($PaymentDetail);
+}
+
+?>
 
 <!DOCTYPE html>
 <html>
+
 <head>
-<style>
-* {
-  box-sizing: border-box;
-}
-
-input[type=text], select, textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  resize: vertical;
-}
-
-label {
-  padding: 12px 12px 12px 0;
-  display: inline-block;
-}
-
-input[type=submit] {
-  background-color: #4CAF50;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  float: right;
-}
-
-input[type=submit]:hover {
-  background-color: #45a049;
-}
-
-.container {
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
-}
-
-.col-25 {
-  float: left;
-  width: 25%;
-  margin-top: 6px;
-}
-
-.col-75 {
-  float: left;
-  width: 75%;
-  margin-top: 6px;
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
-  .col-25, .col-75, input[type=submit] {
-    width: 100%;
-    margin-top: 0;
-  }
-}
-</style>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>จัดการการชำระเงิน</title>
+    <link rel="stylesheet" href="css/custom.css" />
 </head>
+
 <body>
 
-<div class="row">
-<div class="col-25"></div>
-
-<div class="container">
-<h2>Responsive Form</h2>
-<p>Resize the browser window to see the effect. When the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other.</p>
-  <form action="/action_page.php">
-  <div class="row">
-    <div class="col-25">
-      <label for="fname">First Name</label>
+    <div class="container">
+        <br />
+        <h2>การจัดการการชำระเงิน</h2>
+        <br />
+        <form method="get" action="<?php echo $_SERVER['SCRIPT_NAME'];?>">
+            <div class="form-group">
+                <label for="usr">เลขที่ใบส่งของ:</label>
+                <div class="row">
+                    <div class="col-3">
+                        <input type="text" class="form-control" id="usr" name="id" value="<?php echo $_GET["id"];?>" />
+                    </div>
+                    <div class="col-1">
+                        <button type="submit" class="btn btn-primary">ค้นหา</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="card">
+            <div class="card-body">
+                <div class=row>
+                    <div class="col-10"></div>
+                    <div class="col-2">
+                        <div>ใบส่งของเลขที่ <?php echo $_GET["id"] ?> </div>
+                        <div>วันที่ <?php echo date_format(date_create($PaymentDetailID['tiw_date']),"d/m/Y") ?></div>
+                    </div>
+                </div>
+                <div>อ้างอิงรหัสใบรับสินค้า <?php echo $PaymentDetailID['wb_id_set'] ?></div>
+                <div><?php echo $PaymentDetailID['wb_nbook'] ?></div>
+                <div>ยอดเงินค่าขนส่ง <?php echo $PaymentDetailID['wb_money'] ?></div>
+                <br />
+            </div>
+        </div>
+        <br />
     </div>
-    <div class="col-75">
-      <input type="text" id="fname" name="firstname" placeholder="Your name..">
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-25">
-      <label for="lname">Last Name</label>
-    </div>
-    <div class="col-75">
-      <input type="text" id="lname" name="lastname" placeholder="Your last name..">
-    </div>
-  </div>
-  </form>
-</div>
-</div>
 </body>
+
 </html>
