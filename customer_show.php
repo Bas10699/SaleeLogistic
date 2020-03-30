@@ -49,103 +49,71 @@ $customer = mysql_query($query_customer, $myconnect) or die(mysql_error());
 $row_customer = mysql_fetch_assoc($customer);
 $totalRows_customer = mysql_num_rows($customer);
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 
 <head>
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title>ข้อมูลลูกค้า</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>ข้อมูลลูกค้า</title>
+    <link rel="stylesheet" href="css/custom.css" />
 
-<link rel="stylesheet" href="index.css">
 </head>
 
 <body>
-  <table width="80%" height="581" align="center">
-
-    <tr>
-      <td colspan="5">&nbsp;</td>
-    </tr>
-    <tr>
-      <td colspan="5">&nbsp;</td>
-    </tr>
-    <tr>
-      <td colspan="5">
-        <div align="center">
-          <h2>ข้อมูลลูกค้า</h2>
+    <div class="container">
+        <br />
+        <h2>ข้อมูลลูกค้า</h2>
+        <div class="row">
+            <div class="col-sm-8"></div>
+            <div class="col-sm-4 ">
+                <div class="float-right"><a class="btn btn-info" href="customer_insert.php">เพิ่มข้อมูลลูกค้า</a></div>
+            </div>
         </div>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="5">
-        <div align="right">
-          <table>
-            <tr>
-              <td>
-                <div align="center" class="buttonadd"><a href="customer_insert.php">เพิ่มข้อมูลลูกค้า</a></div>
-              </td>
-            </tr>
-          </table>
+        <br />
+        <div class="table-responsive">
+            <table class="table table-hover table-sm">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>
+                            <div align="center">รหัสลูกค้า</div>
+                        </th>
+                        <th>
+                            <div align="center">เลขประจำตัวผู้เสียภาษี</div>
+                        </th>
+                        <th>ชื่อบริษัท</th>
+
+                        <th>เบอร์โทรศัพท์</th>
+                        <th>
+                            <div align="center">จัดการ</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php do { ?>
+                    <tr>
+                        <td class="ตัวอักษร" align="center"><?php echo $row_customer['customer_id']; ?></td>
+                        <td height="35">
+                            <div align="center" class="ตัวอักษร"><?php echo $row_customer['cus_tin']; ?></div>
+                        </td>
+                        <td class="ตัวอักษร"><?php echo $row_customer['cus_compan']; ?></td>
+                        <td class="ตัวอักษร"><?php echo $row_customer['cus_tle']; ?></td>
+                        <td align="center">
+                            <a class="btn btn-warning btn-sm" role="button"
+                                href="customer_detail.php?id=<?php echo $row_customer['cus_id']; ?>">ดูรายละเอียด</a>
+
+                            <a class="btn btn-danger btn-sm" role="button"
+                                href="customer_del.php?id=<?php echo $row_customer['cus_id']; ?>"
+                                onclick="return confirm('ยืนยันที่จะลบข้อมูลหรือไม่ ?')">ลบ</a>
+                        </td>
+                    </tr>
+                    <?php } while ($row_customer = mysql_fetch_assoc($customer)); ?>
+                </tbody>
+            </table>
         </div>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="5">
-
-        <div align="center" >
-          <table id='customers'>
-            <tr>
-
-              <th>
-                <div align="center">รหัสลูกค้า</div>
-              </th>
-
-
-              <th>
-                <div align="center">เลขประจำตัวผู้เสียภาษี</div>
-              </th>
-
-
-              <th>ชื่อบริษัท</th>
-
-              <th>เบอร์โทรศัพท์</th>
-
-              <th>
-                <div align="center">จัดการ</div>
-              </th>
-
-
-            </tr>
-            <?php do { ?>
-              <tr>
-                <td class="ตัวอักษร" align="center"><?php echo $row_customer['customer_id']; ?></td>
-                <td height="35">
-                  <div align="center" class="ตัวอักษร"><?php echo $row_customer['cus_tin']; ?></div>
-                </td>
-                <td class="ตัวอักษร"><?php echo $row_customer['cus_compan']; ?></td>
-                <td class="ตัวอักษร"><?php echo $row_customer['cus_tle']; ?></td>
-                <td align="center">
-                  <div  class="buttondetail"><a href="customer_detail.php?id=<?php echo $row_customer['cus_id']; ?>">ดูรายละเอียด</a></div>
-                  <div  class="btndel"><a href="customer_del.php?id=<?php echo $row_customer['cus_id']; ?>" onclick="return confirm('ยืนยันที่จะลบข้อมูลหรือไม่ ?')">ลบ</a></div>
-                </td>
-              </tr>
-            <?php } while ($row_customer = mysql_fetch_assoc($customer)); ?>
-          </table>
-
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td height="79" colspan="5">&nbsp;</td>
-    </tr>
-    <tr>
-      <td colspan="5">
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-      </td>
-    </tr>
-  </table>
+    </div>
 </body>
 
 </html>

@@ -21,16 +21,16 @@
 
   <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item active">
+      <li class="nav-item ">
         <a class="nav-link" href="staff_show.php">ข้อมูลพนักงาน</a>
       </li>
-      <li class="nav-item active">
+      <li class="nav-item ">
         <a class="nav-link" href="car_show.php">ข้อมูลรถ</a>
       </li>
-      <li class="nav-item active">
+      <li class="nav-item ">
         <a class="nav-link" href="customer_show.php">ข้อมูลลูกค้า</a>
       </li>
-      <li class="nav-item dropdown active">
+      <li class="nav-item dropdown ">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         เอกสารใบรับ-ส่งสินค้า
         </a>
@@ -40,10 +40,10 @@
           <a class="dropdown-item" href="sending_show.php">รายการกำลังส่ง</a>
         </div>
       </li>
-      <li class="nav-item active">
+      <li class="nav-item ">
         <a class="nav-link" href="payment.php">การจัดการการชำระเงิน</a>
       </li>
-      <li class="nav-item dropdown active">
+      <li class="nav-item dropdown ">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         รายงานสรุปยอด
         </a>

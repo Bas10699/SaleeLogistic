@@ -129,7 +129,7 @@ if($_GET["textfield"] != ""){
       </div>
       <br/>
       <div class="table-responsive">
-                <table id='customers' class="table table-hover">
+                <table id='customers' class="table table-hover table-sm">
                 <thead class="thead-dark">
                       <tr>
                         <th><div align="center" >รหัสพนักงาน</div></th>
