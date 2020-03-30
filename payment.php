@@ -103,38 +103,6 @@ else{
 
         <?php }?>
         <br />
-        <h2>การจัดการการชำระเงิน</h2>
-        <br />
-        <form method="get" action="<?php echo $_SERVER['SCRIPT_NAME'];?>">
-            <div class="form-group">
-                <label for="usr">เลขที่ใบส่งของ:</label>
-                <div class="row">
-                    <div class="col-3">
-                        <input type="text" class="form-control" id="usr" name="id" value="<?php echo $_GET["id"];?>" />
-                    </div>
-                    <div class="col-1">
-                        <button type="submit" class="btn btn-primary">ค้นหา</button>
-                    </div>
-                </div>
-            </div>
-        </form>
-        <div class="card">
-            <div class="card-body">
-                <div class=row>
-                    <div class="col-10"></div>
-                    <div class="col-2">
-                        <div>ใบส่งของเลขที่ <?php echo $_GET["id"] ?> </div>
-                        <div>วันที่ <?php echo date_format(date_create($PaymentDetailID['tiw_date']),"d/m/Y") ?></div>
-                    </div>
-                </div>
-                <div>อ้างอิงรหัสใบรับสินค้า <?php echo $PaymentDetailID['wb_id_set'] ?></div>
-                <div><?php echo $PaymentDetailID['wb_nbook'] ?></div>
-                <div>ยอดเงินค่าขนส่ง <?php echo $PaymentDetailID['wb_money'] ?></div>
-                <br />
-            </div>
-        </div>
->>>>>>> master
-        <br />
     </div>
 </body>
 
