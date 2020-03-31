@@ -44,6 +44,18 @@ $query_car = "SELECT * FROM tb_car";
 $car = mysql_query($query_car, $myconnect) or die(mysql_error());
 $row_car = mysql_fetch_assoc($car);
 $totalRows_car = mysql_num_rows($car);
+
+if($_GET["textfield"] != ""){
+    mysql_select_db($database_myconnect, $myconnect);
+    $query_car = "SELECT * FROM tb_car  
+    WHERE car_id_set LIKE '%".$_GET["textfield"]."%'
+    or car_register LIKE '%".$_GET["textfield"]."%'
+    or car_province LIKE '%".$_GET["textfield"]."%'";
+    $car = mysql_query($query_car, $myconnect) or die(mysql_error());
+    $row_car = mysql_fetch_assoc($car);
+    $totalRows_car = mysql_num_rows($car);
+  
+}
 ?>
 
 <!DOCTYPE html
@@ -61,14 +73,22 @@ $totalRows_car = mysql_num_rows($car);
 
 <body>
     <div class="container">
-        <br/>
+        <br />
         <h2>ข้อมูลรถ</h2>
+        <FONT SIZE=3 COLOR=#FF4500>หมายเหตุ : สีเหลืองเตือนให้ต่อภาษีรถยนต์ภายใน 90 วัน /
+            สีแดงเตือนว่าภาษีหมดอายุแล้ว
+        </FONT>
+        <br /> <br />
         <div class="row">
-            <div class="col-sm-8"><h2>
-            <FONT SIZE=3 COLOR=#FF4500>หมายเหตุ : สีเหลืองเตือนให้ต่อภาษีรถยนต์ภายใน 90 วัน /
-                สีแดงเตือนว่าภาษีหมดอายุแล้ว
-            </FONT>
-        </h2></div>
+            <div class="col-sm-8">
+
+                <form id="form2" name="form2" method="get" action="<?php echo $_SERVER['SCRIPT_NAME'];?>">
+                    <input type="text" name="textfield" id="textfield" />
+                    <button type="submit"><i class="fa fa-search"></i></button>
+
+                </form>
+
+            </div>
             <div class="col-sm-4 ">
                 <div class="float-right"><a class="btn btn-info" href="car_insert.php">เพิ่มข้อมูลรถ</a></div>
             </div>

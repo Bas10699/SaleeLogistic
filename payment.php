@@ -35,7 +35,9 @@ $id = $_GET["id"];
                 </div>
             </div>
         </form>
-        <?php
+        <div class=row>
+            <div class=col-sm-6>
+                <?php
 if($_GET["id"]){
     mysql_select_db($database_myconnect, $myconnect);
   $query_payment = "SELECT * FROM `tb_inv_wb` 
@@ -59,49 +61,82 @@ else{
   ?>
 
 
-        <div class="card">
-            <div class="card-body">
-                <div class=row>
-                    <div class="col-sm-9"></div>
-                    <div class="col-sm-3">
-                        <div>ใบส่งของเลขที่ <?php echo $_GET["id"] ?> </div>
-                        <div>วันที่ <?php echo date_format(date_create($PaymentDetailID['tiw_date']),"d/m/Y") ?></div>
-                    </div>
-                </div>
-                <br />
-                <div class="row">
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-6">
-                        <div>อ้างอิงรหัสใบรับสินค้า: <?php echo $PaymentDetailID['wb_id_set'] ?></div>
-                        <div>ชื่อบริษัท: <?php echo $PaymentDetailID['cus_compan'] ?></div>
-                        <div>ยอดเงินค่าขนส่ง: <?php echo $PaymentDetailID['wb_money'] ?></div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class=row>
+                            <div class="col-sm-8"></div>
+                            <div class="col-sm-4">
+                                <div>ใบส่งของเลขที่ <?php echo $_GET["id"] ?> </div>
+                                <div>วันที่ <?php echo date_format(date_create($PaymentDetailID['tiw_date']),"d/m/Y") ?>
+                                </div>
+                            </div>
+                        </div>
                         <br />
-                    </div>
-                    <div class="col-sm-4">
-                        <label for="money">จำนวนเงินที่ได้รับ:</label>
-                        <input type="number" class="form-control" id="money" />
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-6">
+                                <div>อ้างอิงรหัสใบรับสินค้า: <?php echo $PaymentDetailID['wb_id_set'] ?></div>
+                                <div>ชื่อบริษัท: <?php echo $PaymentDetailID['cus_compan'] ?></div>
+                                <div>ยอดเงินค่าขนส่ง: <?php echo $PaymentDetailID['wb_money'] ?></div>
+                                <br />
+                            </div>
+                            <div class="col-sm-4">
+                                <label for="money">จำนวนเงินที่ได้รับ:</label>
+                                <input type="number" class="form-control" id="money" />
+                                <br />
+                                <button class="btn btn-success float-right">ตกลง</button>
+                            </div>
+                        </div>
                         <br />
-                        <button class="btn btn-success float-right">ตกลง</button>
-                    </div>
-                </div>
-                <br />
 
-            </div>
-        </div>
-        <?php
+                    </div>
+                </div>
+                <?php
 }
 }
 else{
     ?>
-        <div class="card">
-            <div class="card-body">
-                <br />
-                <h2>กรุณากรอกเลขที่ใบส่งของ...<h2>
+                <div class="card">
+                    <div class="card-body">
                         <br />
+                        <h2>กรุณากรอกเลขที่ใบส่งของ...<h2>
+                                <br />
+                    </div>
+                </div>
+
+                <?php }
+                $query_payment_all = "SELECT * FROM `tb_inv_wb` 
+                INNER JOIN tb_waybill 
+                ON tb_waybill.wb_id=tb_inv_wb.tiw_wb_id 
+                INNER JOIN tb_customer
+                ON tb_customer.cus_id=tb_waybill.customer_id
+                LiMIT 10";
+                $PaymentDetailAll = mysql_query($query_payment_all, $myconnect) or die(mysql_error());
+?>
+            </div>
+            <div class="col-sm-6">
+                <table class="table table-hover table-sm table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>เลขที่</th>
+                            <th>จำนวนเงินที่จ้องชำระ</th>
+                            <th>สถานะการชำระเงิน</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php 
+                        while($row_PaymentDetailAll = mysql_fetch_array($PaymentDetailAll)) {
+                    ?>
+                        <tr>
+                            <td><?php echo $row_PaymentDetailAll["tiw_id"]; ?></td>
+                            <td><?php echo $row_PaymentDetailAll['wb_money'] ?></td>
+                            <td><?php echo "ค้างชำระ" ?></td>
+                        </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
             </div>
         </div>
-
-        <?php }?>
         <br />
     </div>
 </body>

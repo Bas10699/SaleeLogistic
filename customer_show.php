@@ -48,6 +48,19 @@ $query_customer = "SELECT * FROM tb_customer";
 $customer = mysql_query($query_customer, $myconnect) or die(mysql_error());
 $row_customer = mysql_fetch_assoc($customer);
 $totalRows_customer = mysql_num_rows($customer);
+
+if($_GET["textfield"] != ""){
+    mysql_select_db($database_myconnect, $myconnect);
+    $query_customer = "SELECT * FROM tb_customer  
+    WHERE customer_id LIKE '%".$_GET["textfield"]."%'
+    or cus_tin LIKE '%".$_GET["textfield"]."%'
+    or cus_compan LIKE '%".$_GET["textfield"]."%'
+    or cus_tle LIKE '%".$_GET["textfield"]."%'";
+    $customer = mysql_query($query_customer, $myconnect) or die(mysql_error());
+    $row_customer = mysql_fetch_assoc($customer);
+    $totalRows_customer = mysql_num_rows($customer);
+  
+}
 ?>
 <!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -66,8 +79,15 @@ $totalRows_customer = mysql_num_rows($customer);
     <div class="container">
         <br />
         <h2>ข้อมูลลูกค้า</h2>
+        <br/>
         <div class="row">
-            <div class="col-sm-8"></div>
+            <div class="col-sm-8">
+                <form id="form2" name="form2" method="get" action="<?php echo $_SERVER['SCRIPT_NAME'];?>">
+                    <input type="text" name="textfield" id="textfield" />
+                    <button type="submit"><i class="fa fa-search"></i></button>
+
+                </form>
+            </div>
             <div class="col-sm-4 ">
                 <div class="float-right"><a class="btn btn-info" href="customer_insert.php">เพิ่มข้อมูลลูกค้า</a></div>
             </div>
