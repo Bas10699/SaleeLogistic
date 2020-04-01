@@ -7,8 +7,8 @@ Nevbar(); ?>
  
   <style>
   .masthead {
-  height: 100vh;
-  min-height: 500px;
+  height: 100%;
+  min-height: calc(100vh - calc(3.5rem + 1px));
   background-image: url('img/การจัดการ.jpg');
   background-size: cover;
   background-position: center;

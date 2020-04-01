@@ -14,6 +14,7 @@ $id = $_GET["id"];
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>จัดการการชำระเงิน</title>
     <link rel="stylesheet" href="css/custom.css" />
+
 </head>
 
 <body>
@@ -78,6 +79,7 @@ else{
                                 <div>อ้างอิงรหัสใบรับสินค้า: <?php echo $PaymentDetailID['wb_id_set'] ?></div>
                                 <div>ชื่อบริษัท: <?php echo $PaymentDetailID['cus_compan'] ?></div>
                                 <div>ยอดเงินค่าขนส่ง: <?php echo $PaymentDetailID['wb_money'] ?></div>
+                                <div>ยอดเงินที่ชำระแล้ว: <?php echo $PaymentDetailID['tiw_money'] ?></div>
                                 <br />
                             </div>
                             <div class="col-sm-4">
@@ -109,8 +111,7 @@ else{
                 INNER JOIN tb_waybill 
                 ON tb_waybill.wb_id=tb_inv_wb.tiw_wb_id 
                 INNER JOIN tb_customer
-                ON tb_customer.cus_id=tb_waybill.customer_id
-                LiMIT 10";
+                ON tb_customer.cus_id=tb_waybill.customer_id";
                 $PaymentDetailAll = mysql_query($query_payment_all, $myconnect) or die(mysql_error());
 ?>
             </div>

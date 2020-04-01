@@ -81,7 +81,7 @@ if (isset($_POST['login_user'])) {
     if (isset($_SESSION['PrevUrl']) && false) {
       $MM_redirectLoginSuccess = $_SESSION['PrevUrl'];	
     }
-    setcookie("UserName",$loginUsername,time()+3600);
+    setcookie("UserName",$loginUsername);
     header("Location: " . $MM_redirectLoginSuccess );
   }
   else {
