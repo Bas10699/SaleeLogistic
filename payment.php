@@ -14,7 +14,30 @@ $id = $_GET["id"];
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>จัดการการชำระเงิน</title>
     <link rel="stylesheet" href="css/custom.css" />
+    <style>
+    table,
+    tbody {
+        display: block;
+        height: 380px;
+        overflow: auto;
+    }
 
+    thead,
+    tbody tr {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+    }
+
+    thead {
+        width: calc(100% - 1em)
+    }
+
+    table {
+        width: 100%;
+        height:100%
+    }
+    </style>
 </head>
 
 <body>
