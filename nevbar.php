@@ -36,7 +36,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="waybill_show.php">ใบรับสินค้า</a>
           <a class="dropdown-item" href="receipt_show.php">ใบส่งสินค้า</a>
-          <a class="dropdown-item" href="sending_show.php">รายการกำลังส่ง</a>
+          <!-- <a class="dropdown-item" href="sending_show.php">รายการกำลังส่ง</a> -->
         </div>
       </li>
       <li class="nav-item ">
