@@ -1,5 +1,4 @@
 <?ob_start();?>
-<?php session_start();?>
 <?php  function Nevbar(){?>
   <!DOCTYPE html>
 <html >
@@ -56,7 +55,7 @@
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li class="nav-item active" ><a class="nav-link" href="#">
-      <span class="fas fa-user"></span> <?php echo $_SESSION['MM_Username']; ?></a>
+      <span class="fas fa-user"></span> <?php echo $_COOKIE["UserName"]; ?></a>
       </li>
       <li class="nav-item active" ><a class="nav-link" href="removecookie.php">
       <span class="fas fa-sign-out-alt"></span> ออกจากระบบ</a>

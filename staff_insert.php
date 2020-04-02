@@ -1,150 +1,36 @@
 <?php require_once('Connections/myconnect.php'); ?>
-<?php require_once('nevbar.php');
-Nevbar(); ?>
 <?php
-if (!function_exists("GetSQLValueString")) {
-function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
-{
-  if (PHP_VERSION < 6) {
-    $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
-  }
-
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
-
-  switch ($theType) {
-    case "text":
-      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
-      break;    
-    case "long":
-    case "int":
-      $theValue = ($theValue != "") ? intval($theValue) : "NULL";
-      break;
-    case "double":
-      $theValue = ($theValue != "") ? doubleval($theValue) : "NULL";
-      break;
-    case "date":
-      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
-      break;
-    case "defined":
-      $theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;
-      break;
-  }
-  return $theValue;
-}
-}
-
-// if (!function_exists("GetSQLValueString")) {
-// function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
-// {
-//   if (PHP_VERSION < 6) {
-//     $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
-//   }
-
-//   $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
-
-//   switch ($theType) {
-//     case "text":
-//       $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
-//       break;    
-//     case "long":
-//     case "int":
-//       $theValue = ($theValue != "") ? intval($theValue) : "NULL";
-//       break;
-//     case "double":
-//       $theValue = ($theValue != "") ? doubleval($theValue) : "NULL";
-//       break;
-//     case "date":
-//       $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
-//       break;
-//     case "defined":
-//       $theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;
-//       break;
-//   }
-//   return $theValue;
-// }
-// }
-
-$editFormAction = $_SERVER['PHP_SELF'];
-if (isset($_SERVER['QUERY_STRING'])) {
-  $editFormAction .= "?" . htmlentities($_SERVER['QUERY_STRING']);
-}
-
-if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
-  $insertSQL = sprintf("INSERT INTO tb_staff (staff_id, staff_name, staff_lastname, staff_card, staff_position, staff_tel, staff_title_name) VALUES (%s, %s, %s, %s, %s, %s, %s)",
-                       GetSQLValueString($_POST['staff_id'], "text"),
-                       GetSQLValueString($_POST['staff_name'], "text"),
-                       GetSQLValueString($_POST['staff_lastname'], "text"),
-                       GetSQLValueString($_POST['staff_card'], "text"),
-                       GetSQLValueString($_POST['staff_position'], "text"),
-                       GetSQLValueString($_POST['staff_tel'], "text"),
-                       GetSQLValueString($_POST['staff_title_name'], "text"));
-
+  $staff_name = $_POST['staff_name'];
+  $staff_lastname = $_POST['staff_lastname'];
+  $staff_card = $_POST['staff_card'];
+  $staff_position = $_POST['staff_position'];
+  $staff_tel = $_POST['staff_tel'];
+  $staff_title_name = $_POST['staff_title_name'];
+  $insertSQL = "INSERT INTO tb_staff SET staff_name='$staff_name', 
+                                         staff_lastname='$staff_lastname',
+                                         staff_card='$staff_card',
+                                         staff_position='$staff_position',
+                                         staff_tel='$staff_tel',
+                                         staff_title_name='$staff_title_name'";
+                
   mysql_select_db($database_myconnect, $myconnect);
   $Result1 = mysql_query($insertSQL, $myconnect) or die(mysql_error());
     
   $id = mysql_insert_id();
   $id_SET = sprintf('S-%03d', $id);
-  $insertSQL1 = sprintf("UPDATE tb_staff SET staff_id_set=%s WHERE staff_id=%s",
-                    GetSQLValueString($id_SET,"text"),
-                    GetSQLValueString($id,"text"));
+  $insertSQL1 = "UPDATE tb_staff SET staff_id_set='$id_SET' WHERE staff_id=$id";
   mysql_select_db($database_myconnect, $myconnect);
   $Result2 = mysql_query($insertSQL1, $myconnect) or die(mysql_error());
 
-  $insertGoTo = "staff_show.php";
-  if (isset($_SERVER['QUERY_STRING'])) {
-    $insertGoTo .= (strpos($insertGoTo, '?')) ? "&" : "?";
-    $insertGoTo .= $_SERVER['QUERY_STRING'];
-  }
-  header(sprintf("Location: %s", $insertGoTo));
-}
+  header("Location: staff_show.php");
 
-mysql_select_db($database_myconnect, $myconnect);
-$query_staff = "SELECT * FROM tb_staff";
-$staff = mysql_query($query_staff, $myconnect) or die(mysql_error());
-$row_staff = mysql_fetch_assoc($staff);
-$totalRows_staff = mysql_num_rows($staff);
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>เพิ่มข้อมูลพนักงาน</title>
 <link rel="stylesheet" href="index.css">
 </head>
-<!-- <head>
-<STYLE type=text/css>
-A:link {COLOR: #FFFFFF; TEXT-DECORATION: none}
-A:visited {COLOR: #FFFF00; TEXT-DECORATION: none}
-A:hover {COLOR: #FFFFFF; TEXT-DECORATION: underline}
-</STYLE>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>เพิ่มข้อมูลพนักงาน</title>
-<style type="text/css">
-#form1 div table tr td table tr td {
-	color: #FFF;
-}
-.หัวข้อ {
-	font-size: 30px;
-	color: #FF0;
-	font-family: "angsana New";
-}
-a:link {
-	color: #FF0;
-	text-decoration: none;
-}
-a:visited {
-	text-decoration: none;
-	color: #FF0;
-}
-a:hover {
-	text-decoration: none;
-	color: #FFF;
-}
-a:active {
-	text-decoration: none;
-	color: #FF0;
-}
-</style>
-</head> -->
 
 <body>
 <table width="100%" height="579" align="center">
@@ -219,8 +105,5 @@ a:active {
   </tr>
 </table>
 </body>
-</html>
-<?php
-mysql_free_result($staff);
+</html> -->
 
-?>

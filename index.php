@@ -39,11 +39,6 @@ else{
   header("Location: indexhome.php" );
 }
 
-mysql_select_db($database_myconnect, $myconnect);
-$query_login = "SELECT * FROM tb_login";
-$login = mysql_query($query_login, $myconnect) or die(mysql_error());
-$row_login = mysql_fetch_assoc($login);
-$totalRows_login = mysql_num_rows($login);
 ?>
 <?php
 // *** Validate request to login to this site.

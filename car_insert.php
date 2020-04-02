@@ -1,6 +1,3 @@
-<?php require_once('nevbar.php');
-Nevbar(); ?>
-
 <?php require_once('Connections/myconnect.php'); ?>
 <?php
 if (!function_exists("GetSQLValueString")) {
@@ -34,12 +31,12 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-$editFormAction = $_SERVER['PHP_SELF'];
-if (isset($_SERVER['QUERY_STRING'])) {
-  $editFormAction .= "?" . htmlentities($_SERVER['QUERY_STRING']);
-}
+// $editFormAction = $_SERVER['PHP_SELF'];
+// if (isset($_SERVER['QUERY_STRING'])) {
+//   $editFormAction .= "?" . htmlentities($_SERVER['QUERY_STRING']);
+// }
 
-if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form2")) {
+// if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form2")) {
   $insertSQL = sprintf("INSERT INTO tb_car (car_id, car_register, car_province, car_date_end) VALUES (%s, %s, %s, %s)",
                        GetSQLValueString($_POST['car_id'], "text"),
                        GetSQLValueString($_POST['car_register'], "text"),
@@ -64,15 +61,11 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form2")) {
     $insertGoTo .= $_SERVER['QUERY_STRING'];
   }
   header(sprintf("Location: %s", $insertGoTo));
-}
+// }
 
-mysql_select_db($database_myconnect, $myconnect);
-$query_car = "SELECT * FROM tb_car";
-$car = mysql_query($query_car, $myconnect) or die(mysql_error());
-$row_car = mysql_fetch_assoc($car);
-$totalRows_car = mysql_num_rows($car);
+
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 
@@ -225,7 +218,4 @@ $totalRows_car = mysql_num_rows($car);
 </table>
 
 </body>
-</html>
-<?php
-mysql_free_result($car);
-?>
+</html> -->

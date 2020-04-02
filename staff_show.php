@@ -127,7 +127,11 @@ if($_GET["textfield"] != ""){
                 </form>
             </div>
             <div class="col-sm-4 ">
-                <div class="float-right"><a class="btn btn-info" href="staff_insert.php">เพิ่มข้อมูลพนักงาน</a></div>
+                <button type="button" class="btn btn-info float-right" data-toggle="modal"
+                    data-target="#exampleModalCenter">
+                    เพิ่มข้อมูลพนักงาน
+                </button>
+                <!-- <div class="float-right"><a class="btn btn-info" href="staff_insert.php">เพิ่มข้อมูลพนักงาน</a></div> -->
             </div>
         </div>
         <br />
@@ -199,6 +203,71 @@ if($_GET["textfield"] != ""){
                 </tbody>
 
             </table>
+        </div>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">เพิ่มข้อมูลพนักงาน</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form method="post" action="staff_insert.php">
+                        <div class="modal-body">
+
+                            <div class="form-row">
+                                <div class="form-group col-md-2">
+                                    <label for="staff_title_name">คำนำหน้าชื่อ</label>
+
+                                    <select name="staff_title_name" id="staff_title_name" class="form-control">
+                                        <option value="นาย">นาย</option>
+                                        <option value="นาง">นาง</option>
+                                        <option value="นางสาว">นางสาว</option>
+
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-5">
+                                    <label for="staff_name">ชื่อ</label>
+                                    <input name="staff_name" type="text" id="staff_name" class="form-control" />
+                                </div>
+                                <div class="form-group col-md-5">
+                                    <label for="staff_lastname">นามสกุล</label>
+                                    <input name="staff_lastname" type="text" id="staff_lastname" class="form-control" />
+                                </div>
+                            </div>
+                            <label for="staff_card">เลขบัตรประชาชน</label>
+                            <input name="staff_card" type="text" id="staff_card" pattern="[0-9]{1,}"
+                                class="form-control" title="กรอกตัวเลขเท่านั้น" maxlength="13" />
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="staff_position">ตำแหน่ง</label>
+                                    <select name="staff_position" id="staff_position" class="form-control">
+                                        <option value="Manager">Manager</option>
+                                        <option value="Driver">Driver</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="staff_tel">เบอร์โทรศัพท์</label>
+                                    <input name="staff_tel" type="text" id="staff_tel" pattern="[0-9]{1,}"
+                                        class="form-control" title="กรอกตัวเลขเท่านั้น" maxlength="10" />
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            <button class="btn btn-success">บันทึก</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </body>

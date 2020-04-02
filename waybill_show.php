@@ -80,13 +80,13 @@ $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
 
                     <input name="txtKeyword" type="text" id="txtKeyword" value="<?php echo $_GET["txtKeyword"];?>">
                     <button type="submit"><i class="fa fa-search"></i></button>
-                    <label for="select2"></label>
+                    <!-- <label for="select2"></label>
                     <select name="dd_input" id="select2">
                         <option value="All">ทั้งหมด</option>
                         <option value="cus_compan">ชื่อบริษัท</option>
                         <option value="cus_sub">ตำบล</option>
                         <option value="wb_payment">ชำระแล้ว</option>
-                    </select>
+                    </select> -->
 
                 </form>
             </div>
