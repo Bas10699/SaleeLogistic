@@ -28,8 +28,31 @@
   $wb_money = $_POST["wb_money"];
   $wb_payment = $_POST["wb_payment"];
   $wb_img = $_FILES['wb_img'];
+  print_r($wb_img);
+if(!$wb_img['name']){
 
+  $sql = "UPDATE tb_waybill SET 
+  wb_nber = '$wb_nber', 
+  wb_nbook = '$wb_nbook', 
+  customer_id = '$cus_compan',
+  wb_date = '$wb_date',
+  wb_money = '$wb_money',
+  wb_payment = '$wb_payment' 
+WHERE wb_id_set = '$wb_id_set'";
 
+if ($conn->query($sql) === TRUE) {
+$insertGoTo = 'waybill_detail.php?id='.$_POST["wb_id"];
+header(sprintf("Location: %s", $insertGoTo));
+
+} else {
+echo "Error updating record: " . $conn->error;
+}
+
+$conn->close();
+}
+else{
+
+  echo $wb_img;
   $id_SET = $wb_id_set;
   $path="./picture/";
   $last = strtolower(end(explode('.',$_FILES['wb_img']['name'])));
@@ -48,6 +71,7 @@
 
   if ($conn->query($sql) === TRUE) {
     $insertGoTo = 'waybill_detail.php?id='.$_POST["wb_id"];
+    sleep(1);
     header(sprintf("Location: %s", $insertGoTo));
       
   } else {
@@ -55,6 +79,10 @@
   }
 
   $conn->close();
+}
+  
+
+  
 
 /*
   echo $_POST["wb_id_set"];

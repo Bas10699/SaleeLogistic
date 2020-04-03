@@ -100,12 +100,14 @@ if($_GET["textfield"] != ""){
                         <th>
                             <div align="center">รหัสลูกค้า</div>
                         </th>
-                        <th>
+                        <!-- <th>
                             <div align="center">เลขประจำตัวผู้เสียภาษี</div>
-                        </th>
+                        </th> -->
                         <th>ชื่อบริษัท</th>
 
                         <th>เบอร์โทรศัพท์</th>
+                        <th>อำเภอ</th>
+                        <th>ตำบล</th>
                         <th>
                             <div align="center">จัดการ</div>
                         </th>
@@ -115,11 +117,13 @@ if($_GET["textfield"] != ""){
                     <?php do { ?>
                     <tr>
                         <td class="ตัวอักษร" align="center"><?php echo $row_customer['customer_id']; ?></td>
-                        <td height="35">
+                        <!-- <td height="35">
                             <div align="center" class="ตัวอักษร"><?php echo $row_customer['cus_tin']; ?></div>
-                        </td>
+                        </td> -->
                         <td class="ตัวอักษร"><?php echo $row_customer['cus_compan']; ?></td>
                         <td class="ตัวอักษร"><?php echo $row_customer['cus_tle']; ?></td>
+                        <td class="ตัวอักษร"><?php echo $row_customer['cus_area']; ?></td>
+                        <td class="ตัวอักษร"><?php echo $row_customer['cus_sub']; ?></td>
                         <td align="center">
                             <a class="btn btn-warning btn-sm" role="button"
                                 href="customer_detail.php?id=<?php echo $row_customer['cus_id']; ?>">ดูรายละเอียด</a>

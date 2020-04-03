@@ -9,7 +9,7 @@ Nevbar(); ?>
   .masthead {
   height: 100%;
   min-height: calc(100vh - calc(3.5rem + 1px));
-  background-image: url('img/การจัดการ.jpg');
+  background-image: url('img/การจัดการสาลี่.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

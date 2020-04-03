@@ -1,5 +1,5 @@
 <?php require_once('Connections/myconnect.php'); ?>
-<?php session_start();
+<?php 
 ob_start();
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
@@ -42,9 +42,7 @@ else{
 ?>
 <?php
 // *** Validate request to login to this site.
-if (!isset($_SESSION)) {
-  session_start();
-}
+
 
 $loginFormAction = $_SERVER['PHP_SELF'];
 if (isset($_GET['accesscheck'])) {
@@ -69,9 +67,7 @@ if (isset($_POST['login_user'])) {
      $loginStrGroup = "";
     
 	if (PHP_VERSION >= 5.1) {session_regenerate_id(true);} else {session_regenerate_id();}
-    //declare two session variables and assign them
-    $_SESSION['MM_Username'] = $loginUsername;
-    $_SESSION['MM_UserGroup'] = $loginStrGroup;	      
+    //declare two session variables and assign them	      
 
     if (isset($_SESSION['PrevUrl']) && false) {
       $MM_redirectLoginSuccess = $_SESSION['PrevUrl'];	
@@ -128,6 +124,4 @@ if (isset($_POST['login_user'])) {
 </form>
 </body>
 </html>
-<?php
-mysql_free_result($login);
-?>
+

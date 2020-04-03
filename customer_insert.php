@@ -39,7 +39,7 @@ if (isset($_SERVER['QUERY_STRING'])) {
 }
 
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
-  $insertSQL = sprintf("INSERT INTO tb_customer (  cus_compan, cus_house, cus_vill, cus_sub, cus_area, cus_pro, cus_pos, cus_tle, cus_tin) VALUES ( %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+  $insertSQL = sprintf("INSERT INTO tb_customer (  cus_compan, cus_house, cus_vill, cus_sub, cus_area, cus_pro, cus_pos, cus_tle) VALUES ( %s, %s, %s, %s, %s, %s, %s, %s)",
                        GetSQLValueString($_POST['cus_compan'], "text"),
                        GetSQLValueString($_POST['cus_hose'], "text"),
                        GetSQLValueString($_POST['cus_vill'], "text"),
@@ -47,8 +47,8 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
                        GetSQLValueString($_POST['cus_area'], "text"),
                        GetSQLValueString($_POST['cus_pro'], "text"),
                        GetSQLValueString($_POST['cus_pos'], "text"),
-                       GetSQLValueString($_POST['cus_tle'], "text"),
-                       GetSQLValueString($_POST['cus_tin'], "text"));
+                       GetSQLValueString($_POST['cus_tle'], "text"));
+                      //  GetSQLValueString($_POST['cus_tin'], "text"));
 
   mysql_select_db($database_myconnect, $myconnect);
   $Result1 = mysql_query($insertSQL, $myconnect) or die(mysql_error());
@@ -116,11 +116,11 @@ function MM_popupMsg(msg) { //v1.0
                 <td width="232" ><label>
                   <input name="customer_id" type="text"  id="customer_id" style="background-color:#CCC" />
                   </label></td> -->
-                <td width="205" ><div align="left">เลขประจำตัวผู้เสียภาษี :</div></td>
+                <!-- <td width="205" ><div align="left">เลขประจำตัวผู้เสียภาษี :</div></td>
                 <td width="168" ><label>
                   <input name="cus_tin" type="text" id="cus_tin" maxlength="13" />
                   </label></td>
-                </tr>
+                </tr> -->
               <tr>
                 <td ><div align="left">ชื่อบริษัท :</div></td>
                 <td ><input type="text" name="cus_compan" id="cus_compan" /></td>

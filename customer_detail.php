@@ -39,7 +39,7 @@ if (isset($_SERVER['QUERY_STRING'])) {
 }
 
 if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form1")) {
-  $updateSQL = sprintf("UPDATE tb_customer SET cus_compan=%s, cus_house=%s, cus_vill=%s, cus_sub=%s, cus_area=%s, cus_pro=%s, cus_pos=%s, cus_tle=%s, cus_tin=%s WHERE cus_id=%s",
+  $updateSQL = sprintf("UPDATE tb_customer SET cus_compan=%s, cus_house=%s, cus_vill=%s, cus_sub=%s, cus_area=%s, cus_pro=%s, cus_pos=%s, cus_tle=%s WHERE cus_id=%s",
                        GetSQLValueString($_POST['cus_compan'], "text"),
                        GetSQLValueString($_POST['cus_hose'], "text"),
                        GetSQLValueString($_POST['cus_vill'], "int"),
@@ -48,7 +48,7 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form1")) {
                        GetSQLValueString($_POST['cus_pro'], "text"),
                        GetSQLValueString($_POST['cus_pos'], "text"),
                        GetSQLValueString($_POST['cus_tle'], "text"),
-                       GetSQLValueString($_POST['cus_tin'], "text"),
+                      //  GetSQLValueString($_POST['cus_tin'], "text"),
                        GetSQLValueString($_POST['cus_id'], "int"));
 
   mysql_select_db($database_myconnect, $myconnect);
@@ -115,10 +115,10 @@ $totalRows_customer = mysql_num_rows($customer);
                 <td ><input name="cus_id" type="text" class="ตัวหนังสือสีดำ" id="cus_id" style="background-color:#CCC" value="<?php echo $row_customer['cus_id']; ?>" size="10" readonly="readonly" />
                   <span class="ไม่สามารถแก้ไข">                  *ไม่สามารถแก้ไขได้</span></td>
               </tr>
-              <tr>
+              <!-- <tr>
                 <td  class="ตัวหนังสือสีขาว"><div align="left">เลขประจำตัวผู้เสียภาษี :</div></td>
                 <td ><input name="cus_tin" type="text" class="ตัวหนังสือสีดำ" id="cus_tin" value="<?php echo $row_customer['cus_tin']; ?>" maxlength="13" /></td>
-              </tr>
+              </tr> -->
               <tr>
                 <td  class="ตัวหนังสือสีขาว"><div align="left">ชื่อบริษัท :</div></td>
                 <td ><input name="cus_compan" type="text" class="ตัวหนังสือสีดำ" id="cus_compan" value="<?php echo $row_customer['cus_compan']; ?>" /></td>

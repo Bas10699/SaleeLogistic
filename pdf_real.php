@@ -105,7 +105,7 @@
             $pdf->Cell(22,10,iconv( 'UTF-8','TIS-620',$i),'LR',0,'C');
             // $pdf->Cell(30,10,iconv( 'UTF-8','TIS-620',$row_data_inv['wb_id_set']),'LR',0,'C');
             $pdf->Cell(50,10,iconv( 'UTF-8','TIS-620',mysql_fetch_array($tiw_id)[0]),'LR',0,'C');
-            $pdf->Cell(30,10,iconv( 'UTF-8','TIS-620',date("Y-m-d")),'LR',0,'C');
+            $pdf->Cell(30,10,iconv( 'UTF-8','TIS-620',date("d-m-Y")),'LR',0,'C');
             $pdf->Cell(40,10,iconv( 'UTF-8','TIS-620',$row_data_inv['cus_compan']),'LR',0,'C');
             $pdf->Cell(28,10,iconv( 'UTF-8','TIS-620',$row_data_inv['wb_money'].' '),'LR',0,'R');
             $pdf->Cell(30,10,iconv( 'UTF-8','TIS-620',''),'LR',0,'R');
@@ -170,7 +170,7 @@
             
             $pdf->Ln(10);
             $pdf->Cell(155);
-            $pdf->Cell(0,0,iconv( 'UTF-8','TIS-620','วันที่ '.date("Y-m-d")),0,1,"L");
+            $pdf->Cell(0,0,iconv( 'UTF-8','TIS-620','วันที่ '.date("d-m-Y")),0,1,"L");
             $pdf->Ln(5);
             $pdf->Cell(85);
             $pdf->Cell(30,10,iconv( 'UTF-8','TIS-620','รายการส่งสินค้า'),0,0,'C');

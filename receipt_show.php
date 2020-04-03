@@ -174,7 +174,7 @@ $staffId = mysql_query($query_staff, $myconnect) or die(mysql_error());
                             <div><?php echo $row_waybill['cus_compan']; ?></div>
                         </td>
                         <td>
-                            <div><?php echo $row_waybill['wb_nbook']; ?></div>
+                            <div align="center"><?php echo $row_waybill['wb_nbook']; ?></div>
                         </td>
                         <td>
                             <div align="center"><?php echo $row_waybill['cus_area']; ?></div>
