@@ -39,10 +39,10 @@ if ((isset($_GET['id'])) && ($_GET['id'] != "")) {
   $Result1 = mysql_query($deleteSQL, $myconnect) or die(mysql_error());
 
   $deleteGoTo = "car_show.php";
-  if (isset($_SERVER['QUERY_STRING'])) {
-    $deleteGoTo .= (strpos($deleteGoTo, '?')) ? "&" : "?";
-    $deleteGoTo .= $_SERVER['QUERY_STRING'];
-  }
+  // if (isset($_SERVER['QUERY_STRING'])) {
+  //   $deleteGoTo .= (strpos($deleteGoTo, '?')) ? "&" : "?";
+  //   $deleteGoTo .= $_SERVER['QUERY_STRING'];
+  // }
   header(sprintf("Location: %s", $deleteGoTo));
 }
 ?>

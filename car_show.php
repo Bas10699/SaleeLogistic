@@ -45,12 +45,13 @@ $car = mysql_query($query_car, $myconnect) or die(mysql_error());
 $row_car = mysql_fetch_assoc($car);
 $totalRows_car = mysql_num_rows($car);
 
-if($_GET["textfield"] != ""){
+$id = isset($_GET["textfield"]) ? $_GET["textfield"] : '';
+if($id != ""){
     mysql_select_db($database_myconnect, $myconnect);
     $query_car = "SELECT * FROM tb_car  
-    WHERE car_id_set LIKE '%".$_GET["textfield"]."%'
-    or car_register LIKE '%".$_GET["textfield"]."%'
-    or car_province LIKE '%".$_GET["textfield"]."%'";
+    WHERE car_id_set LIKE '%".$id."%'
+    or car_register LIKE '%".$id."%'
+    or car_province LIKE '%".$id."%'";
     $car = mysql_query($query_car, $myconnect) or die(mysql_error());
     $row_car = mysql_fetch_assoc($car);
     $totalRows_car = mysql_num_rows($car);
@@ -83,7 +84,7 @@ if($_GET["textfield"] != ""){
             <div class="col-sm-8">
 
                 <form id="form2" name="form2" method="get" action="<?php echo $_SERVER['SCRIPT_NAME'];?>">
-                    <input type="text" name="textfield" id="textfield" />
+                    <input type="text" name="textfield" id="textfield" value="<?php echo $id ?>" />
                     <button type="submit"><i class="fa fa-search"></i></button>
 
                 </form>
@@ -98,6 +99,16 @@ if($_GET["textfield"] != ""){
             </div>
         </div>
         <br />
+        <?php if($totalRows_car == 0){
+            echo '<script type="text/javascript">
+            Swal.fire(
+                "",
+                "ตรวจสอบไม่พบข้อมูล",
+                "error"
+              ).then(()=> window.location.href="car_show.php")
+            </script>';
+        }else{
+?>
         <div class="table-responsive">
             <table class="table table-hover table-sm">
                 <thead class="thead-dark">
@@ -152,16 +163,35 @@ if($_GET["textfield"] != ""){
                     <td>
                         <div align="center">
                             <a class="btn btn-warning btn-sm" role="button"
-                                href="car_edit.php<?php echo $row_car['']; ?>?id=<?php echo $row_car['car_id']; ?>">แก้ไข</a>
-                            <a class="btn btn-danger btn-sm" role="button"
-                                href="car_del.php?id=<?php echo $row_car['car_id']; ?>"
-                                onclick="return confirm('ยืนยันที่จะลบข้อมูลหรือไม่ ?')">ลบ</a>
+                                href="car_edit.php?id=<?php echo $row_car['car_id']; ?>">แก้ไข</a>
+                            <button class="btn btn-danger btn-sm" role="button"
+                                onclick="myFunction(<?php echo $row_car['car_id']; ?>)">ลบ</button>
+
+                            <script>
+                            function myFunction(id) {
+                                Swal.fire({
+                                    title: 'Are you sure?',
+                                    text: "You won't be able to revert this!",
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    confirmButtonColor: '#3085d6',
+                                    cancelButtonColor: '#d33',
+                                    confirmButtonText: 'Yes, delete it!'
+                                }).then((result) => {
+                                    if (result.value) {
+                                        window.location.href = "car_del.php?id=" + id
+                                    }
+                                })
+                            }
+                            </script>
+                            
                         </div>
                     </td>
                 </tr>
                 <?php } while ($row_car = mysql_fetch_assoc($car)); ?>
             </table>
         </div>
+        <?php } ?>
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">

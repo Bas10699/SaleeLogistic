@@ -1,4 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<info>
-	<infoitem key="UD_staff" value="name:staff_id;datatype:int,name:staff_name;datatype:string,name:staff_lastname;datatype:string,name:staff_card;datatype:string,name:staff_positin;datatype:string,name:staff_tel;datatype:string" />
-</info>

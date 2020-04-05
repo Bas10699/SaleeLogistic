@@ -40,7 +40,9 @@ $staff = mysql_query($query_staff, $myconnect) or die(mysql_error());
 $row_staff = mysql_fetch_assoc($staff);
 $totalRows_staff = mysql_num_rows($staff);
 
-if($_GET["textfield"] != ""){
+$id = isset($_GET["textfield"]) ? $_GET["textfield"] : '';
+if(isset($_GET["textfield"])){
+    if($_GET["textfield"] != ""){
   // if($_GET["select"] == "staff_name"){
   //     mysql_select_db($database_myconnect, $myconnect);
   //     $query_staff = "SELECT * FROM tb_staff  WHERE staff_name LIKE '%".$_GET["textfield"]."%'";
@@ -92,6 +94,8 @@ if($_GET["textfield"] != ""){
   // }
 	
 }
+}
+
 
 ?>
 <!DOCTYPE html
@@ -114,7 +118,7 @@ if($_GET["textfield"] != ""){
         <div class="row">
             <div class="col-sm-8">
                 <form id="form2" name="form2" method="get" action="<?php echo $_SERVER['SCRIPT_NAME'];?>">
-                    <input type="text" name="textfield" id="textfield" />
+                    <input type="text" name="textfield" id="textfield" value="<?php echo $id ?>" />
                     <button type="submit"><i class="fa fa-search"></i></button>
                     <!-- <label for="select"></label>
             <select name="select" id="select">
@@ -135,6 +139,17 @@ if($_GET["textfield"] != ""){
             </div>
         </div>
         <br />
+        <?php if($totalRows_staff == 0){
+            echo '<script type="text/javascript">
+            Swal.fire(
+                "",
+                "ตรวจสอบไม่พบข้อมูล",
+                "error"
+              ).then(()=> window.location.href="staff_show.php")
+            </script>';
+        }
+            else{
+                ?>
         <div class="table-responsive">
             <table id='customers' class="table table-hover table-sm">
                 <thead class="thead-dark">
@@ -192,10 +207,27 @@ if($_GET["textfield"] != ""){
                         <td>
                             <div align="center">
                                 <a class="btn btn-warning btn-sm" role="button"
-                                    href="staff_edit.php<?php echo $row_staff['']; ?>?id=<?php echo $row_staff['staff_id']; ?>">แก้ไข</a>
-                                <a class="btn btn-danger btn-sm" role="button"
-                                    href="staff_del.php?id=<?php echo $row_staff['staff_id']; ?>?staff_id=<?php echo $row_staff['staff_id']; ?>"
-                                    onclick="return confirm('ยืนยันที่จะลบข้อมูลหรือไม่ ?')">ลบ</a>
+                                    href="staff_edit.php?id=<?php echo $row_staff['staff_id']; ?>">แก้ไข</a>
+                                <button class="btn btn-danger btn-sm" role="button"
+                                    onclick="myFunction(<?php echo $row_staff['staff_id']; ?>)">ลบ</button>
+
+                                <script>
+                                function myFunction(id) {
+                                    Swal.fire({
+                                        title: 'Are you sure?',
+                                        text: "You won't be able to revert this!",
+                                        icon: 'warning',
+                                        showCancelButton: true,
+                                        confirmButtonColor: '#3085d6',
+                                        cancelButtonColor: '#d33',
+                                        confirmButtonText: 'Yes, delete it!'
+                                    }).then((result) => {
+                                        if (result.value) {
+                                            window.location.href = "staff_del.php?id=" + id
+                                        }
+                                    })
+                                }
+                                </script>
                             </div>
                         </td>
                     </tr>
@@ -204,6 +236,7 @@ if($_GET["textfield"] != ""){
 
             </table>
         </div>
+        <?php }?>
 
 
         <!-- Modal -->
@@ -262,8 +295,8 @@ if($_GET["textfield"] != ""){
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                            <button class="btn btn-success">บันทึก</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
+                            <button class="btn btn-primary">บันทึก</button>
                         </div>
                     </form>
                 </div>

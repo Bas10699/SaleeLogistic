@@ -38,25 +38,6 @@ if (isset($_SERVER['QUERY_STRING'])) {
   $editFormAction .= "?" . htmlentities($_SERVER['QUERY_STRING']);
 }
 
-if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form1")) {
-  $updateSQL = sprintf("UPDATE tb_staff SET staff_name=%s, staff_lastname=%s, staff_card=%s, staff_position=%s, staff_tel=%s WHERE staff_id=%s",
-                       GetSQLValueString($_POST['staff_name'], "text"),
-                       GetSQLValueString($_POST['staff_lastname'], "text"),
-                       GetSQLValueString($_POST['staff_card'], "text"),
-                       GetSQLValueString($_POST['staff_position'], "text"),
-                       GetSQLValueString($_POST['staff_tel'], "text"),
-                       GetSQLValueString($_POST['staff_id'], "int"));
-
-  mysql_select_db($database_myconnect, $myconnect);
-  $Result1 = mysql_query($updateSQL, $myconnect) or die(mysql_error());
-
-  $updateGoTo = "staff_show.php";
-  if (isset($_SERVER['QUERY_STRING'])) {
-    $updateGoTo .= (strpos($updateGoTo, '?')) ? "&" : "?";
-    $updateGoTo .= $_SERVER['QUERY_STRING'];
-  }
-  header(sprintf("Location: %s", $updateGoTo));
-}
 
 if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form1")) {
   $updateSQL = sprintf("UPDATE tb_staff SET staff_name=%s, staff_lastname=%s, staff_card=%s, staff_position=%s, staff_tel=%s WHERE staff_id=%s",
@@ -70,12 +51,18 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form1")) {
   mysql_select_db($database_myconnect, $myconnect);
   $Result1 = mysql_query($updateSQL, $myconnect) or die(mysql_error());
 
-  $updateGoTo = "staff_show.php";
-  if (isset($_SERVER['QUERY_STRING'])) {
-    $updateGoTo .= (strpos($updateGoTo, '?')) ? "&" : "?";
-    $updateGoTo .= $_SERVER['QUERY_STRING'];
-  }
-  header(sprintf("Location: %s", $updateGoTo));
+  echo '<script type="text/javascript">
+  Swal.fire({
+      title: "แก้ไขข้อมูลเรียบร้อย",
+      icon: "success",
+      showConfirmButton: false,
+      timer: 1500
+    }).then(()=> window.location.href="staff_show.php")
+  </script>';
+
+  // $updateGoTo = "staff_show.php";
+ 
+  // header(sprintf("Location: %s", $updateGoTo));
 }
 
 $colname_staff = "-1";

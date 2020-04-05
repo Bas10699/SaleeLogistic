@@ -2,7 +2,7 @@
 Nevbar();
 require_once('Connections/myconnect.php');
 
-$id = $_GET["id"];
+$id = isset($_GET["id"]) ? $_GET["id"] : '';
 
 
 ?>
@@ -68,7 +68,7 @@ $id = $_GET["id"];
                 <label for="usr">เลขที่ใบส่งของ:</label>
                 <div class="row">
                     <div class="col-sm-3">
-                        <input type="text" class="form-control" id="usr" name="id" value="<?php echo $_GET["id"];?>" />
+                        <input type="text" class="form-control" id="usr" name="id" value="<?php echo $id;?>" />
                     </div>
                     <div class="col-sm-1">
                         <button class="btn btn-primary">ค้นหา</button>
@@ -79,13 +79,13 @@ $id = $_GET["id"];
         <div class=row>
             <div class=col-sm-6>
                 <?php
-if($_GET["id"]){
+if($id ){
     mysql_select_db($database_myconnect, $myconnect);
-  $query_payment = "SELECT * FROM `tb_inv_wb` 
+  $query_payment = "SELECT * FROM `tb_inv_wb`
                     INNER JOIN tb_waybill 
                     ON tb_waybill.wb_id=tb_inv_wb.tiw_wb_id 
                     INNER JOIN tb_customer
-                    ON tb_customer.cus_id=tb_waybill.	customer_id
+                    ON tb_customer.cus_id=tb_waybill.customer_id
                     WHERE tiw_id=$id";
   $PaymentDetail = mysql_query($query_payment, $myconnect) or die(mysql_error());
   $PaymentDetailID = mysql_fetch_assoc($PaymentDetail);
@@ -107,7 +107,7 @@ else{
                         <div class=row>
                             <div class="col-sm-8"></div>
                             <div class="col-sm-4">
-                                <div>ใบส่งของเลขที่ <?php echo $_GET["id"] ?> </div>
+                                <div>ใบส่งของเลขที่ <?php echo $id ?> </div>
                                 <div>วันที่ <?php echo date_format(date_create($PaymentDetailID['tiw_date']),"d/m/Y") ?>
                                 </div>
                             </div>
@@ -122,17 +122,28 @@ else{
                                 <div>ยอดเงินที่ชำระแล้ว: <?php echo $PaymentDetailID['tiw_money'] ?></div>
                                 <br />
                             </div>
+                            <?php if($PaymentDetailID['wb_money'] <= $PaymentDetailID['tiw_money']){
+echo '<div class="col-sm-4">
+<label for="money">จำนวนเงินที่ได้รับ:</label>
+    <p class="text-success">ได้รับเงินครบตามจำนวนแล้ว</p>
+                        </div>';
+                        }else{
+                        ?>
                             <div class="col-sm-4">
                                 <label for="money">จำนวนเงินที่ได้รับ:</label>
                                 <form action="payment_update.php" method="post">
-                                    <input type="hidden" name="id" id="id" value="<?php echo $PaymentDetailID['tiw_id']?>"/>
-                                    <input type="hidden" name="wb_money" id="wb_money" value="<?php echo $PaymentDetailID['wb_money'] ?>"/>
-                                    <input type="hidden" name="tiw_money" id="tiw_money" value="<?php echo $PaymentDetailID['tiw_money']?>"/>
+                                    <input type="hidden" name="id" id="id"
+                                        value="<?php echo $PaymentDetailID['tiw_id']?>" />
+                                    <input type="hidden" name="wb_money" id="wb_money"
+                                        value="<?php echo $PaymentDetailID['wb_money'] ?>" />
+                                    <input type="hidden" name="tiw_money" id="tiw_money"
+                                        value="<?php echo $PaymentDetailID['tiw_money']?>" />
                                     <input type="number" class="form-control" id="money" name="money" />
                                     <br />
                                     <button class="btn btn-success float-right">ตกลง</button>
                                 </form>
                             </div>
+                            <?php } ?>
                         </div>
                         <br />
 
@@ -152,11 +163,10 @@ else{
                 </div>
 
                 <?php }
-                $query_payment_all = "SELECT * FROM `tb_inv_wb` 
+                mysql_select_db($database_myconnect, $myconnect);
+                $query_payment_all = "SELECT * FROM tb_inv_wb
                 INNER JOIN tb_waybill 
-                ON tb_waybill.wb_id=tb_inv_wb.tiw_wb_id 
-                INNER JOIN tb_customer
-                ON tb_customer.cus_id=tb_waybill.customer_id
+                ON tb_waybill.wb_id=tb_inv_wb.tiw_wb_id
                 ORDER BY tiw_payment_status ASC";
                 $PaymentDetailAll = mysql_query($query_payment_all, $myconnect) or die(mysql_error());
 ?>

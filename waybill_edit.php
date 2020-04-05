@@ -23,6 +23,7 @@ function Editdata($row_waybill,$customer){
             </div>
               <tr valign="baseline">
                 <td nowrap="nowrap" align="right">รหัสใบส่งของ:</td>
+                <input type="hidden" name="wb_id" id="wb_id" value='<?php echo $row_waybill['wb_id']; ?>'/>
                 <td><input name="wb_id_set" id="wb_id_set" value='<?php echo $row_waybill['wb_id_set']; ?>' disabled/>
                 <input type="hidden" name="wb_id_set" id="wb_id_set" value='<?php echo $row_waybill['wb_id_set']; ?>' />
                 <input type="hidden" name="wb_id" id="wb_id" value='<?php echo $_GET['id']; ?>' /></td>
@@ -42,7 +43,7 @@ function Editdata($row_waybill,$customer){
                       <option value=<?php echo $row_waybill["cus_id"]; ?> selected><?php echo $row_waybill['cus_compan']; ?></option>
                      <?php while($row_customer = mysql_fetch_array($customer)) { ?>
                        <option value=<?php echo $row_customer["cus_id"]; ?>><?php echo $row_customer["cus_compan"]; ?></option>
-                     <? } ?>
+                     <?php } ?>
                     </select>
                    </td> 
               </tr>

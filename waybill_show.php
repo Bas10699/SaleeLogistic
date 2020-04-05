@@ -48,7 +48,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 //   $waybill = mysql_query($strSQL, $myconnect) or die(mysql_error());
 //   $row_waybill = mysql_fetch_assoc($waybill);
 // }
-  
+$txtSearch = isset($_GET["txtKeyword"]) ? $_GET["txtKeyword"] : '';
 
 mysql_select_db($database_myconnect, $myconnect);
 $query_waybill = "SELECT * FROM tb_waybill 
@@ -56,7 +56,7 @@ LEFT JOIN tb_customer
 ON tb_waybill.customer_id = tb_customer.cus_id 
 LEFT JOIN tb_car
 ON tb_waybill.car_id = tb_car.car_id
-WHERE (tb_customer.cus_sub LIKE '%".$_GET["txtKeyword"]."%' or tb_customer.cus_area LIKE '%".$_GET["txtKeyword"]."%' or cus_compan LIKE '%".$_GET["txtKeyword"]."%' or wb_payment LIKE '%".$_GET["txtKeyword"]."%' )
+WHERE (tb_customer.cus_sub LIKE '%".$txtSearch."%' or tb_customer.cus_area LIKE '%".$txtSearch."%' or cus_compan LIKE '%".$txtSearch."%' or wb_payment LIKE '%".$txtSearch."%' )
 ORDER BY wb_id";
 $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
 
@@ -78,7 +78,7 @@ $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
             <div class="col-sm-8">
                 <form name="frmSearch" method="get" action="<?php echo $_SERVER['SCRIPT_NAME'];?>">
 
-                    <input name="txtKeyword" type="text" id="txtKeyword" value="<?php echo $_GET["txtKeyword"];?>">
+                    <input name="txtKeyword" type="text" id="txtKeyword" value="<?php echo $txtSearch;?>">
                     <button type="submit"><i class="fa fa-search"></i></button>
                     <!-- <label for="select2"></label>
                     <select name="dd_input" id="select2">
@@ -154,7 +154,7 @@ $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
                         </td>
 
                     </tr>
-                    <? } ?>
+                    <?php } ?>
                 </tbody>
             </table>
         </div>

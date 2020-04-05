@@ -36,6 +36,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
+$txtSearch = isset($_GET["txtKeyword"]) ? $_GET["txtKeyword"] : '';
 
 mysql_select_db($database_myconnect, $myconnect);
 $query_waybill = "SELECT * FROM tb_waybill 
@@ -43,7 +44,7 @@ LEFT JOIN tb_customer
 ON tb_waybill.customer_id = tb_customer.cus_id 
 LEFT JOIN tb_car
 ON tb_waybill.car_id = tb_car.car_id
-WHERE tb_inv_status=0 and (tb_customer.cus_sub LIKE '%".$_GET["txtKeyword"]."%' or cus_compan LIKE '%".$_GET["txtKeyword"]."%' or tb_customer.cus_area LIKE '%".$_GET["txtKeyword"]."%' or wb_payment LIKE '%".$_GET["txtKeyword"]."%' )
+WHERE tb_inv_status=0 and (tb_customer.cus_sub LIKE '%".$txtSearch."%' or cus_compan LIKE '%".$txtSearch."%' or tb_customer.cus_area LIKE '%".$txtSearch."%' or wb_payment LIKE '%".$txtSearch."%' )
 ORDER BY wb_id";
 $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
 
@@ -87,7 +88,7 @@ $staffId = mysql_query($query_staff, $myconnect) or die(mysql_error());
             <div class="col-sm-6">
 
                 <form name="frmSearch" method="get" action="<?php echo $_SERVER['SCRIPT_NAME'];?>">
-                    <input name="txtKeyword" type="text" id="txtKeyword" value="<?php echo $_GET["txtKeyword"];?>">
+                    <input name="txtKeyword" type="text" id="txtKeyword" value="<?php echo $txtSearch;?>">
                     <button type="submit"><i class="fa fa-search"></i></button>
 
                     <!-- <label for="select2"></label>
@@ -109,7 +110,7 @@ $staffId = mysql_query($query_staff, $myconnect) or die(mysql_error());
                         <?php while($row_carId = mysql_fetch_array($carId)) { ?>
                         <option value="<?php echo $row_carId['car_id']; ?>"> <?php echo $row_carId['car_register']; ?>
                         </option>
-                        <? } ?>
+                        <?php } ?>
                     </select>
 
                     <select name="staff_id" id="staff_id">
@@ -118,7 +119,7 @@ $staffId = mysql_query($query_staff, $myconnect) or die(mysql_error());
                         <option value="<?php echo $row_staffId['staff_id']; ?>">
                             <?php echo $row_staffId['staff_title_name']; ?><?php echo $row_staffId['staff_name']; ?>
                             <?php echo $row_staffId['staff_lastname']; ?> </option>
-                        <? } ?>
+                        <?php } ?>
                     </select>
 
                     <button class="btn btn-info">ตรวจสอบใบส่งสินค้า</button>
@@ -196,7 +197,7 @@ $staffId = mysql_query($query_staff, $myconnect) or die(mysql_error());
                         </td>
 
                     </tr>
-                    <? } mysql_free_result($waybill); ?>
+                    <?php } mysql_free_result($waybill); ?>
                 </tbody>
             </table>
 

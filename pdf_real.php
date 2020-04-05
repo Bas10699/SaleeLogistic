@@ -96,6 +96,7 @@
             $pdf->Cell(30,10,iconv( 'UTF-8','TIS-620','หมายเหตุ'),1,0,"C");
             $pdf->Ln();
             
+            $i = 0;
         while($row_data_inv = mysql_fetch_array($data_inv)) { 
             $i++;
             

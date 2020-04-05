@@ -38,11 +38,12 @@ if ((isset($_GET['id'])) && ($_GET['id'] != "")) {
   mysql_select_db($database_myconnect, $myconnect);
   $Result1 = mysql_query($deleteSQL, $myconnect) or die(mysql_error());
 
-  $deleteGoTo = "customer_show.php?id=" . $row_Recordset1['cus_id'] . "";
-  if (isset($_SERVER['QUERY_STRING'])) {
-    $deleteGoTo .= (strpos($deleteGoTo, '?')) ? "&" : "?";
-    $deleteGoTo .= $_SERVER['QUERY_STRING'];
-  }
+  $deleteGoTo = "customer_show.php";
+
+  // if (isset($_SERVER['QUERY_STRING'])) {
+  //   $deleteGoTo .= (strpos($deleteGoTo, '?')) ? "&" : "?";
+  //   $deleteGoTo .= $_SERVER['QUERY_STRING'];
+  // }
   header(sprintf("Location: %s", $deleteGoTo));
 }
 ?>

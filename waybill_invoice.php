@@ -69,14 +69,14 @@ function validateForm() {
               <option selected disabled hidden>กรุณาเลือกทะเบียนรถ</option>
               <?php while($row_carId = mysql_fetch_array($carId)) { ?>
                 <option value="<?php echo $row_carId['car_id']; ?>"> <?php echo $row_carId['car_register']; ?> </option>
-              <? } ?>
+              <?php } ?>
               </select>
 
               <select name="staff_id" id="staff_id">
               <option selected disabled hidden>กรุณาเลือกพนักงานขับรถ</option>
               <?php while($row_staffId = mysql_fetch_array($staffId)) { ?>
                 <option value="<?php echo $row_staffId['staff_id']; ?>"><?php echo $row_staffId['staff_title_name']; ?><?php echo $row_staffId['staff_name']; ?> <?php echo $row_staffId['staff_lastname']; ?> </option>
-              <? } ?>
+              <?php } ?>
               </select>
 
               <button type="submit" class="btnsh">แสดง</button>
@@ -110,7 +110,7 @@ function validateForm() {
                   <td></td>
                    
                   </tr>
-                <? $sum +=$row_waybill['wb_money']; } ?>
+                <?php $sum +=$row_waybill['wb_money']; } ?>
                   <tr>
                   <td colspan="5">
                   <div align="center">รวมเงินทั้งหมด</div>

@@ -32,10 +32,8 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-if(!$_COOKIE["UserName"]){
-
-}
-else{
+$cookUserName = isset($_COOKIE["UserName"]) ? $_COOKIE["UserName"] : '';
+if($cookUserName != ""){
   header("Location: indexhome.php" );
 }
 

@@ -1,5 +1,4 @@
-<?php require_once('nevbar.php');
-Nevbar(); ?>
+
 <?php require_once('Connections/myconnect.php'); ?>
 <?php
 if (!function_exists("GetSQLValueString")) {
@@ -33,12 +32,12 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
-$editFormAction = $_SERVER['PHP_SELF'];
-if (isset($_SERVER['QUERY_STRING'])) {
-  $editFormAction .= "?" . htmlentities($_SERVER['QUERY_STRING']);
-}
+// $editFormAction = $_SERVER['PHP_SELF'];
+// if (isset($_SERVER['QUERY_STRING'])) {
+//   $editFormAction .= "?" . htmlentities($_SERVER['QUERY_STRING']);
+// }
 
-if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
+// if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
   $insertSQL = sprintf("INSERT INTO tb_customer (  cus_compan, cus_house, cus_vill, cus_sub, cus_area, cus_pro, cus_pos, cus_tle) VALUES ( %s, %s, %s, %s, %s, %s, %s, %s)",
                        GetSQLValueString($_POST['cus_compan'], "text"),
                        GetSQLValueString($_POST['cus_hose'], "text"),
@@ -62,21 +61,19 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
   mysql_select_db($database_myconnect, $myconnect);
   $Result2 = mysql_query($insertSQL1, $myconnect) or die(mysql_error());
 
-  $insertGoTo = "customer_show.php";
-  if (isset($_SERVER['QUERY_STRING'])) {
-    $insertGoTo .= (strpos($insertGoTo, '?')) ? "&" : "?";
-    $insertGoTo .= $_SERVER['QUERY_STRING'];
-  }
-  header(sprintf("Location: %s", $insertGoTo));
-}
+  // $insertGoTo = "customer_show.php";
+  // if (isset($_SERVER['QUERY_STRING'])) {
+  //   $insertGoTo .= (strpos($insertGoTo, '?')) ? "&" : "?";
+  //   $insertGoTo .= $_SERVER['QUERY_STRING'];
+  // }
+  // header("Location: customer_show.php");
+  echo '<script type="text/javascript">
+  window.location.href="customer_show.php"
+  </script>';
+// }
 
-mysql_select_db($database_myconnect, $myconnect);
-$query_customer = "SELECT * FROM tb_customer";
-$customer = mysql_query($query_customer, $myconnect) or die(mysql_error());
-$row_customer = mysql_fetch_assoc($customer);
-$totalRows_customer = mysql_num_rows($customer);
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <STYLE type=text/css>
@@ -88,11 +85,6 @@ A:hover {COLOR: #FFFFFF; TEXT-DECORATION: underline}
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>เพิ่มข้อมูลลูกค้า</title>
 
-<script type="text/javascript">
-function MM_popupMsg(msg) { //v1.0
-  alert(msg);
-}
-</script>
 </head>
 
 <body>
@@ -111,16 +103,6 @@ function MM_popupMsg(msg) { //v1.0
         <table width="774" border="1">
           <tr>
             <td width="712" ><table width="721" border="0" align="center">
-              <tr>
-                <!-- <td width="98" height="33" ><div align="left">รหัสลูกค้า :</div></td>
-                <td width="232" ><label>
-                  <input name="customer_id" type="text"  id="customer_id" style="background-color:#CCC" />
-                  </label></td> -->
-                <!-- <td width="205" ><div align="left">เลขประจำตัวผู้เสียภาษี :</div></td>
-                <td width="168" ><label>
-                  <input name="cus_tin" type="text" id="cus_tin" maxlength="13" />
-                  </label></td>
-                </tr> -->
               <tr>
                 <td ><div align="left">ชื่อบริษัท :</div></td>
                 <td ><input type="text" name="cus_compan" id="cus_compan" /></td>
@@ -267,7 +249,4 @@ function MM_popupMsg(msg) { //v1.0
   </tr>
 </table>
 </body>
-</html>
-<?php
-mysql_free_result($customer);
-?>
+</html> -->
