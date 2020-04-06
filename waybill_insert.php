@@ -168,7 +168,7 @@ a:active {
                         <option selected disabled hidden>--กรุณาเลือก--</option>
                      <?php while($row_customer = mysql_fetch_array($customer)) { ?>
                        <option value=<?php echo $row_customer["cus_id"]; ?>><?php echo $row_customer["cus_compan"]; ?></option>
-                     <? } ?>
+                     <?php } ?>
                     </select>
                     
                     </td>

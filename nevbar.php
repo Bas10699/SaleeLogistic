@@ -60,17 +60,19 @@
                 <li class="nav-item ">
                     <a class="nav-link" href="payment.php">การจัดการการชำระเงิน</a>
                 </li>
-                <li class="nav-item dropdown ">
+                <li class="nav-item ">
+                    <a class="nav-link" href="report.php">รายงานสรุปยอด</a>
+                </li>
+                <!-- <li class="nav-item dropdown ">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         รายงานสรุปยอด
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <!-- <a class="dropdown-item" href="report.php">รายงานค้างส่ง</a> -->
                         <a class="dropdown-item" href=report.php>รายงานค้างชำระ</a>
                         <a class="dropdown-item" href=report.php>รายงานส่งสินค้าแล้ว</a>
                     </div>
-                </li>
+                </li> -->
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="nav-item active"><a class="nav-link" href="#">
