@@ -154,10 +154,7 @@ $staffId = mysql_query($query_staff, $myconnect) or die(mysql_error());
                         <th>
                             <div align="center">ยอดเงินค่าขนส่ง</div>
                         </th>
-                        <!-- <th ><div align="center">สถานะการชำระเงิน</div></th> -->
-                        <th>
-                            <div align="center">จัดการ</div>
-                        </th>
+                        
                     </tr>
                 </thead>
                 <tbody>
@@ -186,15 +183,7 @@ $staffId = mysql_query($query_staff, $myconnect) or die(mysql_error());
                         <td>
                             <div align="center"><?php echo $row_waybill['wb_money']; ?></div>
                         </td>
-                        <!-- <td><div ><?php echo $row_waybill['wb_payment']; ?></td> -->
-
-                        <td>
-                            <div align="center">
-                                <!-- <a class="buttondetail" href="waybill_detail.php?id=<?php echo $row_waybill['wb_id']; ?>" >รายละเอียด</a> -->
-                                <a class="btn btn-danger btn-sm" role="button"
-                                    href="waybill_del.php?id=<?php echo $row_waybill['wb_id']; ?>?staff_id=<?php echo $row_waybill['waybill_id']; ?>"
-                                    onclick="return confirm('ยืนยันที่จะลบข้อมูลหรือไม่ ?')">ลบ</a>
-                        </td>
+                        
 
                     </tr>
                     <?php } mysql_free_result($waybill); ?>

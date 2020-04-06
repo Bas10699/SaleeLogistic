@@ -1,4 +1,5 @@
 <?php require_once('nevbar.php');
+ob_start();
 Nevbar(); ?>
 <?php require_once('Connections/myconnect.php'); ?>
 <?php require_once('upload.php'); ?>
@@ -71,10 +72,10 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
   $Result2 = mysql_query($insertSQL1, $myconnect) or die(mysql_error());
 
   $insertGoTo = "waybill_show.php";
-  if (isset($_SERVER['QUERY_STRING'])) {
-    $insertGoTo .= (strpos($insertGoTo, '?')) ? "&" : "?";
-    $insertGoTo .= $_SERVER['QUERY_STRING'];
-  }
+  // if (isset($_SERVER['QUERY_STRING'])) {
+  //   $insertGoTo .= (strpos($insertGoTo, '?')) ? "&" : "?";
+  //   $insertGoTo .= $_SERVER['QUERY_STRING'];
+  // }
   header(sprintf("Location: %s", $insertGoTo));
   // echo "<script>window.location.herf='/waybill_show.php'</script>";
 }
@@ -100,19 +101,7 @@ A:hover {
 	COLOR: #FFFFFF;
 	TEXT-DECORATION: none
 }
-</STYLE>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>เพิ่มใบรับ-ส่งสินค้า</title>
-<style type="text/css">
-.หัวข้อ {
-	font-family: "angsana New";
-	font-size: 30px;
-	color: #FF0;
-}
-a:active {
-	text-decoration: none;
-}
-</style>
+
 </head>
 
 <body>

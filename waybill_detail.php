@@ -126,7 +126,7 @@ $customer = mysql_query($query_customer, $myconnect) or die(mysql_error());
                                     </div>
                                     <hr />
                                     <div class="row">
-                                        <lable class="col-sm-3">เลมที่:</lable>
+                                        <lable class="col-sm-3">เล่มที่:</lable>
                                         <div class="col-sm-9">
                                             <b><?php echo $row_waybill['wb_nbook']; ?></b>
                                         </div>
