@@ -83,132 +83,123 @@ $query_customer = "SELECT cus_id ,cus_compan FROM tb_customer";
 $customer = mysql_query($query_customer, $myconnect) or die(mysql_error());
 
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
-<STYLE type=text/css>
-A:link {COLOR: #FFFFFF; TEXT-DECORATION: none}
-A:visited {COLOR: #FFFF00; TEXT-DECORATION: none}
-A:hover {
-	COLOR: #FFFFFF;
-	TEXT-DECORATION: none
-}
-</STYLE>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>รายละเอียดใบรับ-ส่งสินค้า</title>
-<style type="text/css">
-.หัวข้อ {
-	font-family: "angsana New";
-	font-size: 30px;
-	color: #FF0;
-}
-a:active {
-	text-decoration: none;
-}
-</style>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>รายละเอียดใบรับ-ส่งสินค้า</title>
+    <link rel="stylesheet" href="css/custom.css" />
 </head>
 
 <body>
-<table width="100%" height="477" align="center">
-  
-  <tr>
-    <td colspan="6">&nbsp;</td>
-  </tr>
- 
-  <tr>
-    <td height="22" colspan="6"><h2 align="center">รายละเอียดใบรับสินค้า</h2></td>
-  </tr>
-  <tr>
-    <td height="27" colspan="6">
-    <!-- <form method="POST" name="form1" id="form1" action="<?php echo $editFormAction; ?>"> -->
-      <div align="center">
-      <div id="hide">
-        <table  width="525" border="1">
-    
-            <td><table width="519" align="center">
-            <div align="center">
-             <img src="picture/<?php echo $row_waybill['wb_img']; ?>" width="100" height="150"/>
-            </div> 
-              <tr valign="baseline">
-                <td nowrap="nowrap" align="right">รหัสใบส่งของ:</td>
-                <td><?php echo $row_waybill['wb_id_set']; ?></td>
-              </tr>
-              <tr valign="baseline">
-                <td nowrap="nowrap" align="right">เลขที่ใบรับส่งสินค้า:</td>
-                <td><?php echo $row_waybill['wb_nber']; ?></td>
-              </tr>
-              <tr valign="baseline">
-                <td nowrap="nowrap" align="right">เลมที่:</td>
-                <td><?php echo $row_waybill['wb_nbook']; ?></td>
-              </tr>
-              <tr valign="baseline">
-                <td nowrap="nowrap" align="right">ชื่อบริษัท:</td>
-                <td><?php echo $row_waybill['cus_compan']; ?></td>
-              </tr>
-              <tr valign="baseline">
-                <td nowrap="nowrap" align="right">วันที่:</td>
-                <td><?php echo date('d/m/Y');?></td>
-              </tr>
-              <tr valign="baseline">
-                <td nowrap="nowrap" align="right">ยอดเงินค่าขนส่ง:</td>
-                <td><?php echo $row_waybill['wb_money']; ?></td>
-              </tr>
-              <!-- <tr valign="baseline">
-                <td nowrap="nowrap" align="right">สถานะการชำระเงิน:</td>
-                <td><?php echo $row_waybill['wb_payment']; ?></td>
-              </tr> -->
-              <!-- <tr valign="baseline">
-                <td nowrap="nowrap" align="right">รูปภาพ:</td>
-                <td><input type="file" name="wb_img" value="" size="32" /></td>
-              </tr> -->
-              <tr valign="baseline">
-                <td colspan="2" align="right" nowrap="nowrap"><div align="center">
-                
+    <div class="container">
+        <br />
+        <h2>รายละเอียดใบรับสินค้า</h2>
+        <br />
+        <div id="hide">
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-10">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <img src="picture/<?php echo $row_waybill['wb_img']; ?>" class="img-fluid"
+                                        width="460" height="345">
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class="row">
+                                        <lable class="col-sm-3">รหัสใบส่งของ:</lable>
+                                        <div class="col-sm-9">
+                                            <b><?php echo $row_waybill['wb_id_set']; ?></b>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="row">
+                                        <lable class="col-sm-3">เลขที่ใบรับส่งสินค้า:</lable>
+                                        <div class="col-sm-9">
+                                            <b><?php echo $row_waybill['wb_nber']; ?></b>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="row">
+                                        <lable class="col-sm-3">เลมที่:</lable>
+                                        <div class="col-sm-9">
+                                            <b><?php echo $row_waybill['wb_nbook']; ?></b>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="row">
+                                        <lable class="col-sm-3">ชื่อบริษัท:</lable>
+                                        <div class="col-sm-9">
+                                            <b><?php echo $row_waybill['cus_compan']; ?></b>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="row">
+                                        <lable class="col-sm-3">วันที่:</lable>
+                                        <div class="col-sm-9">
+                                            <b><?php echo date('d/m/Y');?></b>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="row">
+                                        <lable class="col-sm-3">ยอดเงินค่าขนส่ง:</lable>
+                                        <div class="col-sm-9">
+                                            <b><?php echo $row_waybill['wb_money']; ?></b>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <tr valign="baseline">
+                                        <td colspan="2" align="right" nowrap="nowrap">
+                                            <div align="center">
+
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <br />
+                                    <div class="float-right">
+                                        <button class="btn btn-warning" onclick="editdata()">แก้ไขข้อมูล</button>
+                                        <button class="btn "onclick="window.location.href='waybill_show.php'">ย้อนกลับ</button>
+                                    </div>
+                                    <br />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                </td>
-              </tr>
-            </table>
-              <div align="center"></div></td>
-          </tr>
-          </tr>
-        </table>
-        <br/>
-        <button onclick="editdata()">แก้ไขข้อมูล</button>
-        <button onclick="window.location.href='waybill_show.php'">ย้อนกลับ</button>
+                <div class="col-sm-1"></div>
+            </div>
         </div>
-        <br/>
-        <div id='show' style="display:none;"  >
-        <?php Editdata($row_waybill,$customer); ?>
-        <button onclick="editdata()">ยกเลิก</button>
+        <div id='show' style="display:none;">
+            <?php Editdata($row_waybill,$customer); ?>
+            <!-- <button onclick="editdata()">ยกเลิก</button> -->
         </div>
-        
-        
-                    <script>
-                        function editdata() {
-                          var hide = document.getElementById("hide");
-                               if (hide.style.display === "none") {
-                                hide.style.display = "block";
-                               } else {
-                                hide.style.display = "none";
-                               }
-                           var show = document.getElementById("show");
-                            if (show.style.display === "none") {
-                              show.style.display = "block";
-                           } else {
-                            show.style.display = "none";
-                            }
-                        
-                        }
-                    </script>
-      </div>
-      <input type="hidden" name="MM_update" value="form1" />
-    <!-- </form> -->
-    </td>
-  </tr>
-  <tr>
-    <td colspan="6"><p>&nbsp;</p>
-    <p>&nbsp;</p></td>
-  </tr>
-</table>
+
+
+        <script>
+        function editdata() {
+            var hide = document.getElementById("hide");
+            if (hide.style.display === "none") {
+                hide.style.display = "block";
+            } else {
+                hide.style.display = "none";
+            }
+            var show = document.getElementById("show");
+            if (show.style.display === "none") {
+                show.style.display = "block";
+            } else {
+                show.style.display = "none";
+            }
+
+        }
+        </script>
+
+    </div>
 </body>
+
 </html>
