@@ -5,15 +5,6 @@ Nevbar(); ?>
 
 <?php
 
-mysql_select_db($database_myconnect, $myconnect);
-$query_waybill = "SELECT * FROM tb_waybill 
-LEFT JOIN tb_customer 
-ON tb_waybill.customer_id = tb_customer.cus_id 
-LEFT JOIN tb_car
-ON tb_waybill.car_id = tb_car.car_id
-WHERE (tb_customer.cus_sub LIKE '%".$_GET["txtKeyword"]."%' or tb_customer.cus_area LIKE '%".$_GET["txtKeyword"]."%' or wb_payment LIKE '%".$_GET["txtKeyword"]."%' )
-ORDER BY wb_id";
-$waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -38,6 +29,3 @@ $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
 </table>
 </body>
 </html>
-<?php
-mysql_free_result($waybill);
-?>
