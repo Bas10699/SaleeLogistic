@@ -107,7 +107,7 @@ $customer = mysql_query($query_customer, $myconnect) or die(mysql_error());
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <img src="picture/<?php echo $row_waybill['wb_img']; ?>" class="img-fluid"
+                                    <img src="picture/<?php echo $row_waybill['wb_img']."?v=".date("YmdHis"); ?>" class="img-fluid"
                                         width="460" height="345">
                                 </div>
                                 <div class="col-sm-9">

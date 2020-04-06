@@ -72,10 +72,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
   $Result2 = mysql_query($insertSQL1, $myconnect) or die(mysql_error());
 
   $insertGoTo = "waybill_show.php";
-  // if (isset($_SERVER['QUERY_STRING'])) {
-  //   $insertGoTo .= (strpos($insertGoTo, '?')) ? "&" : "?";
-  //   $insertGoTo .= $_SERVER['QUERY_STRING'];
-  // }
+
   header(sprintf("Location: %s", $insertGoTo));
   // echo "<script>window.location.herf='/waybill_show.php'</script>";
 }
@@ -94,13 +91,9 @@ $customer = mysql_query($query_customer, $myconnect) or die(mysql_error());
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<STYLE type=text/css>
-A:link {COLOR: #FFFFFF; TEXT-DECORATION: none}
-A:visited {COLOR: #FFFF00; TEXT-DECORATION: none}
-A:hover {
-	COLOR: #FFFFFF;
-	TEXT-DECORATION: none
-}
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>เพิ่มใบรับ-ส่งสินค้า</title>
 
 </head>
 

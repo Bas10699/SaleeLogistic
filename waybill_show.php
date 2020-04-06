@@ -68,27 +68,18 @@ $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
 <head>
     <title>ใบรับสินค้า</title>
     <link rel="stylesheet" href="css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+
+
 </head>
 
 <body>
     <div class="container">
         <br />
-        <h2 align="center">ใบรับสินค้า</h2>
         <div class="row">
             <div class="col-sm-8">
-                <form name="frmSearch" method="get" action="<?php echo $_SERVER['SCRIPT_NAME'];?>">
-
-                    <input name="txtKeyword" type="text" id="txtKeyword" value="<?php echo $txtSearch;?>">
-                    <button type="submit"><i class="fa fa-search"></i></button>
-                    <!-- <label for="select2"></label>
-                    <select name="dd_input" id="select2">
-                        <option value="All">ทั้งหมด</option>
-                        <option value="cus_compan">ชื่อบริษัท</option>
-                        <option value="cus_sub">ตำบล</option>
-                        <option value="wb_payment">ชำระแล้ว</option>
-                    </select> -->
-
-                </form>
+                <h2 align="center">ใบรับสินค้า</h2>
             </div>
             <div class="col-sm-4 ">
                 <div class="float-right"><a class="btn btn-info" href="waybill_insert.php">เพิ่มเอกสาร</a></button>
@@ -97,7 +88,7 @@ $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
         </div>
         <br />
         <div class="table-responsive">
-            <table class="table table-hover table-sm">
+            <table id="example" class="table table-hover table-sm">
                 <thead class="thead-dark">
                     <tr>
                         <!-- <th ><div> </div></th> -->
@@ -158,6 +149,17 @@ $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
                 </tbody>
             </table>
         </div>
+        <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.3.1.js">
+        </script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js">
+        </script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js">
+        </script>
+        <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        });
+        </script>
 </body>
 
 </html>

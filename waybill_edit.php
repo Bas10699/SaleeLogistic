@@ -22,7 +22,7 @@ function Editdata($row_waybill,$customer){
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-3">
-                                <img id="photo_profile" src="picture/<?php echo $row_waybill['wb_img']; ?>"
+                                <img id="photo_profile" src="picture/<?php echo $row_waybill['wb_img']."?v=".date("YmdHis"); ?>"
                                     class="img-fluid" width="460" height="345" />
                                 <input type="file" name="wb_img" id="wb_img" class="form-control-file border"
                                     onChange="readURL(this);" value='<?php echo $row_waybill['wb_img']; ?>' size="32" />
