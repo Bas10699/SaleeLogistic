@@ -61,8 +61,11 @@ $staffId = mysql_query($query_staff, $myconnect) or die(mysql_error());
 
 <head>
     <title>ใบส่งสินค้า</title>
-    <link rel="stylesheet" href="css/custom.css" />
 
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="css/custom.css" />
     <script>
     function validateForm() {
         var x = document.forms["myForm"]["car_id"].value;
@@ -83,22 +86,11 @@ $staffId = mysql_query($query_staff, $myconnect) or die(mysql_error());
 <body>
     <div class="container">
         <br />
-        <h2 align="center">ใบส่งสินค้า</h2>
+
         <div class="row">
             <div class="col-sm-6">
 
-                <form name="frmSearch" method="get" action="<?php echo $_SERVER['SCRIPT_NAME'];?>">
-                    <input name="txtKeyword" type="text" id="txtKeyword" value="<?php echo $txtSearch;?>">
-                    <button type="submit"><i class="fa fa-search"></i></button>
-
-                    <!-- <label for="select2"></label>
-                    <select name="dd_input" id="select2">
-                        <option value="All">ทั้งหมด</option>
-                        <option value="cus_compan">ชื่อบริษัท</option>
-                        <option value="cus_sub">ตำบล</option>
-                        <option value="wb_payment">ยังไม่ได้ชำระ</option>
-                    </select> -->
-                </form>
+                <h2>ใบส่งสินค้า</h2>
             </div>
             <div class="col-sm-6 ">
                 <form name="myForm" action="waybill_insert_pdf.php" autocomplete="off" onsubmit="return validateForm()"
@@ -126,74 +118,105 @@ $staffId = mysql_query($query_staff, $myconnect) or die(mysql_error());
             </div>
         </div>
         <br />
-        <div class="table-responsive">
-            <table class="table table-hover table-sm">
-                <thead class="thead-dark">
-                    <tr>
-                        <th>
-                            <div> </div>
-                        </th>
-                        <th>
-                            <div align="center">รหัสใบรับสินค้า</div>
-                        </th>
-                        <th>
-                            <div align="center">วันที่</div>
-                        </th>
-                        <th>
-                            <div align="center">ชื่อบริษัท</div>
-                        </th>
-                        <th>
-                            <div align="center">เลขที่ใบรับสินค้า</div>
-                        </th>
-                        <th>
-                            <div align="center">อำเภอ</div>
-                        </th>
-                        <th>
-                            <div align="center">ตำบล</div>
-                        </th>
-                        <th>
-                            <div align="center">ยอดเงินค่าขนส่ง</div>
-                        </th>
-                        
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php while($row_waybill = mysql_fetch_array($waybill)) { ?>
-                    <tr>
-                        <td><input type='checkbox' name='listData[]' value='<?php echo $row_waybill["wb_id"]; ?>'></td>
-                        <td height="33">
-                            <div align="center"><?php echo $row_waybill["wb_id_set"]; ?></div>
-                        </td>
-                        <td>
-                            <div align="center">
-                                <?php $date=date_create($row_waybill['wb_date']); echo date_format($date,"d/m/Y"); ?>
-                        </td>
-                        <td>
-                            <div><?php echo $row_waybill['cus_compan']; ?></div>
-                        </td>
-                        <td>
-                            <div align="center"><?php echo $row_waybill['wb_nbook']; ?></div>
-                        </td>
-                        <td>
-                            <div align="center"><?php echo $row_waybill['cus_area']; ?></div>
-                        </td>
-                        <td>
-                            <div align="center"><?php echo $row_waybill['cus_sub']; ?></div>
-                        </td>
-                        <td>
-                            <div align="center"><?php echo $row_waybill['wb_money']; ?></div>
-                        </td>
-                        
+        <div class="row">
+            <div class="col-9">
+                <div class="table-responsive">
+                    <table id="example" class="table table-hover table-sm">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>
+                                    <div> </div>
+                                </th>
+                                <th>
+                                    <div align="center">รหัสใบรับสินค้า</div>
+                                </th>
+                                <th>
+                                    <div align="center">วันที่</div>
+                                </th>
+                                <th>
+                                    <div align="center">ชื่อบริษัท</div>
+                                </th>
+                                <th>
+                                    <div align="center">เลขที่ใบรับสินค้า</div>
+                                </th>
+                                <th>
+                                    <div align="center">อำเภอ</div>
+                                </th>
+                                <th>
+                                    <div align="center">ตำบล</div>
+                                </th>
+                                <th>
+                                    <div align="center">ยอดเงินค่าขนส่ง</div>
+                                </th>
 
-                    </tr>
-                    <?php } mysql_free_result($waybill); ?>
-                </tbody>
-            </table>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php while($row_waybill = mysql_fetch_array($waybill)) { ?>
+                            <tr>
+                                <td><input type='checkbox' name='listData[]' id="myCheck" onchange="getComboA(this)"
+                                        value='<?php echo $row_waybill["wb_id"]; ?>'>
+                                </td>
+                                <td height="33">
+                                    <div align="center"><?php echo $row_waybill["wb_id_set"]; ?></div>
+                                </td>
+                                <td>
+                                    <div align="center">
+                                        <?php $date=date_create($row_waybill['wb_date']); echo date_format($date,"d/m/Y"); ?>
+                                </td>
+                                <td>
+                                    <div><?php echo $row_waybill['cus_compan']; ?></div>
+                                </td>
+                                <td>
+                                    <div align="center"><?php echo $row_waybill['wb_nbook']; ?></div>
+                                </td>
+                                <td>
+                                    <div align="center"><?php echo $row_waybill['cus_area']; ?></div>
+                                </td>
+                                <td>
+                                    <div align="center"><?php echo $row_waybill['cus_sub']; ?></div>
+                                </td>
+                                <td>
+                                    <div align="center"><?php echo $row_waybill['wb_money']; ?></div>
+                                </td>
 
 
-            </form>
+                            </tr>
+                            <?php } mysql_free_result($waybill); ?>
+                        </tbody>
+                    </table>
 
+
+                    </form>
+
+                </div>
+            </div>
+            <div class="col-3">
+                <p id="demo"></p>
+            </div>
         </div>
+        <script>
+        var yourArray = []
+
+        function getComboA(selectObject) {
+            var value = selectObject.value;
+            console.log(value);
+            document.getElementById("demo").innerHTML = "You selected: " + value;
+        }
+        </script>
+        <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.3.1.js">
+        </script>
+        <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js">
+        </script>
+        <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js">
+        </script>
+        <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        });
+        </script>
 </body>
 
 </html>

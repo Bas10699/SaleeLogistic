@@ -1,4 +1,5 @@
 <?php require_once('Connections/myconnect.php'); 
+ob_start();
  require_once('nevbar.php');
  Nevbar();?>
 
@@ -50,10 +51,10 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form1")) {
   $Result1 = mysql_query($updateSQL, $myconnect) or die(mysql_error());
 
   $updateGoTo = "car_show.php";
-  if (isset($_SERVER['QUERY_STRING'])) {
-    $updateGoTo .= (strpos($updateGoTo, '?')) ? "&" : "?";
-    $updateGoTo .= $_SERVER['QUERY_STRING'];
-  }
+  // if (isset($_SERVER['QUERY_STRING'])) {
+  //   $updateGoTo .= (strpos($updateGoTo, '?')) ? "&" : "?";
+  //   $updateGoTo .= $_SERVER['QUERY_STRING'];
+  // }
   header(sprintf("Location: %s", $updateGoTo));
 }
 
