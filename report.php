@@ -14,6 +14,13 @@ $query_date = "SELECT sum(tiw_money) AS SumMoney FROM `tb_inv_wb` WHERE (`tiw_da
 $DateDetailAll = mysql_query($query_date, $myconnect) or die(mysql_error());
 $Date_detail = mysql_fetch_assoc($DateDetailAll);
 
+mysql_select_db($database_myconnect, $myconnect);
+$query_payment_date = "SELECT sum(wb_money) AS SumMoneyWb FROM tb_inv_wb
+                        INNER JOIN tb_waybill 
+                        ON tb_waybill.wb_id=tb_inv_wb.tiw_wb_id
+                        WHERE (`tiw_date` BETWEEN '$date_start.00:00:00' AND '$date_end.23:59:59')";
+$PaymentDateDetail = mysql_query($query_payment_date, $myconnect) or die(mysql_error());
+$PaymentDate_detail = mysql_fetch_assoc($PaymentDateDetail);
 ?>
 <!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -176,7 +183,8 @@ $Date_detail = mysql_fetch_assoc($DateDetailAll);
         <div class="row">
 
             <div class="col-sm-3 pt-1">
-                <form action="<?php echo $_SERVER['SCRIPT_NAME'];?>" method="get">
+                <form action="<?php echo $_SERVER['SCRIPT_NAME'];?>" name="myForm" method="get"
+                    onsubmit="return validateForm()">
                     <input type="date" name="date_start" class="form-control" value="<?php echo $date_start ?>">
 
             </div>
@@ -188,20 +196,54 @@ $Date_detail = mysql_fetch_assoc($DateDetailAll);
                 <button class="btn btn-primary">สรุปยอด</button>
                 </form>
             </div>
+            <script type="text/javascript">
+            function validateForm() {
+                var x = document.forms["myForm"]["date_start"].value;
+                var y = document.forms["myForm"]["date_end"].value;
+                var g1 = new Date(x);
+                var g2 = new Date(y);
+                if (!x) {
+                    Swal.fire(
+                        "",
+                        "กรุณากรอกข้อมูลให้ครบถ้วน",
+                        "warning"
+                    )
+                    return false;
+                }
+                if (!y) {
+                    Swal.fire(
+                        "",
+                        "กรุณากรอกข้อมูลให้ครบถ้วน",
+                        "warning"
+                    )
+                    return false;
+                }
+                if (g1.getTime() > g2.getTime()) {
+                    // Swal.fire(
+                    //     '',
+                    //     'กรุณาใส่วันที่ให้ถูกต้อง',
+                    //     'warning'
+                    // )
+                    Swal.fire(
+                        "",
+                        "กรุณากรอกข้อมูลให้ถูกต้อง",
+                        "warning"
+                    )
+                    return false;
+                }
 
-        </div>
-        <?php if($Date_detail['SumMoney']){?>
-        <div class="card">
-            <div class="card-body">
-                จำนวนเงินที่ได้รับ <?php echo $Date_detail['SumMoney']?>
-            </div>
+
+
+            }
+            </script>
         </div>
 
-        <?php }?>
         <br />
         <div class="row">
+            <?php if($date_start){?>
             <div class="col-lg-3">
                 <div class="row">
+
                     <div class="col-lg-12 col-6">
                         <!-- small box -->
                         <div class="small-box bg-secondary">
@@ -209,7 +251,7 @@ $Date_detail = mysql_fetch_assoc($DateDetailAll);
                                 <?php 
                                     mysql_select_db($database_myconnect, $myconnect);
                                     $query_count_list = "SELECT tiw_payment_status, COUNT(*) AS count_status
-                                    FROM tb_inv_wb WHERE tiw_payment_status='ค้างชำระ'";
+                                    FROM tb_inv_wb WHERE tiw_payment_status='ค้างชำระ' AND (`tiw_date` BETWEEN '$date_start.00:00:00' AND '$date_end.23:59:59')";
                                     $count_listAll = mysql_query($query_count_list, $myconnect) or die(mysql_error());
                                     $list_detail = mysql_fetch_assoc($count_listAll);
                                     $count_status = $list_detail['count_status'];
@@ -223,8 +265,8 @@ $Date_detail = mysql_fetch_assoc($DateDetailAll);
                             <div class="icon">
                                 <i class="fas fa-file"></i>
                             </div>
-                            <a href="report.php?list=ค้างชำระ" class="small-box-footer">ข้อมูลเพิ่มเติม <i
-                                    class="fas fa-arrow-circle-right"></i></a>
+                            <a href="report.php?list=ค้างชำระ&date_start=<?php echo $date_start.'&date_end='.$date_end ?>"
+                                class="small-box-footer">ข้อมูลเพิ่มเติม <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <div class="col-lg-12 col-6">
@@ -234,7 +276,7 @@ $Date_detail = mysql_fetch_assoc($DateDetailAll);
                                 <?php 
                                     mysql_select_db($database_myconnect, $myconnect);
                                     $query_count_list = "SELECT tiw_payment_status, COUNT(*) AS count_status
-                                    FROM tb_inv_wb WHERE tiw_payment_status='ชำระเงินแล้ว'";
+                                    FROM tb_inv_wb WHERE tiw_payment_status='ชำระเงินแล้ว'AND (`tiw_date` BETWEEN '$date_start.00:00:00' AND '$date_end.23:59:59')";
                                     $count_listAll = mysql_query($query_count_list, $myconnect) or die(mysql_error());
                                     $list_detail = mysql_fetch_assoc($count_listAll);
                                     $count_status = $list_detail['count_status'];
@@ -247,8 +289,8 @@ $Date_detail = mysql_fetch_assoc($DateDetailAll);
                             <div class="icon">
                                 <i class="material-icons">&#xe227;</i>
                             </div>
-                            <a href="report.php?list=ชำระเงินแล้ว" class="small-box-footer">ข้อมูลเพิ่มเติม <i
-                                    class="fas fa-arrow-circle-right"></i></a>
+                            <a href="report.php?list=ชำระเงินแล้ว&date_start=<?php echo $date_start.'&date_end='.$date_end ?>"
+                                class="small-box-footer">ข้อมูลเพิ่มเติม <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- <div class="col-sm-3">
@@ -269,6 +311,19 @@ $Date_detail = mysql_fetch_assoc($DateDetailAll);
                 </div>
             </div>
             <div class="col-lg-9">
+
+
+                <div class="card">
+                    <div class="card-body">
+                        <div>รายงานสรุปยอด วันที่ <?php echo $date_start?> ถึงวันที่ <?php echo $date_end?></div>
+                        <div>จำนวนเงินที่ชำระแล้ว <?php echo $Date_detail['SumMoney']?> บาท</div>
+                        <div>จำนวนเงินที่ต้องชำระ <?php echo $PaymentDate_detail['SumMoneyWb']?> บาท</div>
+                        <div>ค้างชำระ <?php echo $PaymentDate_detail['SumMoneyWb']-$Date_detail['SumMoney'];?> บาท</div>
+                    </div>
+                </div>
+                <br />
+
+
                 <div class="card">
                     <div class="card-body">
                         <?php if($list === "ค้างชำระ"){
@@ -276,7 +331,7 @@ $Date_detail = mysql_fetch_assoc($DateDetailAll);
                             $query_payment_all = "SELECT * FROM tb_inv_wb
                             INNER JOIN tb_waybill 
                             ON tb_waybill.wb_id=tb_inv_wb.tiw_wb_id
-                            WHERE tiw_payment_status='ค้างชำระ'
+                            WHERE tiw_payment_status='ค้างชำระ'AND (`tiw_date` BETWEEN '$date_start.00:00:00' AND '$date_end.23:59:59')
                             ORDER BY tiw_payment_status ASC";
                             $PaymentDetailAll = mysql_query($query_payment_all, $myconnect) or die(mysql_error());
                             ?>
@@ -307,7 +362,7 @@ $Date_detail = mysql_fetch_assoc($DateDetailAll);
                             $query_payment_all = "SELECT * FROM tb_inv_wb
                             INNER JOIN tb_waybill 
                             ON tb_waybill.wb_id=tb_inv_wb.tiw_wb_id
-                            WHERE tiw_payment_status='ชำระเงินแล้ว'
+                            WHERE tiw_payment_status='ชำระเงินแล้ว' AND (`tiw_date` BETWEEN '$date_start.00:00:00' AND '$date_end.23:59:59')
                             ORDER BY tiw_payment_status ASC";
                             $PaymentDetailAll = mysql_query($query_payment_all, $myconnect) or die(mysql_error());
                             ?>
@@ -334,13 +389,18 @@ $Date_detail = mysql_fetch_assoc($DateDetailAll);
                         </table>
                         <?php }
                         else{
-                           
                             ?>
                         <h4>ข้อมูลเพิ่มเติม...</h4>
                         <?php } ?>
                     </div>
                 </div>
+
             </div>
+            <?php }
+                else{ ?>
+            <div class="col-4"></div>
+            <h4>กรุณาเลือกวันที่เพื่อดูรายงาน...</h4>
+            <?php } ?>
         </div>
     </div>
     <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.3.1.js">
