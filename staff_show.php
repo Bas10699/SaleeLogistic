@@ -172,7 +172,7 @@ if(isset($_GET["textfield"])){
                             <div align="center">นามสกุล</div>
                         </th>
                         <th>
-                            <div align="center">ตำแแหน่ง</div>
+                            <div align="center">ตำแหน่ง</div>
                         </th>
                         <th>
                             <div align="center">เบอร์โทรศัพท์</div>
@@ -286,8 +286,8 @@ if(isset($_GET["textfield"])){
                                 <div class="form-group col-md-6">
                                     <label for="staff_position">ตำแหน่ง</label>
                                     <select name="staff_position" id="staff_position" class="form-control">
-                                        <option value="Manager">Manager</option>
-                                        <option value="Driver">Driver</option>
+                                        <option value="พนักงานขับรถ">พนักงานขับรถ</option>
+                                        <option value="พนักงานเอกสาร">พนักงานเอกสาร</option>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6">

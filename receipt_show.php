@@ -159,7 +159,7 @@ $staffId = mysql_query($query_staff, $myconnect) or die(mysql_error());
                     <?php while($row_waybill = mysql_fetch_array($waybill)) { ?>
                     <tr>
                         <?php if($_COOKIE["UserType"] == 2){?>
-                        <td><input type='checkbox' name='listData[]' id="myCheck" onchange="getComboA(this)"
+                        <td><input type='checkbox' name='listData[]'
                                 value='<?php echo $row_waybill["wb_id"]; ?>'>
                         </td>
                         <?php } ?>
@@ -174,7 +174,7 @@ $staffId = mysql_query($query_staff, $myconnect) or die(mysql_error());
                             <div><?php echo $row_waybill['cus_compan']; ?></div>
                         </td>
                         <td>
-                            <div align="center"><?php echo $row_waybill['wb_nbook']; ?></div>
+                            <div align="center"><?php echo $row_waybill['wb_nber']; ?></div>
                         </td>
                         <td>
                             <div align="center"><?php echo $row_waybill['cus_area']; ?></div>
@@ -183,7 +183,7 @@ $staffId = mysql_query($query_staff, $myconnect) or die(mysql_error());
                             <div align="center"><?php echo $row_waybill['cus_sub']; ?></div>
                         </td>
                         <td>
-                            <div align="center"><?php echo $row_waybill['wb_money']; ?></div>
+                            <div align="right"><?php echo $row_waybill['wb_money']; ?></div>
                         </td>
 
 

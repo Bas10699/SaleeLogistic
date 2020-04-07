@@ -138,7 +138,7 @@ $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
                             <div><?php echo $row_waybill['cus_compan']; ?></div>
                         </td>
                         <td>
-                            <div align="center"><?php echo $row_waybill['wb_nbook']; ?></div>
+                            <div align="center"><?php echo $row_waybill['wb_nber']; ?></div>
                         </td>
                         <td>
                             <div align="right"><?php echo $row_waybill['wb_money']; ?></div>

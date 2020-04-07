@@ -161,7 +161,7 @@ if (isset($_POST['login_user'])) {
     }
 
     .bg-image {
-        background-image: url('img/login555.png');
+        background-image: url('img/backgroundlogin2.png');
         background-size: cover;
         background-position: center top;
     }
@@ -270,11 +270,11 @@ if (isset($_POST['login_user'])) {
 <body cz-shortcut-listen="true" style="">
 
 
-    <div class="container-fluid">
-        <div class="row no-gutter">
-            <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
-            <div class="col-md-8 col-lg-6">
-                <div class="login d-flex align-items-center py-5">
+    <!-- <div class="container-fluid"> -->
+        <!-- <div class="row no-gutter"> -->
+            
+            <!-- <div class="col-md-8 col-lg-12"> -->
+                <div class="login d-flex align-items-center py-5 bg-image">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-9 col-lg-8 mx-auto">
@@ -289,20 +289,20 @@ if (isset($_POST['login_user'])) {
                                         </div>
                                         <?php unset($_SESSION["statusLogin"]);} ?>
 
-                                        <h3 class="login-heading mb-4">Welcome</h3>
+                                        <h3 class="login-heading mb-4">ยินดีต้อนรับ</h3>
                                         <form id="form1" name="form1" method="POST"
                                             action="<?php echo $loginFormAction; ?>" autocomplete="off">
                                             <div class="form-label-group">
                                                 <input type="text" id="login_user" name="login_user"
                                                     class="form-control" placeholder="Username" required=""
                                                     autofocus="">
-                                                <label for="login_user">Username</label>
+                                                <label for="login_user">ชื่อผู้ใช้งาน</label>
                                             </div>
 
                                             <div class="form-label-group">
                                                 <input type="password" id="login_pass" name="login_pass"
                                                     class="form-control" placeholder="Password" required="">
-                                                <label for="login_pass">Password</label>
+                                                <label for="login_pass">รหัสผ่าน</label>
                                             </div>
 
                                             <button
@@ -315,9 +315,9 @@ if (isset($_POST['login_user'])) {
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
+            <!-- </div> -->
+        <!-- </div> -->
+    <!-- </div> -->
     <script>
     window.setTimeout(function () {
       $(".alert").fadeTo(700, 0).slideUp(1000, function () {
