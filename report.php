@@ -5,6 +5,14 @@ Nevbar(); ?>
 
 <?php
 
+$list = isset($_GET["list"]) ? $_GET["list"] : '';
+$date_start = isset($_GET["date_start"]) ? $_GET["date_start"] : '';
+$date_end = isset($_GET["date_end"]) ? $_GET["date_end"] : '';
+
+mysql_select_db($database_myconnect, $myconnect);
+$query_date = "SELECT sum(tiw_money) AS SumMoney FROM `tb_inv_wb` WHERE (`tiw_date` BETWEEN '$date_start.00:00:00' AND '$date_end.23:59:59')";
+$DateDetailAll = mysql_query($query_date, $myconnect) or die(mysql_error());
+$Date_detail = mysql_fetch_assoc($DateDetailAll);
 
 ?>
 <!DOCTYPE html
@@ -13,9 +21,151 @@ Nevbar(); ?>
 
 <head>
     <title>รายงานสรุปยอด</title>
-    <link rel="stylesheet" href="css/custom.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="css/custom.css" />
+
+    <style>
+    .small-box {
+        border-radius: 0.25rem;
+        box-shadow: 0 0 1px rgba(0, 0, 0, 0.125), 0 1px 3px rgba(0, 0, 0, 0.2);
+        display: block;
+        margin-bottom: 20px;
+        position: relative;
+    }
+
+    .small-box>.inner {
+        padding: 10px;
+    }
+
+    .small-box>.small-box-footer {
+        background: rgba(0, 0, 0, 0.1);
+        color: rgba(255, 255, 255, 0.8);
+        display: block;
+        padding: 3px 0;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        z-index: 10;
+    }
+
+    .small-box>.small-box-footer:hover {
+        background: rgba(0, 0, 0, 0.15);
+        color: #ffffff;
+    }
+
+    .small-box h3 {
+        font-size: 2.2rem;
+        font-weight: bold;
+        margin: 0 0 10px 0;
+        padding: 0;
+        white-space: nowrap;
+    }
+
+    @media (min-width: 992px) {
+
+        .col-xl-2 .small-box h3,
+        .col-lg-2 .small-box h3,
+        .col-md-2 .small-box h3 {
+            font-size: 1.6rem;
+        }
+
+        .col-xl-3 .small-box h3,
+        .col-lg-3 .small-box h3,
+        .col-md-3 .small-box h3 {
+            font-size: 1.6rem;
+        }
+    }
+
+    @media (min-width: 1200px) {
+
+        .col-xl-2 .small-box h3,
+        .col-lg-2 .small-box h3,
+        .col-md-2 .small-box h3 {
+            font-size: 2.2rem;
+        }
+
+        .col-xl-3 .small-box h3,
+        .col-lg-3 .small-box h3,
+        .col-md-3 .small-box h3 {
+            font-size: 2.2rem;
+        }
+    }
+
+    .small-box p {
+        font-size: 1rem;
+    }
+
+    .small-box p>small {
+        color: #f8f9fa;
+        display: block;
+        font-size: 0.9rem;
+        margin-top: 5px;
+    }
+
+    .small-box h3,
+    .small-box p {
+        z-index: 5;
+    }
+
+    .small-box .icon {
+        color: rgba(0, 0, 0, 0.15);
+        z-index: 0;
+    }
+
+    .small-box .icon>i {
+        font-size: 90px;
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        transition: all 0.3s linear;
+    }
+
+    .small-box .icon>i.fa,
+    .small-box .icon>i.fas,
+    .small-box .icon>i.far,
+    .small-box .icon>i.fab,
+    .small-box .icon>i.glyphicon,
+    .small-box .icon>i.ion {
+        font-size: 70px;
+        top: 20px;
+    }
+
+    .small-box:hover {
+        text-decoration: none;
+    }
+
+    .small-box:hover .icon>i {
+        font-size: 95px;
+    }
+
+    .small-box:hover .icon>i.fa,
+    .small-box:hover .icon>i.fas,
+    .small-box:hover .icon>i.far,
+    .small-box:hover .icon>i.fab,
+    .small-box:hover .icon>i.glyphicon,
+    .small-box:hover .icon>i.ion {
+        font-size: 75px;
+    }
+
+    @media (max-width: 767.98px) {
+        .small-box {
+            text-align: center;
+        }
+
+        .small-box .icon {
+            display: none;
+        }
+
+        .small-box p {
+            font-size: 12px;
+        }
+    }
+    </style>
 </head>
 
 <body>
@@ -24,27 +174,187 @@ Nevbar(); ?>
         <h2>รายงานสรุปยอด</h2>
         <br />
         <div class="row">
-            <div class="col-sm-3">
+
+            <div class="col-sm-3 pt-1">
+                <form action="<?php echo $_SERVER['SCRIPT_NAME'];?>" method="get">
+                    <input type="date" name="date_start" class="form-control" value="<?php echo $date_start ?>">
+
+            </div>
+            ถึง
+            <div class="col-sm-3 pt-1">
+                <input type="date" name="date_end" class="form-control" value="<?php echo $date_end ?>">
+            </div>
+            <div class="col-sm-1 pt-1">
+                <button class="btn btn-primary">สรุปยอด</button>
+                </form>
+            </div>
+
+        </div>
+        <?php if($Date_detail['SumMoney']){?>
+        <div class="card">
+            <div class="card-body">
+                จำนวนเงินที่ได้รับ <?php echo $Date_detail['SumMoney']?>
+            </div>
+        </div>
+
+        <?php }?>
+        <br />
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="row">
+                    <div class="col-lg-12 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-secondary">
+                            <div class="inner">
+                                <?php 
+                                    mysql_select_db($database_myconnect, $myconnect);
+                                    $query_count_list = "SELECT tiw_payment_status, COUNT(*) AS count_status
+                                    FROM tb_inv_wb WHERE tiw_payment_status='ค้างชำระ'";
+                                    $count_listAll = mysql_query($query_count_list, $myconnect) or die(mysql_error());
+                                    $list_detail = mysql_fetch_assoc($count_listAll);
+                                    $count_status = $list_detail['count_status'];
+                                    $status = $list_detail['tiw_payment_status'];
+                                    echo "<h3>$count_status</h3>
+                                         <p>$status</p>";
+                                    mysql_free_result($count_listAll);
+                                ?>
+
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-file"></i>
+                            </div>
+                            <a href="report.php?list=ค้างชำระ" class="small-box-footer">ข้อมูลเพิ่มเติม <i
+                                    class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-info">
+                            <div class="inner">
+                                <?php 
+                                    mysql_select_db($database_myconnect, $myconnect);
+                                    $query_count_list = "SELECT tiw_payment_status, COUNT(*) AS count_status
+                                    FROM tb_inv_wb WHERE tiw_payment_status='ชำระเงินแล้ว'";
+                                    $count_listAll = mysql_query($query_count_list, $myconnect) or die(mysql_error());
+                                    $list_detail = mysql_fetch_assoc($count_listAll);
+                                    $count_status = $list_detail['count_status'];
+                                    $status = $list_detail['tiw_payment_status'];
+                                    echo "<h3>$count_status</h3>
+                                         <p>$status</p>";
+                                    mysql_free_result($count_listAll);
+                                ?>
+                            </div>
+                            <div class="icon">
+                                <i class="material-icons">&#xe227;</i>
+                            </div>
+                            <a href="report.php?list=ชำระเงินแล้ว" class="small-box-footer">ข้อมูลเพิ่มเติม <i
+                                    class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- <div class="col-sm-3">
                 <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-9">
+                            <div class="col-8">
                                 <h3>150</h3>
                                 <p>New Orders</p>
                             </div>
-                            <div class="col-3">
-                                <i class="fas fa-file"></i>
+                            <div class="col-4">
+                                <i class="fas fa-file fa-5x"></i>
                             </div>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-
+                    </div>
+                </div>
+            </div> -->
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="card">
+                    <div class="card-body">
+                        <?php if($list === "ค้างชำระ"){
+                            mysql_select_db($database_myconnect, $myconnect);
+                            $query_payment_all = "SELECT * FROM tb_inv_wb
+                            INNER JOIN tb_waybill 
+                            ON tb_waybill.wb_id=tb_inv_wb.tiw_wb_id
+                            WHERE tiw_payment_status='ค้างชำระ'
+                            ORDER BY tiw_payment_status ASC";
+                            $PaymentDetailAll = mysql_query($query_payment_all, $myconnect) or die(mysql_error());
+                            ?>
+                        <h4>รายการค้างชำระ</h4>
+                        <table id="example" class="table table-hover table-sm table-bordered">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>เลขที่</th>
+                                    <th>จำนวนเงินที่ต้องชำระ</th>
+                                    <th>สถานะการชำระเงิน</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php 
+                        while($row_PaymentDetailAll = mysql_fetch_array($PaymentDetailAll)) {
+                    ?>
+                                <tr>
+                                    <td><?php echo $row_PaymentDetailAll["tiw_id"]; ?></td>
+                                    <td><?php echo $row_PaymentDetailAll['wb_money'] ?></td>
+                                    <td><?php echo $row_PaymentDetailAll['tiw_payment_status'] ?></td>
+                                </tr>
+                                <?php }  mysql_free_result($PaymentDetailAll);?>
+                            </tbody>
+                        </table>
+                        <?php }
+                        else if($list === "ชำระเงินแล้ว"){
+                            mysql_select_db($database_myconnect, $myconnect);
+                            $query_payment_all = "SELECT * FROM tb_inv_wb
+                            INNER JOIN tb_waybill 
+                            ON tb_waybill.wb_id=tb_inv_wb.tiw_wb_id
+                            WHERE tiw_payment_status='ชำระเงินแล้ว'
+                            ORDER BY tiw_payment_status ASC";
+                            $PaymentDetailAll = mysql_query($query_payment_all, $myconnect) or die(mysql_error());
+                            ?>
+                        <h4>รายการชำระเงินแล้ว</h4>
+                        <table id="example" class="table table-hover table-sm table-bordered">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>เลขที่</th>
+                                    <th>จำนวนเงินที่ต้องชำระ</th>
+                                    <th>สถานะการชำระเงิน</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php 
+                        while($row_PaymentDetailAll = mysql_fetch_array($PaymentDetailAll)) {
+                    ?>
+                                <tr>
+                                    <td><?php echo $row_PaymentDetailAll["tiw_id"]; ?></td>
+                                    <td><?php echo $row_PaymentDetailAll['wb_money'] ?></td>
+                                    <td><?php echo $row_PaymentDetailAll['tiw_payment_status'] ?></td>
+                                </tr>
+                                <?php }  mysql_free_result($PaymentDetailAll);?>
+                            </tbody>
+                        </table>
+                        <?php }
+                        else{
+                           
+                            ?>
+                        <h4>ข้อมูลเพิ่มเติม...</h4>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-9">
-            </div>
         </div>
     </div>
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.3.1.js">
+    </script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js">
+    </script>
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js">
+    </script>
+    <script>
+    $(document).ready(function() {
+        $('#example').DataTable();
+    });
+    </script>
 </body>
 
 </html>
