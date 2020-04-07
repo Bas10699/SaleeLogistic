@@ -45,7 +45,7 @@ ON tb_waybill.customer_id = tb_customer.cus_id
 LEFT JOIN tb_car
 ON tb_waybill.car_id = tb_car.car_id
 WHERE tb_inv_status=0 and (tb_customer.cus_sub LIKE '%".$txtSearch."%' or cus_compan LIKE '%".$txtSearch."%' or tb_customer.cus_area LIKE '%".$txtSearch."%' or wb_payment LIKE '%".$txtSearch."%' )
-ORDER BY wb_id";
+ORDER BY wb_id DESC";
 $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
 
 $query_carId = "SELECT * FROM tb_car";
@@ -123,7 +123,7 @@ $staffId = mysql_query($query_staff, $myconnect) or die(mysql_error());
         <!-- <div class="row">
             <div class="col-9"> -->
         <div class="table-responsive">
-            <table id="example" class="table table-hover table-sm">
+            <table  class="table table-hover table-sm">
                 <thead class="thead-dark">
                     <tr>
                         <?php if($_COOKIE["UserType"] == 2){?>

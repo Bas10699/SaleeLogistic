@@ -1,11 +1,11 @@
 <?php
 require_once('Connections/myconnect.php');
 // ob_start();
-print_r($_POST["staff_id"]);
-print_r(':');
-print_r($_POST["car_id"]);
-$columns = implode(",",$_POST["listData"]);
-print_r($columns);
+// print_r($_POST["staff_id"]);
+// print_r(':');
+// print_r($_POST["car_id"]);
+// $columns = implode(",",$_POST["listData"]);
+// print_r($columns);
 if($_POST["listData"] && $_POST["staff_id"] && $_POST["car_id"]){
     $staff_id = $_POST["staff_id"];
     $car_id = $_POST["car_id"];
