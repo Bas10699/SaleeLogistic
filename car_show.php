@@ -91,10 +91,12 @@ if($id != ""){
 
             </div>
             <div class="col-sm-4 ">
+                <?php if($_COOKIE["UserType"] == 2){?>
                 <button type="button" class="btn btn-info float-right" data-toggle="modal"
                     data-target="#exampleModalCenter">
                     เพิ่มข้อมูลรถ
                 </button>
+                <?php } ?>
                 <!-- <div class="float-right"><a class="btn btn-info" href="car_insert.php">เพิ่มข้อมูลรถ</a></div> -->
             </div>
         </div>
@@ -122,9 +124,11 @@ if($id != ""){
                         <th>
                             <div align="center"><span>วันหมดอายุภาษีรถยนต์</span></div>
                         </th>
+                        <?php if($_COOKIE["UserType"] == 2){?>
                         <th colspan="2">
                             <div align="center">จัดการ</div>
                         </th>
+                        <?php } ?>
                     </tr>
                 </thead>
                 <?php do { ?>
@@ -160,6 +164,7 @@ if($id != ""){
                         </div>
                         <?php }?>
                     </td>
+                    <?php if($_COOKIE["UserType"] == 2){?>
                     <td>
                         <div align="center">
                             <a class="btn btn-warning btn-sm" role="button"
@@ -184,9 +189,10 @@ if($id != ""){
                                 })
                             }
                             </script>
-                            
+
                         </div>
                     </td>
+                    <?php } ?>
                 </tr>
                 <?php } while ($row_car = mysql_fetch_assoc($car)); ?>
             </table>

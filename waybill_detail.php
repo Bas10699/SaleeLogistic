@@ -107,8 +107,8 @@ $customer = mysql_query($query_customer, $myconnect) or die(mysql_error());
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <img src="picture/<?php echo $row_waybill['wb_img']."?v=".date("YmdHis"); ?>" class="img-fluid"
-                                        width="460" height="345">
+                                    <img src="picture/<?php echo $row_waybill['wb_img']."?v=".date("YmdHis"); ?>"
+                                        class="img-fluid" width="460" height="345">
                                 </div>
                                 <div class="col-sm-9">
                                     <div class="row">
@@ -163,8 +163,11 @@ $customer = mysql_query($query_customer, $myconnect) or die(mysql_error());
 
                                     <br />
                                     <div class="float-right">
+                                        <?php if($_COOKIE["UserType"] == 2){?>
                                         <button class="btn btn-warning" onclick="editdata()">แก้ไขข้อมูล</button>
-                                        <button class="btn "onclick="window.location.href='waybill_show.php'">ย้อนกลับ</button>
+                                        <?php } ?>
+                                        <button class="btn "
+                                            onclick="window.location.href='waybill_show.php'">ย้อนกลับ</button>
                                     </div>
                                     <br />
                                 </div>

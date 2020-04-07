@@ -131,10 +131,12 @@ if(isset($_GET["textfield"])){
                 </form>
             </div>
             <div class="col-sm-4 ">
+                <?php if($_COOKIE["UserType"] == 2){?>
                 <button type="button" class="btn btn-info float-right" data-toggle="modal"
                     data-target="#exampleModalCenter">
                     เพิ่มข้อมูลพนักงาน
                 </button>
+                <?php } ?>
                 <!-- <div class="float-right"><a class="btn btn-info" href="staff_insert.php">เพิ่มข้อมูลพนักงาน</a></div> -->
             </div>
         </div>
@@ -175,9 +177,11 @@ if(isset($_GET["textfield"])){
                         <th>
                             <div align="center">เบอร์โทรศัพท์</div>
                         </th>
+                        <?php if($_COOKIE["UserType"] == 2){?>
                         <th>
                             <div align="center">จัดการ</div>
                         </th>
+                        <?php } ?>
                     </tr>
                 </thead>
                 <tbody>
@@ -204,6 +208,7 @@ if(isset($_GET["textfield"])){
                         <td>
                             <div align="center"><?php echo $row_staff['staff_tel']; ?></div>
                         </td>
+                        <?php if($_COOKIE["UserType"] == 2){?>
                         <td>
                             <div align="center">
                                 <a class="btn btn-warning btn-sm" role="button"
@@ -230,6 +235,7 @@ if(isset($_GET["textfield"])){
                                 </script>
                             </div>
                         </td>
+                        <? } ?>
                     </tr>
                     <?php } while ($row_staff = mysql_fetch_assoc($staff)); ?>
                 </tbody>

@@ -85,10 +85,12 @@ $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
                 <h2>ใบรับสินค้า</h2>
             </div>
             <div class="col-sm-4 ">
+                <?php if($_COOKIE["UserType"] == 2){?>
                 <button type="button" class="btn btn-info float-right" data-toggle="modal"
                     data-target="#exampleModalCenter">
                     เพิ่มเอกสาร
                 </button>
+                <?php } ?>
                 <!-- <div class="float-right"><a class="btn btn-info" href="waybill_insert.php">เพิ่มเอกสาร</a></button> -->
 
             </div>
@@ -115,6 +117,7 @@ $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
                             <div align="center">ยอดเงินค่าขนส่ง</div>
                         </th>
                         <!-- <th ><div align="center">สถานะการชำระเงิน</div></th> -->
+
                         <th class="min">
                             <div align="center">จัดการ</div>
                         </th>
@@ -124,7 +127,7 @@ $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
                     <?php while($row_waybill = mysql_fetch_array($waybill)) { ?>
                     <tr>
                         <!-- <td><input type='checkbox' name='checkIdList[]' value='<?php echo $row_waybill["wb_id"]; ?>'></td> -->
-                        <td >
+                        <td>
                             <div align="center"><?php echo $row_waybill["wb_id_set"]; ?></div>
                         </td>
                         <td>
@@ -146,7 +149,7 @@ $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
                             <div align="center">
                                 <a class="btn btn-warning btn-sm" role="button"
                                     href="waybill_detail.php?id=<?php echo $row_waybill['wb_id']; ?>">รายละเอียด</a>
-
+                                <?php if($_COOKIE["UserType"] == 2){?>
                                 <button class="btn btn-danger btn-sm" role="button"
                                     onclick="myFunction(<?php echo $row_waybill['wb_id']; ?>)">ลบ</button>
 
@@ -167,6 +170,7 @@ $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
                                     })
                                 }
                                 </script>
+                                <?php } ?>
                         </td>
 
                     </tr>

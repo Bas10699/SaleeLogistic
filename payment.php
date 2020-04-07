@@ -130,6 +130,7 @@ echo '<div class="col-sm-4">
                         }else{
                         ?>
                             <div class="col-sm-4">
+                                <?php if($_COOKIE["UserType"] == 2){?>
                                 <label for="money">จำนวนเงินที่ได้รับ:</label>
                                 <form action="payment_update.php" method="post">
                                     <input type="hidden" name="id" id="id"
@@ -142,6 +143,7 @@ echo '<div class="col-sm-4">
                                     <br />
                                     <button class="btn btn-success float-right">ตกลง</button>
                                 </form>
+                                <?php } ?>
                             </div>
                             <?php } ?>
                         </div>

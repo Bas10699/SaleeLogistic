@@ -60,7 +60,7 @@
                 <li class="nav-item ">
                     <a class="nav-link" href="payment.php">การจัดการการชำระเงิน</a>
                 </li>
-                <?php if($_COOKIE["UserName"]){?>
+                <?php if($_COOKIE["UserType"] == 1){?>
                 <li class="nav-item ">
                     <a class="nav-link" href="report.php">รายงานสรุปยอด</a>
                 </li>

@@ -95,10 +95,11 @@ $totalRows_customer = mysql_num_rows($customer);
 <body>
     <div class="container">
         <br />
+        <?php if($_COOKIE["UserType"] == 2){?>
         <button type="button" class="btn btn-warning float-right" data-toggle="modal" data-target="#exampleModalCenter">
             แก้ไขข้อมูล
         </button>
-
+        <?php } ?>
         <h2>รายละเอียดลูกค้า</h2>
         <br />
         <div class="row">

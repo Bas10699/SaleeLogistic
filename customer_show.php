@@ -90,10 +90,12 @@ if($id != ""){
                 </form>
             </div>
             <div class="col-sm-4 ">
+                <?php if($_COOKIE["UserType"] == 2){?>
                 <button type="button" class="btn btn-info float-right" data-toggle="modal"
                     data-target="#exampleModalCenter">
                     เพิ่มข้อมูลลูกค้า
                 </button>
+                <?php } ?>
                 <!-- <div class="float-right"><a class="btn btn-info" href="customer_insert.php">เพิ่มข้อมูลลูกค้า</a></div> -->
             </div>
         </div>
@@ -122,6 +124,7 @@ if($id != ""){
                         <th>เบอร์โทรศัพท์</th>
                         <th>อำเภอ</th>
                         <th>ตำบล</th>
+
                         <th>
                             <div align="center">จัดการ</div>
                         </th>
@@ -141,11 +144,11 @@ if($id != ""){
                         <td align="center">
                             <a class="btn btn-warning btn-sm" role="button"
                                 href="customer_detail.php?id=<?php echo $row_customer['cus_id']; ?>">ดูรายละเอียด</a>
-
+                            <?php if($_COOKIE["UserType"] == 2){?>
                             <button class="btn btn-danger btn-sm"
                                 onclick="myFunction(<?php echo $row_customer['cus_id']; ?>)">ลบ</button>
 
-                                <script>
+                            <script>
                             function myFunction(id) {
                                 Swal.fire({
                                     title: 'Are you sure?',
@@ -162,7 +165,7 @@ if($id != ""){
                                 })
                             }
                             </script>
-
+                            <?php } ?>
                         </td>
                     </tr>
                     <?php } while ($row_customer = mysql_fetch_assoc($customer)); ?>
