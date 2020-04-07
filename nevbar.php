@@ -60,9 +60,12 @@
                 <li class="nav-item ">
                     <a class="nav-link" href="payment.php">การจัดการการชำระเงิน</a>
                 </li>
+                <?php if($_COOKIE["UserName"]){?>
                 <li class="nav-item ">
                     <a class="nav-link" href="report.php">รายงานสรุปยอด</a>
                 </li>
+                <?php } ?>
+
                 <!-- <li class="nav-item dropdown ">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

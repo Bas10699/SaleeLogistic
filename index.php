@@ -56,10 +56,11 @@ if (isset($_POST['login_user'])) {
   $MM_redirecttoReferrer = false;
   mysql_select_db($database_myconnect, $myconnect);
   
-  $LoginRS__query=sprintf("SELECT login_use, login_pass FROM tb_login WHERE login_use=%s AND login_pass=%s",
+  $LoginRS__query=sprintf("SELECT login_use, login_level FROM tb_login WHERE login_use=%s AND login_pass=%s",
     GetSQLValueString($loginUsername, "text"), GetSQLValueString($password, "text")); 
    
   $LoginRS = mysql_query($LoginRS__query, $myconnect) or die(mysql_error());
+  $LoginRSCheck = mysql_fetch_assoc($LoginRS);
   $loginFoundUser = mysql_num_rows($LoginRS);
   if ($loginFoundUser) {
      $loginStrGroup = "";
@@ -71,6 +72,7 @@ if (isset($_POST['login_user'])) {
       $MM_redirectLoginSuccess = $_SESSION['PrevUrl'];	
     }
     setcookie("UserName",$loginUsername,time()+12*30*24*60*60);
+    setcookie("UserType",$LoginRSCheck['login_level'],time()+12*30*24*60*60);
     header("Location: " . $MM_redirectLoginSuccess );
   }
   else {

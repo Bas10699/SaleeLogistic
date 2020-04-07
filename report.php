@@ -315,10 +315,30 @@ $PaymentDate_detail = mysql_fetch_assoc($PaymentDateDetail);
 
                 <div class="card">
                     <div class="card-body">
-                        <div>รายงานสรุปยอด วันที่ <?php echo $date_start?> ถึงวันที่ <?php echo $date_end?></div>
-                        <div>จำนวนเงินที่ชำระแล้ว <?php echo $Date_detail['SumMoney']?> บาท</div>
-                        <div>จำนวนเงินที่ต้องชำระ <?php echo $PaymentDate_detail['SumMoneyWb']?> บาท</div>
-                        <div>ค้างชำระ <?php echo $PaymentDate_detail['SumMoneyWb']-$Date_detail['SumMoney'];?> บาท</div>
+                        <h5>รายงานสรุปยอด วันที่ <?php echo $date_start?> ถึงวันที่ <?php echo $date_end?>
+                        </h5><br />
+                        <table class="table table-sm">
+                            <tbody>
+                                <tr>
+                                    <th>จำนวนเงินที่ชำระแล้ว</th>
+                                    <td><?php echo $Date_detail['SumMoney']?></td>
+                                    <td> บาท</td>
+                                </tr>
+                                <tr>
+                                    <th>จำนวนเงินที่ต้องชำระ </th>
+                                    <td><?php echo $PaymentDate_detail['SumMoneyWb']?></td>
+                                    <td> บาท</td>
+                                </tr>
+                                <tr>
+                                    <th>ค้างชำระ</th>
+                                    <td>
+                                        <?php echo $PaymentDate_detail['SumMoneyWb']-$Date_detail['SumMoney'];?>
+                                    </td>
+                                    <td>บาท
+                                    </td>
+                                </tr>
+                            <tbody>
+                        </table>
                     </div>
                 </div>
                 <br />
@@ -351,7 +371,9 @@ $PaymentDate_detail = mysql_fetch_assoc($PaymentDateDetail);
                                 <tr>
                                     <td><?php echo $row_PaymentDetailAll["tiw_id"]; ?></td>
                                     <td><?php echo $row_PaymentDetailAll['wb_money'] ?></td>
-                                    <td><?php echo $row_PaymentDetailAll['tiw_payment_status'] ?></td>
+                                    <td><?php echo $row_PaymentDetailAll['tiw_payment_status'] ?>
+                                        (<?php echo $row_PaymentDetailAll['wb_money']-$row_PaymentDetailAll['tiw_money'] ?>)
+                                    </td>
                                 </tr>
                                 <?php }  mysql_free_result($PaymentDetailAll);?>
                             </tbody>
@@ -382,7 +404,8 @@ $PaymentDate_detail = mysql_fetch_assoc($PaymentDateDetail);
                                 <tr>
                                     <td><?php echo $row_PaymentDetailAll["tiw_id"]; ?></td>
                                     <td><?php echo $row_PaymentDetailAll['wb_money'] ?></td>
-                                    <td><?php echo $row_PaymentDetailAll['tiw_payment_status'] ?></td>
+                                    <td><?php echo $row_PaymentDetailAll['tiw_payment_status']?>
+                                        (<?php echo $row_PaymentDetailAll['tiw_money'] ?>)</td>
                                 </tr>
                                 <?php }  mysql_free_result($PaymentDetailAll);?>
                             </tbody>
