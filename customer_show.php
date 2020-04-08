@@ -72,6 +72,10 @@ if($id != ""){
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>ข้อมูลลูกค้า</title>
+    
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="css/custom.css" />
 
 </head>
@@ -79,15 +83,16 @@ if($id != ""){
 <body>
     <div class="container">
         <br />
-        <h2>ข้อมูลลูกค้า</h2>
-        <br />
+       
         <div class="row">
             <div class="col-sm-8">
-                <form id="form2" name="form2" method="get" action="<?php echo $_SERVER['SCRIPT_NAME'];?>">
+            <h2>ข้อมูลลูกค้า</h2>
+            <br />
+                <!-- <form id="form2" name="form2" method="get" action="<?php echo $_SERVER['SCRIPT_NAME'];?>">
                     <input type="text" name="textfield" id="textfield" value="<?php echo $id ?>" />
                     <button type="submit"><i class="fa fa-search"></i></button>
 
-                </form>
+                </form> -->
             </div>
             <div class="col-sm-4 ">
                 <?php if($_COOKIE["UserType"] == 2){?>
@@ -110,7 +115,7 @@ if($id != ""){
             </script>';
         }else{ ?>
         <div class="table-responsive">
-            <table class="table table-hover table-sm">
+            <table id="example" class="table table-hover table-sm">
                 <thead class="thead-dark">
                     <tr>
                         <th>
@@ -337,6 +342,20 @@ if($id != ""){
         </div>
 
     </div>
+
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.3.1.js">
+        </script>
+        <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js">
+        </script>
+        <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js">
+        </script>
+        <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        });
+        </script>
 </body>
 
 </html>

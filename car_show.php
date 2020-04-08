@@ -40,7 +40,7 @@ function DateDiff($strDate1,$strDate2)
 	 }
 
 mysql_select_db($database_myconnect, $myconnect);
-$query_car = "SELECT * FROM tb_car";
+$query_car = "SELECT * FROM tb_car ORDER BY car_id DESC";
 $car = mysql_query($query_car, $myconnect) or die(mysql_error());
 $row_car = mysql_fetch_assoc($car);
 $totalRows_car = mysql_num_rows($car);
@@ -51,7 +51,7 @@ if($id != ""){
     $query_car = "SELECT * FROM tb_car  
     WHERE car_id_set LIKE '%".$id."%'
     or car_register LIKE '%".$id."%'
-    or car_province LIKE '%".$id."%'";
+    or car_province LIKE '%".$id."%' ORDER BY car_id DESC";
     $car = mysql_query($query_car, $myconnect) or die(mysql_error());
     $row_car = mysql_fetch_assoc($car);
     $totalRows_car = mysql_num_rows($car);
@@ -68,26 +68,31 @@ if($id != ""){
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
     <title>ข้อมูลรถ</title>
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="css/custom.css" />
+
 
 </head>
 
 <body>
     <div class="container">
         <br />
-        <h2>ข้อมูลรถ</h2>
-        <FONT SIZE=3 COLOR=#FF4500>หมายเหตุ : สีเหลืองเตือนให้ต่อภาษีรถยนต์ภายใน 90 วัน /
-            สีแดงเตือนว่าภาษีหมดอายุแล้ว
-        </FONT>
-        <br /> <br />
+
         <div class="row">
             <div class="col-sm-8">
-
+                <!-- 
                 <form id="form2" name="form2" method="get" action="<?php echo $_SERVER['SCRIPT_NAME'];?>">
                     <input type="text" name="textfield" id="textfield" value="<?php echo $id ?>" />
                     <button type="submit"><i class="fa fa-search"></i></button>
 
-                </form>
+                </form> -->
+                <h2>ข้อมูลรถ</h2>
+                <FONT SIZE=3 COLOR=#FF4500>หมายเหตุ : สีเหลืองเตือนให้ต่อภาษีรถยนต์ภายใน 90 วัน /
+                    สีแดงเตือนว่าภาษีหมดอายุแล้ว
+                </FONT>
+                <br /> 
 
             </div>
             <div class="col-sm-4 ">
@@ -112,7 +117,7 @@ if($id != ""){
         }else{
 ?>
         <div class="table-responsive">
-            <table class="table table-hover table-sm">
+            <table id="example" class="table table-hover table-sm">
                 <thead class="thead-dark">
                     <tr>
                         <th>
@@ -125,12 +130,13 @@ if($id != ""){
                             <div align="center"><span>วันหมดอายุภาษีรถยนต์</span></div>
                         </th>
                         <?php if($_COOKIE["UserType"] == 2){?>
-                        <th colspan="2">
+                        <th>
                             <div align="center">จัดการ</div>
                         </th>
                         <?php } ?>
                     </tr>
                 </thead>
+                <tbody>
                 <?php do { ?>
                 <tr>
                     <td>
@@ -195,6 +201,7 @@ if($id != ""){
                     <?php } ?>
                 </tr>
                 <?php } while ($row_car = mysql_fetch_assoc($car)); ?>
+                </tbody>
             </table>
         </div>
         <?php } ?>
@@ -313,6 +320,18 @@ if($id != ""){
             </div>
         </div>
     </div>
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.3.1.js">
+    </script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js">
+    </script>
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js">
+    </script>
+    <script>
+    $(document).ready(function() {
+        $('#example').DataTable();
+    });
+    </script>
 </body>
 
 </html>
