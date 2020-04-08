@@ -157,8 +157,8 @@ $row_staff = mysql_fetch_assoc($staff);
                                 <lable class="col-sm-2">ตำแหน่ง </lable>
                                 <div class="col-sm-10">
                                     <select name="staff_position" id="staff_position" class="form-control">
-                                        <option value="Manager">Manager</option>
-                                        <option value="Driver">Driver</option>
+                                        <option value="พนักงานขับรถ">พนักงานขับรถ</option>
+                                        <option value="พนักงานเอกสาร">Driver</option>
                                     </select>
                                 </div>
                             </div>

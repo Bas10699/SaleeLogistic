@@ -110,7 +110,7 @@ $totalRows_customer = mysql_num_rows($customer);
                         <div class="row">
                             <lable class="col-sm-2">รหัสลูกค้า: </lable>
                             <div class="col-sm-10">
-                                <p><?php echo $row_customer['cus_id']; ?></p>
+                                <p><?php echo $row_customer['customer_id']; ?></p>
                             </div>
                         </div>
                         <hr />
@@ -163,8 +163,11 @@ $totalRows_customer = mysql_num_rows($customer);
                             <div class="form-group row">
                                 <lable for="cus_id" class="col-sm-2 col-form-label">รหัสลูกค้า :</lable>
                                 <div class="col-sm-10">
-                                    <input name="cus_id" type="text" class="form-control" id="cus_id"
+                                <input name="cus_id" type="hidden" class="form-control" id="cus_id"
                                         style="background-color:#CCC" value="<?php echo $row_customer['cus_id']; ?>"
+                                        readonly />
+                                    <input name="customer_id" type="text" class="form-control" id="customer_id"
+                                        style="background-color:#CCC" value="<?php echo $row_customer['customer_id']; ?>"
                                         readonly />
                                 </div>
                             </div>

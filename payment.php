@@ -65,7 +65,7 @@ $id = isset($_GET["id"]) ? $_GET["id"] : '';
         <br />
         <form method="get" action="<?php echo $_SERVER['SCRIPT_NAME'];?>">
             <div class="form-group">
-                <label for="usr">เลขที่ใบส่งของ:</label>
+                <label for="usr">เลขที่ใบส่งสินค้า:</label>
                 <div class="row">
                     <div class="col-sm-3">
                         <input type="text" class="form-control" id="usr" name="id" value="<?php echo $id;?>" />
@@ -159,7 +159,7 @@ else{
                 <div class="card" style="height: 100%">
                     <div class="card-body">
                         <br />
-                        <h2>กรุณากรอกเลขที่ใบส่งของ...<h2>
+                        <h2>กรุณากรอกเลขที่ใบส่งสินค้า...<h2>
                                 <br />
                     </div>
                 </div>
