@@ -189,7 +189,7 @@
             $date=date_create($row_data_inv['wb_date']);
 
             $pdf->Cell(30,10,iconv( 'UTF-8','TIS-620','1'),'LR',0,'C');
-            $pdf->Cell(40,10,iconv( 'UTF-8','TIS-620',$row_data_inv['wb_id_set']),'LR',0,'C');
+            $pdf->Cell(40,10,iconv( 'UTF-8','TIS-620',$row_data_inv['wb_nber']),'LR',0,'C');
             $pdf->Cell(30,10,iconv( 'UTF-8','TIS-620',date_format($date,"d/m/Y")),'LR',0,'C');
             $pdf->Cell(40,10,iconv( 'UTF-8','TIS-620',$row_data_inv['cus_compan']),'LR',0,'C');
             $pdf->Cell(30,10,iconv( 'UTF-8','TIS-620',$row_data_inv['wb_money'].' '),'LR',0,'R');
