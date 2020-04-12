@@ -4,6 +4,29 @@ require_once('Connections/myconnect.php');
 
 $id = isset($_GET["id"]) ? $_GET["id"] : '';
 
+if(isset($_POST['check']) && ($_POST["check"] == "yes")){
+    if(isset($_POST['wb_id'])){
+        $wb_id = $_POST['wb_id'];
+        $tiw_id = $_POST['id'];
+        mysql_select_db($database_myconnect, $myconnect);
+    $query_update_cancle = "UPDATE tb_inv_wb SET tiw_payment_status='ยกเลิกรายการส่งสินค้า' WHERE tiw_id=$tiw_id";
+    mysql_query($query_update_cancle, $myconnect) or die(mysql_error());
+
+    
+    $query_cancle = "UPDATE tb_waybill SET tb_inv_status='0' WHERE wb_id=$wb_id";
+    mysql_query($query_cancle, $myconnect) or die(mysql_error());
+
+    echo '<script type="text/javascript">
+    Swal.fire({
+        title: "ยกเลิกรายการส่งสินค้าเรียบร้อย",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 1500
+      })
+    </script>';
+    }
+    
+}
 
 ?>
 
@@ -105,10 +128,44 @@ else{
                 <div class="card" style="height: 100%">
                     <div class="card-body">
                         <div class=row>
-                            <div class="col-sm-8"></div>
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-7">
+                                <?php if($_COOKIE["UserType"] == 2 && $PaymentDetailID['tiw_payment_status'] == 'ค้างชำระ'){?>
+                                <form action="payment.php" method="POST">
+                                    <input type="hidden" name="id" id="id"
+                                        value="<?php echo $PaymentDetailID['tiw_id']?>" />
+                                    <input type="hidden" name="wb_id" id="wb_id"
+                                        value="<?php echo $PaymentDetailID['tiw_wb_id']?>" />
+                                    <input type="hidden" name="check" id="check" value="yes" />
+                                    <button type="button" onclick="confirmalert( event );"
+                                        class="btn btn-danger">ยกเลิกรายการส่งสินค้า</button>
+                                    <?php } ?>
+                                    <script>
+                                    function confirmalert(e) {
+                                        e.preventDefault();
+                                        var frm = e.target.form;
+                                        Swal.fire({
+                                            title: 'ยกเลิกรายการส่งสินค้า หรือไม่?',
+                                            text: "",
+                                            icon: 'warning',
+                                            showCancelButton: true,
+                                            confirmButtonColor: '#3085d6',
+                                            cancelButtonColor: '#d33',
+                                            confirmButtonText: 'ใช่',
+                                            cancelButtonText: 'ไม่ใช่'
+                                        }).then(function(isConfirm) {
+                                            if (isConfirm.value) {
+                                                frm.submit(); // <--- submit form programmatically
+                                            }
+                                        })
+                                    }
+                                    </script>
+                                </form>
+                            </div>
                             <div class="col-sm-4">
                                 <div>ใบส่งของเลขที่ <?php echo $id ?> </div>
-                                <div>วันที่ <?php echo date_format(date_create($PaymentDetailID['tiw_date']),"d/m/Y") ?>
+                                <div>วันที่
+                                    <?php echo date_format(date_create($PaymentDetailID['tiw_date']),"d/m/Y") ?>
                                 </div>
                             </div>
                         </div>
@@ -122,7 +179,13 @@ else{
                                 <div>ยอดเงินที่ชำระแล้ว: <?php echo $PaymentDetailID['tiw_money'] ?></div>
                                 <br />
                             </div>
-                            <?php if($PaymentDetailID['wb_money'] <= $PaymentDetailID['tiw_money']){
+                            <?php if($PaymentDetailID['tiw_payment_status'] == 'ยกเลิกรายการส่งสินค้า'){
+echo '<div class="col-sm-4">
+<label for="money">จำนวนเงินที่ได้รับ:</label>
+    <p class="text-danger">รายการส่งสินค้าถูกยกเลิก</p>
+                        </div>';
+                                }else{
+                                    if($PaymentDetailID['wb_money'] <= $PaymentDetailID['tiw_money']){
 echo '<div class="col-sm-4">
 <label for="money">จำนวนเงินที่ได้รับ:</label>
     <p class="text-success">ได้รับเงินครบตามจำนวนแล้ว</p>
@@ -142,10 +205,11 @@ echo '<div class="col-sm-4">
                                     <input type="number" class="form-control" id="money" name="money" />
                                     <br />
                                     <button class="btn btn-success float-right">ตกลง</button>
+
                                 </form>
                                 <?php } ?>
                             </div>
-                            <?php } ?>
+                            <?php }} ?>
                         </div>
                         <br />
 
