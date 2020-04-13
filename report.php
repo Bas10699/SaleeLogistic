@@ -425,7 +425,7 @@ $PaymentDate_detail = mysql_fetch_assoc($PaymentDateDetail);
                     <div class="card-body">
                         <h4>...</h4>
                         <div class="resposive">
-                            <table class="table table-hover table-sm table-bordered">
+                            <table id="example" class="table table-hover table-sm table-bordered">
                                 <thead class="thead-dark">
                                     <tr>
                                         <!-- <th>เลขที่</th> -->
