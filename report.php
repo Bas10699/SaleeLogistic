@@ -420,7 +420,49 @@ $PaymentDate_detail = mysql_fetch_assoc($PaymentDateDetail);
                         <?php } ?>
                     </div>
                 </div>
-
+                <br />
+                <div class="card">
+                    <div class="card-body">
+                        <h4>...</h4>
+                        <div class="resposive">
+                            <table class="table table-hover table-sm table-bordered">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <!-- <th>เลขที่</th> -->
+                                        <th>วันที่</th>
+                                        <th>ชื่อ-สกุล</th>
+                                        <th>ทะเบียนรถ</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php 
+                                    mysql_select_db($database_myconnect, $myconnect);
+                                    $query_invoice_all = "SELECT * FROM tb_invoice
+                                    INNER JOIN tb_car ON tb_car.car_id = tb_invoice.inv_car_id
+                                    INNER JOIN tb_staff ON tb_staff.staff_id = tb_invoice.inv_staff_id
+                                    WHERE (`inv_date` BETWEEN '$date_start.00:00:00' AND '$date_end.23:59:59')";
+                                    $InvoiceDetailAll = mysql_query($query_invoice_all, $myconnect) or die(mysql_error());
+                                    while($row_InvoiceDetailAll = mysql_fetch_array($InvoiceDetailAll)) {
+                                ?>
+                                    <tr>
+                                        <!-- <td><?php echo $row_InvoiceDetailAll["inv_id"]; ?></td> -->
+                                        <td><?php echo date_format(date_create($row_InvoiceDetailAll['inv_date']),"d/m/Y") ?>
+                                        </td>
+                                        <td><?php echo $row_InvoiceDetailAll['staff_name']?>
+                                            <?php echo $row_InvoiceDetailAll['staff_lastname']?></td>
+                                        <td><?php echo $row_InvoiceDetailAll['car_register']?> /
+                                            <?php echo $row_InvoiceDetailAll['car_province']?></td>
+                                        <td class="text-primary">
+                                            ข้อมูลเพิ่มเติม...
+                                        </td>
+                                    </tr>
+                                    <?php }  mysql_free_result($InvoiceDetailAll);?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
             <?php }
                 else{ ?>
