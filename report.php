@@ -342,7 +342,7 @@ $PaymentDate_detail = mysql_fetch_assoc($PaymentDateDetail);
 
                 <div class="card">
                     <div class="card-body">
-                        <h5>รายงานสรุปยอด วันที่ <?php echo $date_start?> ถึงวันที่ <?php echo $date_end?>
+                        <h5>รายงานสรุปยอด วันที่ <?php echo date_format(date_create($date_start),"d-m-Y")?> ถึงวันที่ <?php echo date_format(date_create($date_end),"d-m-Y")?>
                         </h5><br />
                         <table class="table table-sm">
                             <tbody>

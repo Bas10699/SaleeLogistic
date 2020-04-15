@@ -64,7 +64,13 @@
                 <li class="nav-item ">
                     <a class="nav-link" href="report.php">รายงานสรุปยอด</a>
                 </li>
-                <?php } ?>
+
+                <?php }else{
+                    echo '<li class="nav-item ">
+                    <a class="nav-link" href="cancle_bill.php">การจัดการการจัดส่ง</a>
+                </li>';
+                } ?>
+
 
                 <!-- <li class="nav-item dropdown ">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"

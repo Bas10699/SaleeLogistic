@@ -92,7 +92,7 @@ if($id != ""){
                 <FONT SIZE=3 COLOR=#FF4500>หมายเหตุ : สีเหลืองเตือนให้ต่อภาษีรถยนต์ภายใน 90 วัน /
                     สีแดงเตือนว่าภาษีหมดอายุแล้ว
                 </FONT>
-                <br /> 
+                <br />
 
             </div>
             <div class="col-sm-4 ">
@@ -116,93 +116,99 @@ if($id != ""){
             </script>';
         }else{
 ?>
-        <div class="table-responsive">
-            <table id="example" class="table table-hover table-sm">
-                <thead class="thead-dark">
-                    <tr>
-                        <!-- <th>
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <div class="table-responsive">
+                    <table id="example" class="table table-hover table-sm">
+                        <thead class="thead-dark">
+                            <tr>
+                                <!-- <th>
                             <div align="center">รหัสรถ</div>
                         </th> -->
-                        <th>
-                            <div align="center"><span>ทะเบียนรถ</span></div>
-                        </th>
-                        <th>
-                            <div align="center"><span>วันหมดอายุภาษีรถยนต์</span></div>
-                        </th>
-                        <?php if($_COOKIE["UserType"] == 2){?>
-                        <th>
-                            <div align="center">จัดการ</div>
-                        </th>
-                        <?php } ?>
-                    </tr>
-                </thead>
-                <tbody>
-                <?php do { ?>
-                <tr>
-                    <!-- <td>
+                                <th>
+                                    <div align="center"><span>ทะเบียนรถ</span></div>
+                                </th>
+                                <th>
+                                    <div align="center"><span>วันหมดอายุภาษีรถยนต์</span></div>
+                                </th>
+                                <?php if($_COOKIE["UserType"] == 2){?>
+                                <th>
+                                    <div align="center">จัดการ</div>
+                                </th>
+                                <?php } ?>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php do { ?>
+                            <tr>
+                                <!-- <td>
                         <div align="center"><?php echo $row_car['car_id_set']; ?></div>
                     </td> -->
-                    <td>
-                        <div align="center"><?php echo $row_car['car_register']; ?> /
-                            <?php echo $row_car['car_province']; ?></div>
-                    </td>
-                    <td>
-                        <?php
+                                <td>
+                                    <div align="center"><?php echo $row_car['car_register']; ?> /
+                                        <?php echo $row_car['car_province']; ?></div>
+                                </td>
+                                <td>
+                                    <?php
                       if (round(DateDiff(date('y-m-d'),$row_car['car_date_end'])) < '0' ){
                   ?>
-                        <div align="center" style='color:red'>
-                            <? echo  date_format(date_create($row_car['car_date_end']),"d/m/Y") ?>
-                            (ภาษีหมดอายุ)</div>
-                        <?php }
+                                    <div align="center" style='color:red'>
+                                        <? echo  date_format(date_create($row_car['car_date_end']),"d/m/Y") ?>
+                                        (ภาษีหมดอายุ)</div>
+                                    <?php }
 
                         
                         else if(round(DateDiff(date('y-m-d'),$row_car['car_date_end'])) <= '90' ){
                     ?>
-                        <div align="center" style='background-color:#ffcc00'>
-                            <?php $date=date_create($row_car['car_date_end']); echo date_format($date,"d/m/Y")."( ".round(DateDiff(date('y-m-d'),$row_car['car_date_end']))." วัน)"; ?>
-                        </div>
-                        <?php
+                                    <div align="center" style='background-color:#ffcc00'>
+                                        <?php $date=date_create($row_car['car_date_end']); echo date_format($date,"d/m/Y")."( ".round(DateDiff(date('y-m-d'),$row_car['car_date_end']))." วัน)"; ?>
+                                    </div>
+                                    <?php
                   } 
                       else{
                   ?>
-                        <div align="center">
-                            <?php $date=date_create($row_car['car_date_end']); echo date_format($date,"d/m/Y")."( ".round(DateDiff(date('y-m-d'),$row_car['car_date_end']))." วัน)"; ?>
-                        </div>
-                        <?php }?>
-                    </td>
-                    <?php if($_COOKIE["UserType"] == 2){?>
-                    <td>
-                        <div align="center">
-                            <a class="btn btn-warning btn-sm" role="button"
-                                href="car_edit.php?id=<?php echo $row_car['car_id']; ?>">แก้ไข</a>
-                            <button class="btn btn-danger btn-sm" role="button"
-                                onclick="myFunction(<?php echo $row_car['car_id']; ?>)">ลบ</button>
+                                    <div align="center">
+                                        <?php $date=date_create($row_car['car_date_end']); echo date_format($date,"d/m/Y")."( ".round(DateDiff(date('y-m-d'),$row_car['car_date_end']))." วัน)"; ?>
+                                    </div>
+                                    <?php }?>
+                                </td>
+                                <?php if($_COOKIE["UserType"] == 2){?>
+                                <td>
+                                    <div align="center">
+                                        <a class="btn btn-warning btn-sm" role="button"
+                                            href="car_edit.php?id=<?php echo $row_car['car_id']; ?>">แก้ไข</a>
+                                        <button class="btn btn-danger btn-sm" role="button"
+                                            onclick="myFunction(<?php echo $row_car['car_id']; ?>)">ลบ</button>
 
-                            <script>
-                            function myFunction(id) {
-                                Swal.fire({
-                                    title: 'Are you sure?',
-                                    text: "You won't be able to revert this!",
-                                    icon: 'warning',
-                                    showCancelButton: true,
-                                    confirmButtonColor: '#3085d6',
-                                    cancelButtonColor: '#d33',
-                                    confirmButtonText: 'Yes, delete it!'
-                                }).then((result) => {
-                                    if (result.value) {
-                                        window.location.href = "car_del.php?id=" + id
-                                    }
-                                })
-                            }
-                            </script>
+                                        <script>
+                                        function myFunction(id) {
+                                            Swal.fire({
+                                                title: 'Are you sure?',
+                                                text: "You won't be able to revert this!",
+                                                icon: 'warning',
+                                                showCancelButton: true,
+                                                confirmButtonColor: '#3085d6',
+                                                cancelButtonColor: '#d33',
+                                                confirmButtonText: 'Yes, delete it!'
+                                            }).then((result) => {
+                                                if (result.value) {
+                                                    window.location.href = "car_del.php?id=" + id
+                                                }
+                                            })
+                                        }
+                                        </script>
 
-                        </div>
-                    </td>
-                    <?php } ?>
-                </tr>
-                <?php } while ($row_car = mysql_fetch_assoc($car)); ?>
-                </tbody>
-            </table>
+                                    </div>
+                                </td>
+                                <?php } ?>
+                            </tr>
+                            <?php } while ($row_car = mysql_fetch_assoc($car)); ?>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-sm-2"></div>
+            </div>
         </div>
         <?php } ?>
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"

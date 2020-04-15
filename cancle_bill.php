@@ -130,7 +130,7 @@ else{
                         <div class=row>
                             <div class="col-sm-1"></div>
                             <div class="col-sm-7">
-                                <!-- <?php if($_COOKIE["UserType"] == 2 && $PaymentDetailID['tiw_payment_status'] == 'ค้างชำระ'){?>
+                                <?php if($_COOKIE["UserType"] == 2 && $PaymentDetailID['tiw_payment_status'] == 'ค้างชำระ'){?>
                                 <form action="payment.php" method="POST">
                                     <input type="hidden" name="id" id="id"
                                         value="<?php echo $PaymentDetailID['tiw_id']?>" />
@@ -160,7 +160,7 @@ else{
                                         })
                                     }
                                     </script>
-                                </form> -->
+                                </form>
                             </div>
                             <div class="col-sm-4">
                                 <div>ใบส่งของเลขที่ <?php echo $id ?> </div>
@@ -176,7 +176,7 @@ else{
                                 <div>อ้างอิงรหัสใบรับสินค้า: <?php echo $PaymentDetailID['wb_nber'] ?></div>
                                 <div>ชื่อบริษัท: <?php echo $PaymentDetailID['cus_compan'] ?></div>
                                 <div>ยอดเงินค่าขนส่ง: <?php echo number_format($PaymentDetailID['wb_money']) ?></div>
-                                <div>ยอดเงินที่ชำระแล้ว: <?php echo number_format($PaymentDetailID['tiw_money']) ?></div>
+                                <!-- <div>ยอดเงินที่ชำระแล้ว: <?php echo number_format($PaymentDetailID['tiw_money']) ?></div> -->
                                 <br />
                             </div>
                             <?php if($PaymentDetailID['tiw_payment_status'] == 'ยกเลิกรายการส่งสินค้า'){
@@ -193,21 +193,7 @@ echo '<div class="col-sm-4">
                         }else{
                         ?>
                             <div class="col-sm-4">
-                                <?php if($_COOKIE["UserType"] == 2){?>
-                                <label for="money">จำนวนเงินที่ได้รับ:</label>
-                                <form action="payment_update.php" method="post">
-                                    <input type="hidden" name="id" id="id"
-                                        value="<?php echo $PaymentDetailID['tiw_id']?>" />
-                                    <input type="hidden" name="wb_money" id="wb_money"
-                                        value="<?php echo $PaymentDetailID['wb_money'] ?>" />
-                                    <input type="hidden" name="tiw_money" id="tiw_money"
-                                        value="<?php echo $PaymentDetailID['tiw_money']?>" />
-                                    <input type="number" class="form-control" id="money" name="money" />
-                                    <br />
-                                    <button class="btn btn-success float-right">ตกลง</button>
-
-                                </form>
-                                <?php } ?>
+                                
                             </div>
                             <?php }} ?>
                         </div>

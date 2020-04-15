@@ -108,11 +108,12 @@ $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
                             <div align="center">วันที่</div>
                         </th>
                         <th class="min">
-                            <div align="center">ชื่อบริษัท</div>
-                        </th>
-                        <th class="min">
                             <div align="center">เลขที่ใบรับสินค้า</div>
                         </th>
+                        <th class="min">
+                            <div align="center">ชื่อบริษัท</div>
+                        </th>
+
                         <th class="min">
                             <div align="center">ยอดเงินค่าขนส่ง</div>
                         </th>
@@ -135,11 +136,12 @@ $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
                                 <?php $date=date_create($row_waybill['wb_date']); echo date_format($date,"d/m/Y"); ?>
                         </td>
                         <td>
-                            <div><?php echo $row_waybill['cus_compan']; ?></div>
-                        </td>
-                        <td>
                             <div align="center"><?php echo $row_waybill['wb_nber']; ?></div>
                         </td>
+                        <td>
+                            <div><?php echo $row_waybill['cus_compan']; ?></div>
+                        </td>
+
                         <td>
                             <div align="right"><?php echo number_format($row_waybill['wb_money']); ?></div>
                         </td>
@@ -189,7 +191,7 @@ $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
         <script>
         $(document).ready(function() {
             $('#example').DataTable();
-            
+
         });
         </script>
         <?php mysql_select_db($database_myconnect, $myconnect);
