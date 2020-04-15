@@ -131,9 +131,9 @@ $staffId = mysql_query($query_staff, $myconnect) or die(mysql_error());
                             <div> </div>
                         </th>
                         <?php } ?>
-                        <th>
+                        <!-- <th>
                             <div align="center">รหัสใบรับสินค้า</div>
-                        </th>
+                        </th> -->
                         <th>
                             <div align="center">วันที่</div>
                         </th>
@@ -163,9 +163,9 @@ $staffId = mysql_query($query_staff, $myconnect) or die(mysql_error());
                                 value='<?php echo $row_waybill["wb_id"]; ?>'>
                         </td>
                         <?php } ?>
-                        <td height="33">
+                        <!-- <td height="33">
                             <div align="center"><?php echo $row_waybill["wb_id_set"]; ?></div>
-                        </td>
+                        </td> -->
                         <td>
                             <div align="center">
                                 <?php $date=date_create($row_waybill['wb_date']); echo date_format($date,"d/m/Y"); ?>
@@ -183,7 +183,7 @@ $staffId = mysql_query($query_staff, $myconnect) or die(mysql_error());
                             <div align="center"><?php echo $row_waybill['cus_sub']; ?></div>
                         </td>
                         <td>
-                            <div align="right"><?php echo $row_waybill['wb_money']; ?></div>
+                            <div align="right"><?php echo number_format($row_waybill['wb_money']); ?></div>
                         </td>
 
 

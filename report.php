@@ -259,11 +259,10 @@ $PaymentDate_detail = mysql_fetch_assoc($PaymentDateDetail);
                                     $list_detail = mysql_fetch_assoc($count_listAll);
                                     $count_status = $list_detail['count_status'];
                                     $status = $list_detail['tiw_payment_status'];
-                                    echo "<h3>$count_status</h3>
-                                         <p>$status</p>";
+                                    echo "<h3>$count_status</h3>";
                                     mysql_free_result($count_listAll);
                                 ?>
-
+                                <p>ค้างชำระ</p>
                             </div>
                             <div class="icon">
                                 <i class="fas fa-file"></i>
@@ -284,15 +283,40 @@ $PaymentDate_detail = mysql_fetch_assoc($PaymentDateDetail);
                                     $list_detail = mysql_fetch_assoc($count_listAll);
                                     $count_status = $list_detail['count_status'];
                                     $status = $list_detail['tiw_payment_status'];
-                                    echo "<h3>$count_status</h3>
-                                         <p>$status</p>";
+                                    echo "<h3>$count_status</h3>";
                                     mysql_free_result($count_listAll);
                                 ?>
+                                <p>ชำระเงินแล้ว</p>
                             </div>
                             <div class="icon">
                                 <i class="material-icons">&#xe227;</i>
                             </div>
                             <a href="report.php?list=ชำระเงินแล้ว&date_start=<?php echo $date_start.'&date_end='.$date_end ?>"
+                                class="small-box-footer">ข้อมูลเพิ่มเติม <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-warning">
+                            <div class="inner">
+
+                                <?php 
+                                    mysql_select_db($database_myconnect, $myconnect);
+                                    $query_count_list = "SELECT COUNT(*) AS count_status
+                                    FROM tb_invoice WHERE (`inv_date` BETWEEN '$date_start.00:00:00' AND '$date_end.23:59:59')";
+                                    $count_listAll = mysql_query($query_count_list, $myconnect) or die(mysql_error());
+                                    $list_detail = mysql_fetch_assoc($count_listAll);
+                                    $count_status = $list_detail['count_status'];
+                                    
+                                    echo "<h3>$count_status</h3>";
+                                    mysql_free_result($count_listAll);
+                                ?>
+                                <p>พนักงานส่งสินค้า</p>
+                            </div>
+                            <div class="icon">
+                                <i class="material-icons">&#xe227;</i>
+                            </div>
+                            <a href="report.php?list=พนักงานส่งสินค้า&date_start=<?php echo $date_start.'&date_end='.$date_end ?>"
                                 class="small-box-footer">ข้อมูลเพิ่มเติม <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
@@ -347,9 +371,8 @@ $PaymentDate_detail = mysql_fetch_assoc($PaymentDateDetail);
                 <br />
 
 
-                <div class="card">
-                    <div class="card-body">
-                        <?php if($list === "ค้างชำระ"){
+
+                <?php if($list === "ค้างชำระ"){
                             mysql_select_db($database_myconnect, $myconnect);
                             $query_payment_all = "SELECT * FROM tb_inv_wb
                             INNER JOIN tb_waybill 
@@ -358,6 +381,8 @@ $PaymentDate_detail = mysql_fetch_assoc($PaymentDateDetail);
                             ORDER BY tiw_payment_status ASC";
                             $PaymentDetailAll = mysql_query($query_payment_all, $myconnect) or die(mysql_error());
                             ?>
+                <div class="card">
+                    <div class="card-body">
                         <h4>รายการค้างชำระ</h4>
                         <table id="example" class="table table-hover table-sm table-bordered">
                             <thead class="thead-dark">
@@ -373,15 +398,17 @@ $PaymentDate_detail = mysql_fetch_assoc($PaymentDateDetail);
                     ?>
                                 <tr>
                                     <td><?php echo $row_PaymentDetailAll["tiw_id"]; ?></td>
-                                    <td><?php echo $row_PaymentDetailAll['wb_money'] ?></td>
+                                    <td><?php echo number_format($row_PaymentDetailAll['wb_money']) ?></td>
                                     <td><?php echo $row_PaymentDetailAll['tiw_payment_status'] ?>
-                                        (<?php echo $row_PaymentDetailAll['wb_money']-$row_PaymentDetailAll['tiw_money'] ?>)
+                                        (<?php echo number_format($row_PaymentDetailAll['wb_money']-$row_PaymentDetailAll['tiw_money']) ?>)
                                     </td>
                                 </tr>
                                 <?php }  mysql_free_result($PaymentDetailAll);?>
                             </tbody>
                         </table>
-                        <?php }
+                    </div>
+                </div>
+                <?php }
                         else if($list === "ชำระเงินแล้ว"){
                             mysql_select_db($database_myconnect, $myconnect);
                             $query_payment_all = "SELECT * FROM tb_inv_wb
@@ -391,6 +418,8 @@ $PaymentDate_detail = mysql_fetch_assoc($PaymentDateDetail);
                             ORDER BY tiw_payment_status ASC";
                             $PaymentDetailAll = mysql_query($query_payment_all, $myconnect) or die(mysql_error());
                             ?>
+                <div class="card">
+                    <div class="card-body">
                         <h4>รายการชำระเงินแล้ว</h4>
                         <table id="example" class="table table-hover table-sm table-bordered">
                             <thead class="thead-dark">
@@ -406,67 +435,76 @@ $PaymentDate_detail = mysql_fetch_assoc($PaymentDateDetail);
                     ?>
                                 <tr>
                                     <td><?php echo $row_PaymentDetailAll["tiw_id"]; ?></td>
-                                    <td><?php echo $row_PaymentDetailAll['wb_money'] ?></td>
+                                    <td><?php echo number_format($row_PaymentDetailAll['wb_money']) ?></td>
                                     <td><?php echo $row_PaymentDetailAll['tiw_payment_status']?>
-                                        (<?php echo $row_PaymentDetailAll['tiw_money'] ?>)</td>
+                                        (<?php echo number_format($row_PaymentDetailAll['tiw_money']) ?>)</td>
                                 </tr>
                                 <?php }  mysql_free_result($PaymentDetailAll);?>
                             </tbody>
                         </table>
-                        <?php }
-                        else{
-                            ?>
-                        <h4>ข้อมูลเพิ่มเติม...</h4>
-                        <?php } ?>
                     </div>
                 </div>
-                <br />
+                <?php }
+                        else if($list === "พนักงานส่งสินค้า"){
+                            ?>
                 <div class="card">
                     <div class="card-body">
-                        <h4>...</h4>
-                        <div class="resposive">
-                            <table id="example1" class="table table-hover table-sm table-bordered">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <!-- <th>เลขที่</th> -->
-                                        <th>วันที่</th>
-                                        <th>ชื่อ-สกุล</th>
-                                        <th>ทะเบียนรถ</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php 
+                        <h4>รายการพนักงานส่งสินค้า</h4>
+                        <table id="example1" class="table table-hover table-sm table-bordered">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <!-- <th>เลขที่</th> -->
+                                    <th>วันที่</th>
+                                    <th>ชื่อ-สกุล</th>
+                                    <th>ทะเบียนรถ</th>
+                                    <th>จำนวนเงินที่ชำระ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php 
                                     mysql_select_db($database_myconnect, $myconnect);
-                                    $query_invoice_all = "SELECT * FROM tb_invoice
+                                    $query_invoice_all = "SELECT *,sum(tiw_money) AS sum_tiw_money FROM tb_invoice
                                     INNER JOIN tb_car ON tb_car.car_id = tb_invoice.inv_car_id
                                     INNER JOIN tb_staff ON tb_staff.staff_id = tb_invoice.inv_staff_id
-                                    WHERE (`inv_date` BETWEEN '$date_start.00:00:00' AND '$date_end.23:59:59')";
+                                    INNER JOIN tb_inv_wb ON tb_inv_wb.tiw_inv_id = tb_invoice.inv_id
+                                    WHERE (`tiw_date` BETWEEN '$date_start.00:00:00' AND '$date_end.23:59:59')
+                                    GROUP BY tb_invoice.inv_id";
                                     $InvoiceDetailAll = mysql_query($query_invoice_all, $myconnect) or die(mysql_error());
                                     while($row_InvoiceDetailAll = mysql_fetch_array($InvoiceDetailAll)) {
                                 ?>
-                                    <tr>
-                                        <!-- <td><?php echo $row_InvoiceDetailAll["inv_id"]; ?></td> -->
-                                        <td><?php echo date_format(date_create($row_InvoiceDetailAll['inv_date']),"d/m/Y") ?>
-                                        </td>
-                                        <td><?php echo $row_InvoiceDetailAll['staff_name']?>
-                                            <?php echo $row_InvoiceDetailAll['staff_lastname']?></td>
-                                        <td><?php echo $row_InvoiceDetailAll['car_register']?> /
-                                            <?php echo $row_InvoiceDetailAll['car_province']?></td>
-                                        <td class="text-primary">
-                                            <div style="cursor:pointer" class="viwe_data"
-                                                id="<?php echo $row_InvoiceDetailAll['inv_detail'] ?>">
-                                                ข้อมูลเพิ่มเติม...
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <?php }  mysql_free_result($InvoiceDetailAll);?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <?php require('ReportModal.php') ?>
+                                <tr>
+                                    <!-- <td><?php echo $row_InvoiceDetailAll["inv_id"]; ?></td> -->
+                                    <td><?php echo date_format(date_create($row_InvoiceDetailAll['inv_date']),"d/m/Y") ?>
+                                    </td>
+                                    <td><?php echo $row_InvoiceDetailAll['staff_name']?>
+                                        <?php echo $row_InvoiceDetailAll['staff_lastname']?></td>
+                                    <td><?php echo $row_InvoiceDetailAll['car_register']?> /
+                                        <?php echo $row_InvoiceDetailAll['car_province']?></td>
+                                    <td><?php echo number_format($row_InvoiceDetailAll['sum_tiw_money']) ?></td>
+                                    <!-- <td class="text-primary">
+                                        <div style="cursor:pointer" class="viwe_data"
+                                            id="<?php echo $row_InvoiceDetailAll['inv_detail'] ?>">
+                                            ข้อมูลเพิ่มเติม...
+                                        </div>
+                                    </td> -->
+                                </tr>
+                                <?php }  mysql_free_result($InvoiceDetailAll);?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
+                <?php } ?>
+
+                <br />
+                <!-- <div class="card">
+                    <div class="card-body">
+                        <div class="resposive">
+
+                        </div>
+                        
+                    </div>
+                </div> -->
+                <?php require('ReportModal.php') ?>
             </div>
             <?php }
                 else{ ?>

@@ -175,8 +175,8 @@ else{
                             <div class="col-sm-6">
                                 <div>อ้างอิงรหัสใบรับสินค้า: <?php echo $PaymentDetailID['wb_id_set'] ?></div>
                                 <div>ชื่อบริษัท: <?php echo $PaymentDetailID['cus_compan'] ?></div>
-                                <div>ยอดเงินค่าขนส่ง: <?php echo $PaymentDetailID['wb_money'] ?></div>
-                                <div>ยอดเงินที่ชำระแล้ว: <?php echo $PaymentDetailID['tiw_money'] ?></div>
+                                <div>ยอดเงินค่าขนส่ง: <?php echo number_format($PaymentDetailID['wb_money']) ?></div>
+                                <div>ยอดเงินที่ชำระแล้ว: <?php echo number_format($PaymentDetailID['tiw_money']) ?></div>
                                 <br />
                             </div>
                             <?php if($PaymentDetailID['tiw_payment_status'] == 'ยกเลิกรายการส่งสินค้า'){
@@ -252,7 +252,7 @@ else{
                     ?>
                         <tr>
                             <td><?php echo $row_PaymentDetailAll["tiw_id"]; ?></td>
-                            <td><?php echo $row_PaymentDetailAll['wb_money'] ?></td>
+                            <td><?php echo number_format($row_PaymentDetailAll['wb_money']) ?></td>
                             <td><?php echo $row_PaymentDetailAll['tiw_payment_status'] ?></td>
                         </tr>
                         <?php } ?>

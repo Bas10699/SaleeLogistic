@@ -101,7 +101,7 @@ $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
                 <thead class="thead-dark">
                     <tr>
                         <!-- <th ><div> </div></th> -->
-                        <!-- <th class="min">
+                        <!-- <th class="d-none">
                             <div align="center">รหัสใบรับสินค้า</div>
                         </th> -->
                         <th class="min">
@@ -127,7 +127,7 @@ $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
                     <?php while($row_waybill = mysql_fetch_array($waybill)) { ?>
                     <tr>
                         <!-- <td><input type='checkbox' name='checkIdList[]' value='<?php echo $row_waybill["wb_id"]; ?>'></td> -->
-                        <!-- <td>
+                        <!-- <td class="d-none">
                             <div align="center"><?php echo $row_waybill["wb_id_set"]; ?></div>
                         </td> -->
                         <td>
@@ -141,7 +141,7 @@ $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
                             <div align="center"><?php echo $row_waybill['wb_nber']; ?></div>
                         </td>
                         <td>
-                            <div align="right"><?php echo $row_waybill['wb_money']; ?></div>
+                            <div align="right"><?php echo number_format($row_waybill['wb_money']); ?></div>
                         </td>
                         <!-- <td><div ><?php echo $row_waybill['wb_payment']; ?></td> -->
 
@@ -188,9 +188,7 @@ $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
         </script>
         <script>
         $(document).ready(function() {
-            $('#example').DataTable({
-                "order": [[ 3, "desc" ]]
-            });
+            $('#example').DataTable();
             
         });
         </script>
@@ -219,7 +217,7 @@ $customer = mysql_query($query_customer, $myconnect) or die(mysql_error());
 
                             <div class="form-row">
                                 <div class="form-group col-md-4">
-                                    <label for="wb_nber">เลขที่ใบรับส่งสินค้า</label>
+                                    <label for="wb_nber">เลขที่ใบรับสินค้า</label>
                                     <input name="wb_nber" type="text" id="wb_nber" class="form-control" />
 
                                 </div>

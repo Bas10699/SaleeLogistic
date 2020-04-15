@@ -120,9 +120,9 @@ if($id != ""){
             <table id="example" class="table table-hover table-sm">
                 <thead class="thead-dark">
                     <tr>
-                        <th>
+                        <!-- <th>
                             <div align="center">รหัสรถ</div>
-                        </th>
+                        </th> -->
                         <th>
                             <div align="center"><span>ทะเบียนรถ</span></div>
                         </th>
@@ -139,9 +139,9 @@ if($id != ""){
                 <tbody>
                 <?php do { ?>
                 <tr>
-                    <td>
+                    <!-- <td>
                         <div align="center"><?php echo $row_car['car_id_set']; ?></div>
-                    </td>
+                    </td> -->
                     <td>
                         <div align="center"><?php echo $row_car['car_register']; ?> /
                             <?php echo $row_car['car_province']; ?></div>

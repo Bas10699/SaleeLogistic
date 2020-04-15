@@ -118,9 +118,9 @@ if($id != ""){
             <table id="example" class="table table-hover table-sm">
                 <thead class="thead-dark">
                     <tr>
-                        <th>
+                        <!-- <th>
                             <div align="center">รหัสลูกค้า</div>
-                        </th>
+                        </th> -->
                         <!-- <th>
                             <div align="center">เลขประจำตัวผู้เสียภาษี</div>
                         </th> -->
@@ -138,7 +138,7 @@ if($id != ""){
                 <tbody>
                     <?php do { ?>
                     <tr>
-                        <td class="ตัวอักษร" align="center"><?php echo $row_customer['customer_id']; ?></td>
+                        <!-- <td class="ตัวอักษร" align="center"><?php echo $row_customer['customer_id']; ?></td> -->
                         <!-- <td height="35">
                             <div align="center" class="ตัวอักษร"><?php echo $row_customer['cus_tin']; ?></div>
                         </td> -->

@@ -154,9 +154,9 @@ if(isset($_GET["textfield"])){
             <table id="example" class="table table-hover table-sm">
                 <thead class="thead-dark">
                     <tr>
-                        <th>
+                        <!-- <th>
                             <div align="center">รหัสพนักงาน</div>
-                        </th>
+                        </th> -->
                         <th>
                             <div align="center">เลขบัตรประชาชน</div>
                         </th>
@@ -185,9 +185,9 @@ if(isset($_GET["textfield"])){
                 <tbody>
                     <?php do { ?>
                     <tr>
-                        <td>
+                        <!-- <td>
                             <div align="center"><span><?php echo $row_staff['staff_id_set']; ?></span></div>
-                        </td>
+                        </td> -->
                         <td height="30">
                             <div align="center"><?php echo $row_staff['staff_card']; ?></div>
                         </td>
