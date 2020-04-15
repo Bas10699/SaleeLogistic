@@ -425,7 +425,7 @@ $PaymentDate_detail = mysql_fetch_assoc($PaymentDateDetail);
                     <div class="card-body">
                         <h4>...</h4>
                         <div class="resposive">
-                            <table id="example" class="table table-hover table-sm table-bordered">
+                            <table id="example1" class="table table-hover table-sm table-bordered">
                                 <thead class="thead-dark">
                                     <tr>
                                         <!-- <th>เลขที่</th> -->
@@ -454,13 +454,17 @@ $PaymentDate_detail = mysql_fetch_assoc($PaymentDateDetail);
                                         <td><?php echo $row_InvoiceDetailAll['car_register']?> /
                                             <?php echo $row_InvoiceDetailAll['car_province']?></td>
                                         <td class="text-primary">
-                                            ข้อมูลเพิ่มเติม...
+                                            <div style="cursor:pointer" class="viwe_data"
+                                                id="<?php echo $row_InvoiceDetailAll['inv_detail'] ?>">
+                                                ข้อมูลเพิ่มเติม...
+                                            </div>
                                         </td>
                                     </tr>
                                     <?php }  mysql_free_result($InvoiceDetailAll);?>
                                 </tbody>
                             </table>
                         </div>
+                        <?php require('ReportModal.php') ?>
                     </div>
                 </div>
             </div>
@@ -481,6 +485,35 @@ $PaymentDate_detail = mysql_fetch_assoc($PaymentDateDetail);
     <script>
     $(document).ready(function() {
         $('#example').DataTable();
+        $('#example1').DataTable();
+
+
+    });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+    <script>
+    $(document).ready(function() {
+
+        $('.viwe_data').click(function() {
+            var wid = $(this).attr('id');
+            $.ajax({
+                url: 'reportSelectInvioce.php',
+                method: 'post',
+                data: {
+                    id: wid
+                },
+                success: function(data) {
+                    $('#detail').html(data);
+                    $('#dataModal').modal('show');
+                }
+            })
+        })
     });
     </script>
 </body>

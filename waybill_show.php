@@ -101,9 +101,9 @@ $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
                 <thead class="thead-dark">
                     <tr>
                         <!-- <th ><div> </div></th> -->
-                        <th class="min">
+                        <!-- <th class="min">
                             <div align="center">รหัสใบรับสินค้า</div>
-                        </th>
+                        </th> -->
                         <th class="min">
                             <div align="center">วันที่</div>
                         </th>
@@ -127,9 +127,9 @@ $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
                     <?php while($row_waybill = mysql_fetch_array($waybill)) { ?>
                     <tr>
                         <!-- <td><input type='checkbox' name='checkIdList[]' value='<?php echo $row_waybill["wb_id"]; ?>'></td> -->
-                        <td>
+                        <!-- <td>
                             <div align="center"><?php echo $row_waybill["wb_id_set"]; ?></div>
-                        </td>
+                        </td> -->
                         <td>
                             <div align="center">
                                 <?php $date=date_create($row_waybill['wb_date']); echo date_format($date,"d/m/Y"); ?>
@@ -188,7 +188,10 @@ $waybill = mysql_query($query_waybill, $myconnect) or die(mysql_error());
         </script>
         <script>
         $(document).ready(function() {
-            $('#example').DataTable();
+            $('#example').DataTable({
+                "order": [[ 3, "desc" ]]
+            });
+            
         });
         </script>
         <?php mysql_select_db($database_myconnect, $myconnect);
