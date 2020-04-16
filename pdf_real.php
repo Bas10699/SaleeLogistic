@@ -71,11 +71,11 @@
         ON tb_waybill.customer_id = tb_customer.cus_id 
         LEFT JOIN tb_car
         ON tb_waybill.car_id = tb_car.car_id
-        WHERE `wb_id` IN ($inv_detail)";
+        WHERE `wb_id` IN ($inv_detail) ";
         $data_inv = mysql_query($query_data_inv, $myconnect) or die(mysql_error());
 
         $query_data_tiw_wb_id = "SELECT * FROM tb_inv_wb 
-            WHERE `tiw_wb_id` IN ($inv_detail)";
+            WHERE `tiw_wb_id` IN ($inv_detail) AND `tiw_payment_status`!='ยกเลิกรายการส่งสินค้า'";
             $tiw_id = mysql_query($query_data_tiw_wb_id, $myconnect) or die(mysql_error());
         
         
@@ -155,7 +155,7 @@
             $data_inv2 = mysql_query($query_data_inv, $myconnect) or die(mysql_error());
 
             $query_data_tiw_wb_id = "SELECT * FROM tb_inv_wb 
-            WHERE `tiw_wb_id` IN ($inv_detail)";
+            WHERE `tiw_wb_id` IN ($inv_detail) AND `tiw_payment_status`!='ยกเลิกรายการส่งสินค้า'";
             $tiw_id = mysql_query($query_data_tiw_wb_id, $myconnect) or die(mysql_error());
 
         

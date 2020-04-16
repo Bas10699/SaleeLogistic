@@ -32,8 +32,8 @@ if($_POST["listData"] && $_POST["staff_id"] && $_POST["car_id"]){
     
     
 
-    $id = mysql_insert_id();
-    $insertGoTo = "pdf_real.php?id=$id";
+    // $id = mysql_insert_id();
+    $insertGoTo = "pdf_real.php?id=$inv_id";
     header(sprintf("Location: %s", $insertGoTo));
 }
 ?>

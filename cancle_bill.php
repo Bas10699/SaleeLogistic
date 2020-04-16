@@ -84,7 +84,7 @@ if(isset($_POST['check']) && ($_POST["check"] == "yes")){
 
     <div class="container">
         <br />
-        <h2>การจัดการการชำระเงิน</h2>
+        <h2>การจัดการการจัดส่ง</h2>
         <br />
         <form method="get" action="<?php echo $_SERVER['SCRIPT_NAME'];?>">
             <div class="form-group">
@@ -193,7 +193,7 @@ echo '<div class="col-sm-4">
                         }else{
                         ?>
                             <div class="col-sm-4">
-                                
+
                             </div>
                             <?php }} ?>
                         </div>
@@ -238,8 +238,13 @@ else{
                     ?>
                         <tr>
                             <td><?php echo $row_PaymentDetailAll["tiw_id"]; ?></td>
-                            <td><?php echo number_format($row_PaymentDetailAll['wb_money']) ?></td>
-                            <td><?php echo $row_PaymentDetailAll['tiw_payment_status'] ?></td>
+                            <td>
+                                <div class="float-right"><?php echo number_format($row_PaymentDetailAll['wb_money']) ?>
+                                    บาท</div>
+                            </td>
+                            <td>
+                                <div class="float-right"><?php echo $row_PaymentDetailAll['tiw_payment_status'] ?></div>
+                            </td>
                         </tr>
                         <?php } ?>
                     </tbody>

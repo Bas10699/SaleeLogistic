@@ -18,7 +18,7 @@ mysql_select_db($database_myconnect, $myconnect);
 $query_payment_date = "SELECT sum(wb_money) AS SumMoneyWb FROM tb_inv_wb
                         INNER JOIN tb_waybill 
                         ON tb_waybill.wb_id=tb_inv_wb.tiw_wb_id
-                        WHERE (`tiw_date` BETWEEN '$date_start.00:00:00' AND '$date_end.23:59:59')";
+                        WHERE `tiw_payment_status`!='ยกเลิกรายการส่งสินค้า' AND (`tiw_date` BETWEEN '$date_start.00:00:00' AND '$date_end.23:59:59')";
 $PaymentDateDetail = mysql_query($query_payment_date, $myconnect) or die(mysql_error());
 $PaymentDate_detail = mysql_fetch_assoc($PaymentDateDetail);
 ?>
@@ -458,6 +458,7 @@ $PaymentDate_detail = mysql_fetch_assoc($PaymentDateDetail);
                                     <th>ชื่อ-สกุล</th>
                                     <th>ทะเบียนรถ</th>
                                     <th>จำนวนเงินที่ชำระ</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -481,12 +482,12 @@ $PaymentDate_detail = mysql_fetch_assoc($PaymentDateDetail);
                                     <td><?php echo $row_InvoiceDetailAll['car_register']?> /
                                         <?php echo $row_InvoiceDetailAll['car_province']?></td>
                                     <td><?php echo number_format($row_InvoiceDetailAll['sum_tiw_money']) ?></td>
-                                    <!-- <td class="text-primary">
+                                    <td class="text-primary">
                                         <div style="cursor:pointer" class="viwe_data"
-                                            id="<?php echo $row_InvoiceDetailAll['inv_detail'] ?>">
+                                            id="<?php echo $row_InvoiceDetailAll['inv_id'] ?>">
                                             ข้อมูลเพิ่มเติม...
                                         </div>
-                                    </td> -->
+                                    </td>
                                 </tr>
                                 <?php }  mysql_free_result($InvoiceDetailAll);?>
                             </tbody>
@@ -540,11 +541,16 @@ $PaymentDate_detail = mysql_fetch_assoc($PaymentDateDetail);
 
         $('.viwe_data').click(function() {
             var wid = $(this).attr('id');
+            var date_start = <?php echo  json_encode($date_start); ?>;
+            var date_end = <?php echo  json_encode($date_end); ?>;
             $.ajax({
                 url: 'reportSelectInvioce.php',
                 method: 'post',
                 data: {
-                    id: wid
+                    id: wid,
+                    date_start: date_start,
+                    date_end: date_end
+
                 },
                 success: function(data) {
                     $('#detail').html(data);

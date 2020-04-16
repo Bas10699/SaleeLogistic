@@ -176,7 +176,8 @@ else{
                                 <div>อ้างอิงรหัสใบรับสินค้า: <?php echo $PaymentDetailID['wb_nber'] ?></div>
                                 <div>ชื่อบริษัท: <?php echo $PaymentDetailID['cus_compan'] ?></div>
                                 <div>ยอดเงินค่าขนส่ง: <?php echo number_format($PaymentDetailID['wb_money']) ?></div>
-                                <div>ยอดเงินที่ชำระแล้ว: <?php echo number_format($PaymentDetailID['tiw_money']) ?></div>
+                                <div>ยอดเงินที่ชำระแล้ว: <?php echo number_format($PaymentDetailID['tiw_money']) ?>
+                                </div>
                                 <br />
                             </div>
                             <?php if($PaymentDetailID['tiw_payment_status'] == 'ยกเลิกรายการส่งสินค้า'){
@@ -233,6 +234,7 @@ else{
                 $query_payment_all = "SELECT * FROM tb_inv_wb
                 INNER JOIN tb_waybill 
                 ON tb_waybill.wb_id=tb_inv_wb.tiw_wb_id
+                WHERE `tiw_payment_status`!='ยกเลิกรายการส่งสินค้า'
                 ORDER BY tiw_payment_status ASC";
                 $PaymentDetailAll = mysql_query($query_payment_all, $myconnect) or die(mysql_error());
 ?>
@@ -252,8 +254,14 @@ else{
                     ?>
                         <tr>
                             <td><?php echo $row_PaymentDetailAll["tiw_id"]; ?></td>
-                            <td><?php echo number_format($row_PaymentDetailAll['wb_money']) ?></td>
-                            <td><?php echo $row_PaymentDetailAll['tiw_payment_status'] ?></td>
+                            <td>
+                                <div class="float-right"><?php echo number_format($row_PaymentDetailAll['wb_money']) ?>
+                                    บาท</div>
+                            </td>
+                            <td>
+                                <div class="float-right"><?php echo $row_PaymentDetailAll['tiw_payment_status'] ?>
+                                </div>
+                            </td>
                         </tr>
                         <?php } ?>
                     </tbody>
