@@ -7,14 +7,27 @@ $date_end = $_POST['date_end'];
 // echo $date_end;
 mysql_select_db($database_myconnect, $myconnect);
 $query_payment_date = "SELECT * FROM tb_waybill 
+                        INNER JOIN tb_customer ON tb_customer.cus_id=tb_waybill.customer_id
                         INNER JOIN tb_inv_wb ON tb_inv_wb.tiw_wb_id = tb_waybill.wb_id
                         INNER JOIN tb_invoice ON tb_inv_wb.tiw_inv_id = tb_invoice.inv_id
-                        WHERE `tiw_inv_id` =$id AND (`tiw_date` BETWEEN '$date_start.00:00:00' AND '$date_end.23:59:59')";
+                        INNER JOIN tb_car ON tb_car.car_id = tb_invoice.inv_car_id
+                        INNER JOIN tb_staff ON tb_staff.staff_id = tb_invoice.inv_staff_id
+                        
+                        WHERE `tiw_inv_id` =$id";
 $PaymentDateDetail = mysql_query($query_payment_date, $myconnect) or die(mysql_error());
+$detail=mysql_fetch_assoc($PaymentDateDetail);
+$outp.= "<div class='row'>
+            <div class='col-sm-6'>
+                <div>ชื่อ-สกุล: ".$detail['staff_name']." ".$detail['staff_lastname']."</div>
+            </div>
+            <div class='col-sm-6'>
+                <div class='float-right'>ทะเบียนรถ: ".$detail['car_register']." ".$detail['car_province']."</div>
+            </div>
+        </div><br/>";
 $outp.= "<div class='table-responsive'>
-<table class='table'><tr><th>เลขที่</th><th>รหัสใบรับสินค้า</th><th>จำนวนเงินที่ได้รับ</th><th>สถานะ</th></tr>";
+<table class='table'><tr><th>เลขที่ส่งสินค้า</th><th>รหัสใบรับสินค้า</th><th>ชื่อบริษัท</th><th>จำนวนเงินที่ได้รับ</th><th>สถานะ</th></tr>";
 while($row=mysql_fetch_array($PaymentDateDetail)){
-    $outp.="<tr><td>".$row['tiw_id']."</td><td>".$row['wb_nber']."</td><td>".$row['tiw_money']."</td><td>".$row['tiw_payment_status']."</td></tr>";
+    $outp.="<tr><td>".$row['tiw_id']."</td><td>".$row['wb_nber']."</td><td>".$row['cus_compan']."</td><td>".$row['tiw_money']."</td><td>".$row['tiw_payment_status']."</td></tr>";
 }
 $outp.= "</table></div>";
 echo $outp;
