@@ -303,12 +303,15 @@ $PaymentDate_detail = mysql_fetch_assoc($PaymentDateDetail);
                                 <?php 
                                     mysql_select_db($database_myconnect, $myconnect);
                                     $query_count_list = "SELECT COUNT(*) AS count_status
-                                    FROM tb_invoice WHERE (`inv_date` BETWEEN '$date_start.00:00:00' AND '$date_end.23:59:59')";
+                                    FROM tb_invoice 
+                                    INNER JOIN tb_inv_wb ON tb_inv_wb.tiw_inv_id = tb_invoice.inv_id
+                                    WHERE (`tiw_date` BETWEEN '$date_start.00:00:00' AND '$date_end.23:59:59') AND `tiw_payment_status`!='ยกเลิกรายการส่งสินค้า'
+                                    GROUP BY tb_invoice.inv_id";
                                     $count_listAll = mysql_query($query_count_list, $myconnect) or die(mysql_error());
-                                    $list_detail = mysql_fetch_assoc($count_listAll);
-                                    $count_status = $list_detail['count_status'];
+                                    // $list_detail = mysql_fetch_assoc($count_listAll);
+                                    $totalRows_list_detail = mysql_num_rows($count_listAll);
                                     
-                                    echo "<h3>$count_status</h3>";
+                                    echo "<h3>$totalRows_list_detail</h3>";
                                     mysql_free_result($count_listAll);
                                 ?>
                                 <p>พนักงานส่งสินค้า</p>
