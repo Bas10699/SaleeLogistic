@@ -468,7 +468,7 @@ $PaymentDate_detail = mysql_fetch_assoc($PaymentDateDetail);
                                     INNER JOIN tb_car ON tb_car.car_id = tb_invoice.inv_car_id
                                     INNER JOIN tb_staff ON tb_staff.staff_id = tb_invoice.inv_staff_id
                                     INNER JOIN tb_inv_wb ON tb_inv_wb.tiw_inv_id = tb_invoice.inv_id
-                                    WHERE (`tiw_date` BETWEEN '$date_start.00:00:00' AND '$date_end.23:59:59')
+                                    WHERE (`tiw_date` BETWEEN '$date_start.00:00:00' AND '$date_end.23:59:59') AND `tiw_payment_status`!='ยกเลิกรายการส่งสินค้า'
                                     GROUP BY tb_invoice.inv_id";
                                     $InvoiceDetailAll = mysql_query($query_invoice_all, $myconnect) or die(mysql_error());
                                     while($row_InvoiceDetailAll = mysql_fetch_array($InvoiceDetailAll)) {
