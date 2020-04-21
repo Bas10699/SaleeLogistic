@@ -33,7 +33,7 @@ $query_payment_date = "SELECT * FROM tb_waybill
                         INNER JOIN tb_invoice ON tb_inv_wb.tiw_inv_id = tb_invoice.inv_id
                         INNER JOIN tb_car ON tb_car.car_id = tb_invoice.inv_car_id
                         INNER JOIN tb_staff ON tb_staff.staff_id = tb_invoice.inv_staff_id
-                        WHERE `tiw_inv_id` =$id";
+                        WHERE `tiw_inv_id` =$id AND `tiw_payment_status`!='ยกเลิกรายการส่งสินค้า'";
 $PaymentDateDetail = mysql_query($query_payment_date, $myconnect) or die(mysql_error());
 $outp.= "<div class='table-responsive'>
 <table class='table'><tr><th>เลขที่ส่งสินค้า</th><th>รหัสใบรับสินค้า</th><th>ชื่อบริษัท</th><th>จำนวนเงินที่ได้รับ</th><th>สถานะ</th></tr>";
