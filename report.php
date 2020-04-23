@@ -351,18 +351,18 @@ $PaymentDate_detail = mysql_fetch_assoc($PaymentDateDetail);
                             <tbody>
                                 <tr>
                                     <th>จำนวนเงินที่ชำระแล้ว</th>
-                                    <td><?php echo $Date_detail['SumMoney']?></td>
+                                    <td><?php echo number_format($Date_detail['SumMoney'])?></td>
                                     <td> บาท</td>
                                 </tr>
                                 <tr>
                                     <th>จำนวนเงินที่ต้องชำระ </th>
-                                    <td><?php echo $PaymentDate_detail['SumMoneyWb']?></td>
+                                    <td><?php echo number_format($PaymentDate_detail['SumMoneyWb'])?></td>
                                     <td> บาท</td>
                                 </tr>
                                 <tr>
                                     <th>ค้างชำระ</th>
                                     <td>
-                                        <?php echo $PaymentDate_detail['SumMoneyWb']-$Date_detail['SumMoney'];?>
+                                        <?php echo number_format($PaymentDate_detail['SumMoneyWb']-$Date_detail['SumMoney']);?>
                                     </td>
                                     <td>บาท
                                     </td>
@@ -401,9 +401,9 @@ $PaymentDate_detail = mysql_fetch_assoc($PaymentDateDetail);
                     ?>
                                 <tr>
                                     <td><?php echo $row_PaymentDetailAll["tiw_id"]; ?></td>
-                                    <td><?php echo number_format($row_PaymentDetailAll['wb_money']) ?></td>
+                                    <td><?php echo number_format($row_PaymentDetailAll['wb_money']) ?> บาท</td>
                                     <td><?php echo $row_PaymentDetailAll['tiw_payment_status'] ?>
-                                        (<?php echo number_format($row_PaymentDetailAll['wb_money']-$row_PaymentDetailAll['tiw_money']) ?>)
+                                        (<?php echo number_format($row_PaymentDetailAll['wb_money']-$row_PaymentDetailAll['tiw_money']) ?> บาท)
                                     </td>
                                 </tr>
                                 <?php }  mysql_free_result($PaymentDetailAll);?>
@@ -438,9 +438,9 @@ $PaymentDate_detail = mysql_fetch_assoc($PaymentDateDetail);
                     ?>
                                 <tr>
                                     <td><?php echo $row_PaymentDetailAll["tiw_id"]; ?></td>
-                                    <td><?php echo number_format($row_PaymentDetailAll['wb_money']) ?></td>
+                                    <td><?php echo number_format($row_PaymentDetailAll['wb_money']) ?> บาท</td>
                                     <td><?php echo $row_PaymentDetailAll['tiw_payment_status']?>
-                                        (<?php echo number_format($row_PaymentDetailAll['tiw_money']) ?>)</td>
+                                        (<?php echo number_format($row_PaymentDetailAll['tiw_money']) ?> บาท)</td>
                                 </tr>
                                 <?php }  mysql_free_result($PaymentDetailAll);?>
                             </tbody>
@@ -484,7 +484,7 @@ $PaymentDate_detail = mysql_fetch_assoc($PaymentDateDetail);
                                         <?php echo $row_InvoiceDetailAll['staff_lastname']?></td>
                                     <td><?php echo $row_InvoiceDetailAll['car_register']?> /
                                         <?php echo $row_InvoiceDetailAll['car_province']?></td>
-                                    <td><?php echo number_format($row_InvoiceDetailAll['sum_tiw_money']) ?></td>
+                                    <td><?php echo number_format($row_InvoiceDetailAll['sum_tiw_money']) ?> บาท</td>
                                     <td class="text-primary">
                                         <div style="cursor:pointer" class="viwe_data"
                                             id="<?php echo $row_InvoiceDetailAll['inv_id'] ?>">
