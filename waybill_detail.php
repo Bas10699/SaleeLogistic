@@ -142,7 +142,7 @@ $customer = mysql_query($query_customer, $myconnect) or die(mysql_error());
                                     <div class="row">
                                         <lable class="col-sm-3">วันที่:</lable>
                                         <div class="col-sm-9">
-                                            <b><?php echo date('d/m/Y');?></b>
+                                            <b><?php $date=date_create($row_waybill['wb_date']); echo date_format($date,"d/m/Y");?></b>
                                         </div>
                                     </div>
                                     <hr />
