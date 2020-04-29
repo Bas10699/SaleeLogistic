@@ -149,7 +149,7 @@ $customer = mysql_query($query_customer, $myconnect) or die(mysql_error());
                                     <div class="row">
                                         <lable class="col-sm-3">ยอดเงินค่าขนส่ง:</lable>
                                         <div class="col-sm-9">
-                                            <b><?php echo $row_waybill['wb_money']; ?></b>
+                                            <b><?php echo number_format($row_waybill['wb_money']); ?></b>
                                         </div>
                                     </div>
                                     <hr />

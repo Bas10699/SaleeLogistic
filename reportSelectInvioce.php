@@ -38,7 +38,7 @@ $PaymentDateDetail = mysql_query($query_payment_date, $myconnect) or die(mysql_e
 $outp.= "<div class='table-responsive'>
 <table class='table'><tr><th>เลขที่ส่งสินค้า</th><th>รหัสใบรับสินค้า</th><th>ชื่อบริษัท</th><th>จำนวนเงินที่ได้รับ</th><th>สถานะ</th></tr>";
 while($row=mysql_fetch_array($PaymentDateDetail)){
-    $outp.="<tr><td>".$row['tiw_id']."</td><td>".$row['wb_nber']."</td><td>".$row['cus_compan']."</td><td>".$row['tiw_money']." บาท</td><td>".$row['tiw_payment_status']."</td></tr>";
+    $outp.="<tr><td>".$row['tiw_id']."</td><td>".$row['wb_nber']."</td><td>".$row['cus_compan']."</td><td>".number_format($row['tiw_money'])." บาท</td><td>".$row['tiw_payment_status']."</td></tr>";
 }
 $outp.= "</table></div>";
 mysql_free_result($PaymentDateDetail);
